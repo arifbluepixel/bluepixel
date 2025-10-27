@@ -2,6 +2,7 @@
 
 import { bluepixel } from "@/lib/constants/images";
 import { motion, useAnimation, useInView } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const SlidingStarWithText = () => {
@@ -54,7 +55,9 @@ const SlidingStarWithText = () => {
     <div ref={ref} className="flex items-center justify-center gap-3">
       {/* Sliding Image with Spin */}
       <motion.div initial={{ x: -50, opacity: 0 }} animate={starControls}>
-        <img
+        <Image
+          width={48}
+          height={48}
           src={bluepixel}
           alt="Logo"
           className="h-10 md:h-12 w-10 md:w-12 drop-shadow-lg"

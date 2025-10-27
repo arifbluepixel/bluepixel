@@ -12,29 +12,34 @@ import {
   Users,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import SectionHeader from "@/components/shared/home/SectionHeader";
+import SectionHeader from "./SectionHeader";
 
 // --- AnimatedNumber Component for Count Up Effect ---
-// @ts-expect-error - Accept it
-const AnimatedNumber = ({ end, suffix, label }) => {
+const AnimatedNumber = ({
+  end,
+  suffix,
+  label,
+}: {
+  end: number;
+  suffix: string;
+  label: string;
+}) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 }); // Trigger when 50% in view
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
 
-  // Duration in milliseconds
   const duration = 1500;
-  // Frame rate approximation (60fps)
   const stepTime = Math.max(1, Math.floor(duration / 60));
   const steps = duration / stepTime;
   const increment = end / steps;
 
   useEffect(() => {
     if (isInView) {
-      // @ts-expect-error - Accept it
+      // @ts-expect-error - ignore
       let startTimestamp = null;
-      // @ts-expect-error - Accept it
+      // @ts-expect-error - ignore
       const animateCount = (timestamp) => {
-        // @ts-expect-error - Accept it
+        // @ts-expect-error - ignore
         if (!startTimestamp) startTimestamp = timestamp;
         const progress = timestamp - startTimestamp;
 
@@ -47,7 +52,7 @@ const AnimatedNumber = ({ end, suffix, label }) => {
         if (progress < duration) {
           requestAnimationFrame(animateCount);
         } else {
-          setCount(end); // Ensure it stops exactly at the end value
+          setCount(end);
         }
       };
 
@@ -76,99 +81,94 @@ const AnimatedNumber = ({ end, suffix, label }) => {
 const OurStrengths = () => {
   const strengths = [
     {
-      icon: <Award className="w-8 h-8" />,
-      title: "Quality Guarantee",
+      icon: <Award className="w-6 h-6 lg:w-8 lg:h-8" />,
+      title: "Premium Quality",
       description:
-        "Every garment undergoes rigorous quality checks with our 200-point inspection system ensuring premium craftsmanship and durability.",
+        "Meticulous attention to detail in every project with industry leading standards, ensuring pixel perfect designs and flawless execution. " +
+        "Our quality assurance process guarantees professional results that exceed client expectations and industry benchmarks.",
       features: [
-        "200-point quality inspection",
-        "Premium craftsmanship",
-        "Lifetime quality assurance",
-        "ISO 9001 certified",
+        "Unlimited revisions",
+        "Quality control checks",
+        "Professional standards",
+        "Satisfaction guarantee",
+        "Expert review process",
+        "Brand consistency",
+        "File optimization",
+        "Final approval workflow",
       ],
       color: "from-emerald-500 to-teal-600",
       bgColor: "bg-emerald-50 dark:bg-emerald-900/20",
       borderColor: "border-emerald-200 dark:border-emerald-800",
-      stats: "99.8% Quality Score",
+      stats: "99.9% Client Satisfaction",
       delay: 0.1,
+      position: 1,
     },
     {
-      icon: <BarChart3 className="w-8 h-8" />,
-      title: "Order Management",
+      icon: <BarChart3 className="w-6 h-6 lg:w-8 lg:h-8" />,
+      title: "Project Management",
       description:
-        "Seamless order tracking and management with real-time updates, ensuring complete transparency throughout production.",
+        "Streamlined workflow with dedicated project managers, real time progress tracking, and transparent communication throughout every stage of your project.",
       features: [
-        "Real-time order tracking",
-        "Digital dashboard access",
-        "Dedicated account manager",
-        "Monthly performance reports",
+        "Live project dashboard",
+        "24/7 client portal access",
+        "Dedicated project manager",
+        "Weekly progress reports",
       ],
       color: "from-blue-500 to-cyan-600",
       bgColor: "bg-blue-50 dark:bg-blue-900/20",
       borderColor: "border-blue-200 dark:border-blue-800",
-      stats: "24/7 Order Tracking",
+      stats: "24/7 Support Available",
       delay: 0.2,
+      position: 2,
     },
     {
-      icon: <TrendingUp className="w-8 h-8" />,
-      title: "Product Development",
+      icon: <TrendingUp className="w-6 h-6 lg:w-8 lg:h-8" />,
+      title: "Creative Excellence",
       description:
-        "Innovative design-to-production process with rapid prototyping and market trend analysis for competitive edge.",
+        "Award winning designers and developers delivering cutting edge solutions using the latest tools, trends, and technologies to make your brand stand out.",
       features: [
-        "Rapid prototyping",
-        "Trend forecasting",
-        "Custom design services",
-        "Material innovation",
+        "Modern design trends",
+        "Latest software tools",
+        "Creative innovation",
+        "Brand strategy support",
       ],
       color: "from-purple-500 to-indigo-600",
       bgColor: "bg-purple-50 dark:bg-purple-900/20",
       borderColor: "border-purple-200 dark:border-purple-800",
-      stats: "48hr Prototype Turnaround",
+      stats: "500+ Projects Delivered",
       delay: 0.3,
+      position: 3,
     },
     {
-      icon: <Clock className="w-8 h-8" />,
-      title: "On-time Delivery",
+      icon: <Clock className="w-6 h-6 lg:w-8 lg:h-8" />,
+      title: "Fast Turnaround",
       description:
-        "Precision scheduling and logistics expertise guaranteeing 98% on-time delivery across global markets.",
+        "Lightning fast delivery without compromising quality through optimized workflows and dedicated teams. " +
+        "Rush services available for urgent projects with same day and express delivery options to meet tight deadlines.",
       features: [
-        "Advanced logistics planning",
-        "Global shipping partners",
-        "Customs clearance support",
         "Express delivery options",
+        "Rush service available",
+        "Milestone-based delivery",
+        "Efficient workflows",
+        "Quick revisions",
+        "Same-day service",
+        "Priority queue access",
+        "Flexible scheduling",
       ],
       color: "from-cyan-500 to-teal-600",
       bgColor: "bg-cyan-50 dark:bg-cyan-900/20",
       borderColor: "border-cyan-200 dark:border-cyan-800",
-      stats: "98% On-Time Delivery",
+      stats: "24-48hr Standard Delivery",
       delay: 0.4,
-    },
-    {
-      icon: <Shield className="w-8 h-8" />,
-      title: "Fabric Quality & Durability",
-      description:
-        "Premium fabric sourcing with rigorous testing for color fastness, shrinkage control, and long-lasting durability.",
-      features: [
-        "OEKO-TEX certified fabrics",
-        "Color fastness testing",
-        "Shrinkage control",
-        "Sustainable materials",
-      ],
-      color: "from-amber-500 to-yellow-600",
-      bgColor: "bg-amber-50 dark:bg-amber-900/20",
-      borderColor: "border-amber-200 dark:border-amber-800",
-      stats: "100% Quality Tested Fabrics",
-      delay: 0.5,
+      position: 4,
     },
   ];
 
-  // Data structured for the AnimatedNumber component
   const statsData = [
-    { number: 500, suffix: "+", label: "Brands Trust Us" },
-    // Use 50000 for the actual count, then format with K in the suffix logic (or just show 50 and K+)
-    { number: 50, suffix: "K+", label: "Products Monthly" },
-    { number: 98, suffix: "%", label: "Client Retention" },
-    { number: 15, suffix: "+", label: "Years Experience" },
+    { number: 1200, suffix: "+", label: "Projects Completed" },
+    { number: 350, suffix: "+", label: "Happy Clients" },
+    { number: 96, suffix: "%", label: "Client Retention" },
+    { number: 8, suffix: "+", label: "Years Experience" },
   ];
 
   const containerVariants = {
@@ -227,12 +227,11 @@ const OurStrengths = () => {
 
   const featureVariants = {
     hidden: { opacity: 0, x: -10 },
-    // @ts-expect-error - Accept it
-    visible: (i) => ({
+    visible: (i: number) => ({
       opacity: 1,
       x: 0,
       transition: {
-        delay: i * 0.05, // Slightly faster staggered delay
+        delay: i * 0.05,
         duration: 0.3,
       },
     }),
@@ -241,15 +240,16 @@ const OurStrengths = () => {
   return (
     <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50/50 dark:from-gray-900 dark:via-gray-950 dark:to-blue-950/50 overflow-hidden font-sans">
       <div className="container mx-auto px-4">
+        {/* Header */}
         <SectionHeader
           badge="Why Choose Us"
           badgeIcon={Sparkles}
           title="Our Core Strengths"
           highlightText="Core Strengths"
-          description="Built on a foundation of excellence ,innovation , and unwavering commitment to client success. Trusted by 250+ brands worldwide."
+          description="Built on a foundation of creativity, technical expertise, and unwavering commitment to client success. Trusted by 350+ brands worldwide."
         />
 
-        {/* Stats Bar - Uses AnimatedNumber Component */}
+        {/* Stats Bar */}
         <motion.div
           className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
@@ -266,152 +266,98 @@ const OurStrengths = () => {
           ))}
         </motion.div>
 
-        {/* Strengths Grid - 3-2 Centered Layout on Large Screens */}
+        {/* Flow-based Layout Container */}
         <motion.div
-          className="flex flex-wrap justify-center gap-6 lg:gap-8 max-w-7xl mx-auto"
+          className="max-w-7xl mx-auto relative"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {strengths.map((strength, index) => (
+          {/* Desktop/Tablet Layout (md and above) - Follow arrow flow */}
+          <div className="hidden md:grid md:grid-cols-5 md:auto-rows-fr gap-6 md:gap-8">
+            {/* Position 1 - Top Left (large) */}
             <motion.div
-              key={index}
-              className="group relative w-full sm:w-[calc(50%-1.5rem)] lg:w-[31%] max-w-md"
-              // @ts-expect-error - Accept it
+              className="col-span-3 row-span-1"
+              // @ts-expect-error - ignore
               variants={cardVariants}
               whileHover="hover"
-              custom={strength.delay}
             >
-              {/* Background Glow */}
-              <motion.div
-                className={`absolute inset-0 bg-gradient-to-br ${strength.color} rounded-2xl lg:rounded-3xl opacity-0 group-hover:opacity-5 blur-xl transition-opacity duration-500`}
-                whileHover={{ opacity: 0.1 }}
+              <StrengthCard
+                strength={strengths[0]}
+                iconVariants={iconVariants}
+                featureVariants={featureVariants}
+                index={1}
               />
-
-              {/* Main Card */}
-              <div
-                className={`relative ${strength.bgColor} p-6 lg:p-8 rounded-2xl lg:rounded-3xl border-2 ${strength.borderColor} shadow-sm group-hover:shadow-2xl transition-all duration-500 overflow-hidden h-full flex flex-col`}
-              >
-                {/* Animated Border */}
-                <motion.div
-                  className={`absolute inset-0 rounded-2xl lg:rounded-3xl bg-gradient-to-r ${strength.color} opacity-0 group-hover:opacity-100`}
-                  style={{
-                    mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                    WebkitMask:
-                      "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                    maskComposite: "exclude",
-                    WebkitMaskComposite: "xor",
-                    padding: "3px",
-                  }}
-                  transition={{ duration: 0.4 }}
-                />
-
-                {/* Icon Section */}
-                <div className="relative z-10 mb-4 lg:mb-6">
-                  <motion.div
-                    className={`inline-flex p-3 lg:p-4 rounded-xl lg:rounded-2xl bg-gradient-to-br ${strength.color} text-white shadow-lg`}
-                    // @ts-expect-error - Accept it
-                    variants={iconVariants}
-                  >
-                    {strength.icon}
-                  </motion.div>
-
-                  {/* Stats Badge */}
-                  <motion.div
-                    className="absolute -top-2 -right-2 px-2 lg:px-3 py-1 bg-white dark:bg-gray-800 rounded-full shadow-lg border border-gray-200 dark:border-gray-700"
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 20,
-                      delay: strength.delay + 0.3,
-                    }}
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <span className="text-xs font-bold bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-200 dark:to-gray-50 bg-clip-text text-transparent whitespace-nowrap">
-                      {strength.stats}
-                    </span>
-                  </motion.div>
-                </div>
-
-                {/* Content Section */}
-                <div className="relative z-10 flex-1 flex flex-col">
-                  <motion.h3
-                    className="text-lg lg:text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 lg:mb-3 group-hover:text-gray-800 dark:group-hover:text-white transition-colors duration-300 line-clamp-2"
-                    whileHover={{ x: 2 }}
-                  >
-                    {strength.title}
-                  </motion.h3>
-
-                  <motion.p
-                    className="text-sm lg:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4 lg:mb-6 flex-1 line-clamp-3"
-                    initial={{ opacity: 0.8 }}
-                    whileHover={{ opacity: 1 }}
-                  >
-                    {strength.description}
-                  </motion.p>
-
-                  {/* Features List */}
-                  <motion.ul className="space-y-2 lg:space-y-3">
-                    {strength.features.map((feature, featureIndex) => (
-                      <motion.li
-                        key={featureIndex}
-                        className="flex items-center gap-2 lg:gap-3 text-xs lg:text-sm text-gray-700 dark:text-gray-300"
-                        custom={featureIndex}
-                        variants={featureVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                      >
-                        <motion.div
-                          className={`flex-shrink-0 w-4 h-4 lg:w-5 lg:h-5 rounded-full bg-gradient-to-br ${strength.color} text-white flex items-center justify-center`}
-                          whileHover={{ scale: 1.2 }}
-                        >
-                          <CheckCircle className="w-2 h-2 lg:w-3 lg:h-3" />
-                        </motion.div>
-                        <span className="line-clamp-1">{feature}</span>
-                      </motion.li>
-                    ))}
-                  </motion.ul>
-                </div>
-              </div>
-
-              {/* Connection Dots for Desktop - Only visible between cards 1-4 */}
-              {index < strengths.length - 1 && (
-                <motion.div
-                  className="hidden xl:block absolute -right-4 top-1/2 transform -translate-y-1/2"
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: strength.delay + 0.5 }}
-                >
-                  {/* This is a placeholder for the connection dots, visually it doesn't align perfectly 
-                                        with the 3-2 grid wrap, but it adds a nice animated touch to the flow. */}
-                  {/* <div className="flex flex-col gap-1">
-                                        {[0, 1, 2].map(dot => (
-                                            <motion.div
-                                                key={dot}
-                                                className={`w-2 h-2 rounded-full bg-gradient-to-br ${strength.color}`}
-                                                animate={{
-                                                    scale: [1, 1.2, 1],
-                                                    opacity: [0.5, 1, 0.5]
-                                                }}
-                                                transition={{
-                                                    duration: 1.5,
-                                                    repeat: Infinity,
-                                                    delay: dot * 0.2
-                                                }}
-                                            />
-                                        ))}
-                                    </div> */}
-                </motion.div>
-              )}
             </motion.div>
-          ))}
+
+            {/* Position 2 - Top Right (small) */}
+            <motion.div
+              className="col-span-2 row-span-1"
+              // @ts-expect-error - ignore
+              variants={cardVariants}
+              whileHover="hover"
+            >
+              <StrengthCard
+                strength={strengths[1]}
+                iconVariants={iconVariants}
+                featureVariants={featureVariants}
+                index={2}
+              />
+            </motion.div>
+
+            {/* Position 4 - Bottom Left (small) */}
+            <motion.div
+              className="col-span-2 row-span-1"
+              // @ts-expect-error - ignore
+              variants={cardVariants}
+              whileHover="hover"
+            >
+              <StrengthCard
+                strength={strengths[2]}
+                iconVariants={iconVariants}
+                featureVariants={featureVariants}
+                index={3}
+              />
+            </motion.div>
+
+            {/* Position 3 - Bottom Right (large) */}
+            <motion.div
+              className="col-span-3 row-span-1"
+              // @ts-expect-error - ignore
+              variants={cardVariants}
+              whileHover="hover"
+            >
+              <StrengthCard
+                strength={strengths[3]}
+                iconVariants={iconVariants}
+                featureVariants={featureVariants}
+                index={4}
+              />
+            </motion.div>
+          </div>
+
+          {/* Mobile Layout (below md) - Simple vertical stack */}
+          <div className="md:hidden grid grid-cols-1 gap-6">
+            {strengths.map((strength, index) => (
+              <motion.div
+                key={index}
+                // @ts-expect-error - ignore
+                variants={cardVariants}
+                whileHover="hover"
+              >
+                <StrengthCard
+                  strength={strength}
+                  iconVariants={iconVariants}
+                  featureVariants={featureVariants}
+                  index={4}
+                />
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Trust Badge Section - Responsive */}
+        {/* Trust Badge Section */}
         <motion.div
           className="mt-12 lg:mt-16 text-center"
           initial={{ opacity: 0, y: 30 }}
@@ -423,10 +369,10 @@ const OurStrengths = () => {
               <Users className="w-6 h-6 lg:w-8 lg:h-8 text-blue-600 dark:text-blue-400" />
               <div className="text-left">
                 <div className="font-semibold text-gray-900 dark:text-gray-100 text-sm lg:text-base">
-                  Trusted Partner
+                  Trusted Agency
                 </div>
                 <div className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">
-                  15+ years of manufacturing excellence
+                  8+ years of creative excellence
                 </div>
               </div>
             </div>
@@ -435,10 +381,10 @@ const OurStrengths = () => {
               <Shield className="w-6 h-6 lg:w-8 lg:h-8 text-green-600 dark:text-green-400" />
               <div className="text-left">
                 <div className="font-semibold text-gray-900 dark:text-gray-100 text-sm lg:text-base">
-                  Certified Quality
+                  Quality Assured
                 </div>
                 <div className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">
-                  ISO 9001 & OEKO-TEX Certified
+                  Industry-certified professionals
                 </div>
               </div>
             </div>
@@ -446,6 +392,145 @@ const OurStrengths = () => {
         </motion.div>
       </div>
     </section>
+  );
+};
+
+// Extracted Card Component for cleaner code
+const StrengthCard = ({
+  strength,
+  iconVariants,
+  featureVariants,
+  index,
+}: {
+  strength: {
+    icon: React.JSX.Element;
+    title: string;
+    description: string;
+    features: string[];
+    color: string;
+    bgColor: string;
+    borderColor: string;
+    stats: string;
+    delay: number;
+    position: number;
+  };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  iconVariants: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  featureVariants: any;
+  index: number;
+}) => {
+  const isRow = index === 1 || index === 4;
+
+  return (
+    <div className="group relative h-full">
+      {/* Background Glow */}
+      <motion.div
+        className={`absolute inset-0 bg-gradient-to-br ${strength.color} rounded-2xl lg:rounded-3xl opacity-0 group-hover:opacity-5 blur-xl transition-opacity duration-500`}
+        whileHover={{ opacity: 0.1 }}
+      />
+
+      {/* Main Card */}
+      <div
+        className={`relative ${strength.bgColor} p-6 lg:p-8 rounded-2xl lg:rounded-3xl border-2 ${strength.borderColor} shadow-sm group-hover:shadow-2xl transition-all duration-500 overflow-hidden h-full flex flex-col`}
+      >
+        {/* Animated Border */}
+        <motion.div
+          className={`absolute inset-0 rounded-2xl lg:rounded-3xl bg-gradient-to-r ${strength.color} opacity-0 group-hover:opacity-100`}
+          style={{
+            mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            WebkitMask:
+              "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            maskComposite: "exclude",
+            WebkitMaskComposite: "xor",
+            padding: "3px",
+          }}
+          transition={{ duration: 0.4 }}
+        />
+
+        {/* Icon Section */}
+        <div
+          className={`relative z-10 ${
+            isRow ? "mb-4 lg:mb-0 lg:mr-6 flex-shrink-0" : "mb-4 lg:mb-6"
+          } flex items-start lg:items-center`}
+          style={isRow ? { minWidth: 72 } : undefined}
+        >
+          <motion.div
+            className={`inline-flex p-3 lg:p-4 rounded-xl lg:rounded-2xl bg-gradient-to-br ${strength.color} text-white shadow-lg`}
+            variants={iconVariants}
+          >
+            {strength.icon}
+          </motion.div>
+
+          {/* Stats Badge */}
+          <motion.div
+            className="absolute -top-2 -right-2 px-2 lg:px-3 py-1 bg-white dark:bg-gray-800 rounded-full shadow-lg border border-gray-200 dark:border-gray-700"
+            initial={{ scale: 0, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 20,
+              delay: strength.delay + 0.3,
+            }}
+            whileHover={{ scale: 1.1 }}
+          >
+            <span className="text-xs font-bold bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-200 dark:to-gray-50 bg-clip-text text-transparent whitespace-nowrap">
+              {strength.stats}
+            </span>
+          </motion.div>
+        </div>
+
+        {/* Content Section */}
+        <div
+          className={`relative z-10 flex-1 flex  ${
+            isRow ? "flex-col md:flex-row " : "flex-col"
+          }`}
+        >
+          <div
+            className={` ${isRow ? "w-full md:w-1/2 pt-5 md:pr-5" : "w-full"}`}
+          >
+            <motion.h3
+              className="text-lg lg:text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 lg:mb-3 group-hover:text-gray-800 dark:group-hover:text-white transition-colors duration-300"
+              whileHover={{ x: 2 }}
+            >
+              {strength.title}
+            </motion.h3>
+
+            <motion.p
+              className="text-sm lg:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4 lg:mb-6 flex-1"
+              initial={{ opacity: 0.8 }}
+              whileHover={{ opacity: 1 }}
+            >
+              {strength.description}
+            </motion.p>
+          </div>
+
+          {/* Features List */}
+          <motion.ul className={`space-y-2 lg:space-y-3 ${isRow && "pt-5"}`}>
+            {strength.features.map((feature, featureIndex) => (
+              <motion.li
+                key={featureIndex}
+                className="flex items-center gap-2 lg:gap-3 text-xs lg:text-sm text-gray-700 dark:text-gray-300"
+                custom={featureIndex}
+                variants={featureVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                <motion.div
+                  className={`flex-shrink-0 w-4 h-4 lg:w-5 lg:h-5 rounded-full bg-gradient-to-br ${strength.color} text-white flex items-center justify-center`}
+                  whileHover={{ scale: 1.2 }}
+                >
+                  <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4" />
+                </motion.div>
+                <span>{feature}</span>
+              </motion.li>
+            ))}
+          </motion.ul>
+        </div>
+      </div>
+    </div>
   );
 };
 

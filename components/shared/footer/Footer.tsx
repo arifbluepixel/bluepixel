@@ -1,14 +1,7 @@
 "use client";
 import { SITE_NAME } from "@/lib/constants/env";
 import { motion } from "framer-motion";
-import {
-  Briefcase,
-  Home,
-  Info,
-  Mail,
-  Package,
-  ShieldCheck,
-} from "lucide-react";
+import { Briefcase, Home, Info, Mail, Package } from "lucide-react";
 import Link from "next/link";
 import {
   FaFacebook,

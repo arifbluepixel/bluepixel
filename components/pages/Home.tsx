@@ -2,14 +2,12 @@ import Header from "@/components/Home/Header";
 import Hero from "@/components/Home/Hero";
 import BackToTop from "@/components/shared/BackToTop";
 import Footer from "@/components/shared/footer/Footer";
-import BottomGallery from "@/components/shared/home/BottomGallery";
 import OurStory from "@/components/shared/home/OurStory";
-import Products from "@/components/shared/home/Products";
 import Quality from "@/components/shared/home/Quality";
 import Testimonials2 from "@/components/shared/home/Testimonials2";
 import Welcome from "@/components/shared/home/Welcome";
 import Parallax from "@/components/shared/Parallax";
-import OurStrengths2 from "../shared/home/OurStrengths2";
+import OurStrengths from "../shared/home/OurStrengths";
 
 const Home = () => {
   return (
@@ -22,7 +20,7 @@ const Home = () => {
       {/* Content sections - overlaps Hero when scrolling */}
       <div className="relative z-20 bg-white dark:bg-gray-950 rounded-t-3xl -mt-8">
         <Welcome />
-        <OurStrengths2 />
+        <OurStrengths />
         <Quality />
         <OurStory
           videoUrl="https://www.youtube.com/watch?v=U6ZvdP9TK-s"

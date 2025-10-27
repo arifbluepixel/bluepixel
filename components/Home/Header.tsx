@@ -16,6 +16,7 @@ import {
   XHandle,
 } from "@/lib/constants/env";
 import Link from "next/link";
+import Image from "next/image";
 
 const servicesPages = [
   {
@@ -53,8 +54,6 @@ const compliancePages = [
 
 const leftNavLinks = [
   { name: "Home", path: "/" },
-  { name: "About", path: "/about-us" },
-  { name: "Products", path: "/products" },
   {
     name: "Services",
     path: "#",
@@ -66,15 +65,8 @@ const leftNavLinks = [
 ];
 
 const rightNavLinks = [
-  {
-    name: "Compliance & Ethics",
-    path: "#",
-    hasDropdown: true,
-    children: compliancePages,
-    dropdownClass: "",
-    dropdownAlign: "left",
-  },
-  { name: "Gallery", path: "/gallery" },
+  { name: "About", path: "/about-us" },
+  { name: "FAQ", path: "/faq" },
   { name: "Contact Us", path: "/contact-us" },
 ];
 
@@ -166,6 +158,7 @@ export default function Header() {
 
   const linkheader = `text-gray-800 dark:text-white font-semibold text-sm xl:text-lg hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-300 ease-in-out cursor-pointer whitespace-nowrap`;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const renderDropdown = (link: any) => {
     const isOpen = openDesktopDropdown === link.name;
     const alignClasses =
@@ -176,6 +169,7 @@ export default function Header() {
     return (
       <div
         className="relative"
+        // @ts-expect-error - Ignore
         ref={(el) => (dropdownRefs.current[link.name] = el)}
         key={link.name}
       >
@@ -202,35 +196,41 @@ export default function Header() {
           <div className="py-4 px-3">
             {(() => {
               const categories = [
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 ...new Set(link.children?.map((item: any) => item.category)),
               ];
-              return categories.map((cat) => (
-                <div key={cat}>
-                  <h3 className="mb-3 uppercase text-base font-bold text-cyan-600 dark:text-cyan-400">
-                    {cat}
-                  </h3>
-                  <ul className="space-y-1">
-                    {link.children
-                      ?.filter((s: any) => s.category === cat)
-                      .map((pages: any) => (
-                        <li
-                          key={pages.id}
-                          className="border-b border-gray-200 dark:border-gray-700 last:border-none"
-                        >
-                          <a
-                            href={`/${pages?.link
-                              .toLowerCase()
-                              .replace(" ", "-")}`}
-                            className="block px-3 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-cyan-500 hover:to-teal-500 hover:text-white rounded-lg"
-                            onClick={() => setOpenDesktopDropdown(null)}
+              return categories.map(
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                (cat: any) => (
+                  <div key={cat}>
+                    <h3 className="mb-3 uppercase text-base font-bold text-cyan-600 dark:text-cyan-400">
+                      {cat}
+                    </h3>
+                    <ul className="space-y-1">
+                      {link.children
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        ?.filter((s: any) => s.category === cat)
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        .map((pages: any) => (
+                          <li
+                            key={pages.id}
+                            className="border-b border-gray-200 dark:border-gray-700 last:border-none"
                           >
-                            {pages.title}
-                          </a>
-                        </li>
-                      ))}
-                  </ul>
-                </div>
-              ));
+                            <a
+                              href={`/${pages?.link
+                                .toLowerCase()
+                                .replace(" ", "-")}`}
+                              className="block px-3 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-cyan-500 hover:to-teal-500 hover:text-white rounded-lg"
+                              onClick={() => setOpenDesktopDropdown(null)}
+                            >
+                              {pages.title}
+                            </a>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                )
+              );
             })()}
           </div>
         </div>
@@ -258,22 +258,24 @@ export default function Header() {
 
             {/* Center Logo */}
             <div className="flex items-center justify-start lg:justify-center min-w-[200px]">
-              <a href="/" className="flex items-center">
+              <Link href="/" className="flex items-center">
                 <div className="relative flex h-14 w-auto items-center justify-center rounded-lg md:rounded-2xl lg:rounded-full bg-gradient-to-br from-cyan-100 to-teal-100 dark:from-cyan-400 dark:to-teal-500 shadow-lg transition-all duration-500 ease-in-out hover:shadow-2xl hover:scale-105">
                   {!logoLoaded ? (
                     <div className="px-6">
                       <SpinningStar />
                     </div>
                   ) : (
-                    <img
+                    <Image
                       src={logo}
                       alt={SITE_NAME}
-                      className="h-7 w-auto px-2 md:px-3 transition-opacity duration-500"
+                      height={28}
+                      width={200}
+                      className="h-7 w-36 px-2 md:px-3 transition-opacity duration-500"
                       style={{ opacity: logoLoaded ? 1 : 0 }}
                     />
                   )}
                 </div>
-              </a>
+              </Link>
             </div>
 
             {/* Right Navigation */}
@@ -336,7 +338,7 @@ export default function Header() {
 
           <div className="mt-6 flex justify-center">
             <div className="flex h-16 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm px-8 shadow-xl">
-              <img src={logo} alt={SITE_NAME} className="h-10 w-auto" />
+              <Image fill src={logo} alt={SITE_NAME} className="h-10 w-auto" />
             </div>
           </div>
 
@@ -368,32 +370,35 @@ export default function Header() {
                             : "max-h-0 opacity-0"
                         }`}
                       >
-                        {link.children?.map((pages: any) => (
-                          <li key={pages.id}>
-                            <a
-                              href={`/${pages.link
-                                .toLowerCase()
-                                .replace(" ", "-")}`}
-                              className="block text-sm text-gray-200 hover:text-cyan-300 transition-colors py-1.5"
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              {pages.title}
-                            </a>
-                          </li>
-                        ))}
+                        {link.children?.map(
+                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                          (pages: any) => (
+                            <li key={pages.id}>
+                              <Link
+                                href={`/${pages.link
+                                  .toLowerCase()
+                                  .replace(" ", "-")}`}
+                                className="block text-sm text-gray-200 hover:text-cyan-300 transition-colors py-1.5"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {pages.title}
+                              </Link>
+                            </li>
+                          )
+                        )}
                       </ul>
                     </li>
                   );
                 }
                 return (
                   <li key={link.name}>
-                    <a
+                    <Link
                       href={link.path}
                       className="block text-base font-semibold text-white hover:text-cyan-300 transition-colors py-3 px-4 rounded-lg hover:bg-white/10"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 );
               })}
