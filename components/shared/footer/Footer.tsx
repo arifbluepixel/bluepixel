@@ -7,9 +7,9 @@ import {
   FaFacebook,
   FaInstagram,
   FaLinkedinIn,
+  FaQ,
   FaYoutube,
 } from "react-icons/fa6";
-import { FiImage } from "react-icons/fi";
 import Newsletter from "./Newsletter";
 
 const Footer = () => {
@@ -17,21 +17,20 @@ const Footer = () => {
     { name: "Home", path: "/", icon: <Home size={14} /> },
     { name: "About Us", path: "/about-us", icon: <Info size={14} /> },
     { name: "Contact Us", path: "/contact-us", icon: <Mail size={14} /> },
-    { name: "Products", path: "/products", icon: <Package size={14} /> },
+    { name: "Services", path: "/services", icon: <Package size={14} /> },
     {
-      name: "Photo Gallery",
-      path: "/gallery",
-      icon: <FiImage size={14} />,
+      name: "FAQ",
+      path: "/faq",
+      icon: <FaQ size={14} />,
     },
   ];
 
   const services = [
-    "Denim",
-    "Woven",
-    "Sweater",
-    "Underwear",
-    "Lingerie",
-    "Nightwear",
+    "Image Manipulation",
+    "Image Masking & Retouch",
+    "Video Editing",
+    "Web Design",
+    "WEb evelopment",
   ];
 
   const socialLinks = [

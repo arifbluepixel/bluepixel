@@ -108,27 +108,27 @@ export default function Welcome() {
               centeredSlides={false}
               breakpoints={{
                 480: {
-                  slidesPerView: 1.5,
+                  slidesPerView: 1.1,
                   spaceBetween: 0,
                 },
                 640: {
-                  slidesPerView: 2,
+                  slidesPerView: 1.8,
                   spaceBetween: 0,
                 },
                 768: {
-                  slidesPerView: 2.5,
+                  slidesPerView: 2,
                   spaceBetween: 0,
                 },
                 1024: {
-                  slidesPerView: 3,
+                  slidesPerView: 2.8,
                   spaceBetween: 0,
                 },
                 1280: {
-                  slidesPerView: 3.5,
+                  slidesPerView: 3,
                   spaceBetween: 0,
                 },
                 1536: {
-                  slidesPerView: 4,
+                  slidesPerView: 3.5,
                   spaceBetween: 0,
                 },
               }}

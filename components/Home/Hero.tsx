@@ -330,7 +330,7 @@ export default function Hero() {
           </div>
 
           {/* Mobile Carousel - Simplified */}
-          <div className="relative h-64 sm:h-80 lg:hidden order-1 w-full pb-16">
+          <div className="relative h-96 pt-2 md:pt-0 md:h-80 lg:hidden order-1 w-full pb-16">
             <div className="relative w-full h-full flex items-center justify-center">
               {slides.map((slide, index) => {
                 if (index !== 1) return null;

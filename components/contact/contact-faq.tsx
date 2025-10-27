@@ -3,7 +3,18 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useState } from "react";
-import { ChevronDown, HelpCircle, Mail, Phone, MapPin, Palette, Video, Code, Cuboid } from "lucide-react";
+import {
+  ChevronDown,
+  HelpCircle,
+  Mail,
+  Phone,
+  MapPin,
+  Palette,
+  Video,
+  Code,
+  Cuboid,
+} from "lucide-react";
+import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/constants/env";
 
 const ContactFAQ = () => {
   const [ref, inView] = useInView({
@@ -25,7 +36,8 @@ const ContactFAQ = () => {
         "Our team of certified professionals uses industry-standard tools like Adobe Creative Suite, DaVinci Resolve, and Cinema 4D. We follow a rigorous 3-step quality process: initial review, creative enhancement, and final polish to ensure pixel-perfect results every time.",
     },
     {
-      question: "What types of 3D rendering and animation services do you provide?",
+      question:
+        "What types of 3D rendering and animation services do you provide?",
       answer:
         "We offer comprehensive 3D services including product visualization, architectural rendering, character animation, motion graphics, VR/AR experiences, and 3D product configurators. Our team excels in both realistic and stylized animation styles.",
     },
@@ -63,35 +75,37 @@ const ContactFAQ = () => {
       question: "How do you approach creative collaboration with clients?",
       answer:
         "We believe in partnership. Our process includes discovery sessions, mood boards, style frames, and regular check-ins to ensure your vision is realized. We combine your industry knowledge with our creative expertise for optimal results.",
-    }
+    },
   ];
 
   const services = [
     {
       icon: Palette,
       title: "Image Editing",
-      description: "Professional photo retouching, background removal, color correction"
+      description:
+        "Professional photo retouching, background removal, color correction",
     },
     {
       icon: Video,
       title: "Video Production",
-      description: "From concept to final cut, we create compelling visual stories"
+      description:
+        "From concept to final cut, we create compelling visual stories",
     },
     {
       icon: Cuboid,
       title: "3D & Animation",
-      description: "Bringing ideas to life with stunning 3D visuals and motion"
+      description: "Bringing ideas to life with stunning 3D visuals and motion",
     },
     {
       icon: Code,
       title: "Web Development",
-      description: "Custom websites and applications that drive results"
-    }
+      description: "Custom websites and applications that drive results",
+    },
   ];
 
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50/30">
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl w-11/12 mx-auto">
         {/* Header */}
         <motion.div
           ref={ref}
@@ -118,7 +132,8 @@ const ContactFAQ = () => {
             transition={{ delay: 0.3, duration: 0.7 }}
             className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
           >
-            Your Digital Vision, <span className="text-blue-600">Our Creative Expertise</span>
+            Your Digital Vision,{" "}
+            <span className="text-blue-600">Our Creative Expertise</span>
           </motion.h2>
 
           <motion.p
@@ -127,7 +142,9 @@ const ContactFAQ = () => {
             transition={{ delay: 0.5, duration: 0.6 }}
             className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
           >
-            Get answers about our comprehensive digital services. From pixel-perfect editing to cutting-edge development, we&#39;re here to bring your ideas to life.
+            Get answers about our comprehensive digital services. From
+            pixel-perfect editing to cutting-edge development, we&#39;re here to
+            bring your ideas to life.
           </motion.p>
         </motion.div>
 
@@ -136,7 +153,7 @@ const ContactFAQ = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 "
         >
           {services.map((service, index) => (
             <motion.div
@@ -150,13 +167,17 @@ const ContactFAQ = () => {
               <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-700 transition-colors duration-300">
                 <service.icon className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2 text-lg">{service.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+              <h3 className="font-semibold text-gray-900 mb-2 text-lg">
+                {service.title}
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {service.description}
+              </p>
             </motion.div>
           ))}
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl w-11/12 mx-auto">
           {/* FAQ Items */}
           <div className="space-y-4 mb-16">
             {faqs.map((faq, index) => (
@@ -219,7 +240,8 @@ const ContactFAQ = () => {
             </h3>
 
             <p className="text-blue-100 text-sm sm:text-base md:text-lg mb-4 sm:mb-6 md:mb-8 max-w-2xl mx-auto px-2 leading-relaxed">
-              Let&#39;s discuss how our digital expertise can elevate your brand. Get a free consultation and project estimate today.
+              Let&#39;s discuss how our digital expertise can elevate your
+              brand. Get a free consultation and project estimate today.
             </p>
 
             {/* Responsive Contact Buttons */}
@@ -241,7 +263,7 @@ const ContactFAQ = () => {
                     Email us at
                   </p>
                   <p className="font-semibold text-sm sm:text-base truncate">
-                    hello@bluepixel.art
+                    {CONTACT_EMAIL}
                   </p>
                 </div>
               </motion.button>
@@ -261,7 +283,7 @@ const ContactFAQ = () => {
                     Call us
                   </p>
                   <p className="font-semibold text-sm sm:text-base truncate">
-                    +1 (234) 567-890
+                    {CONTACT_PHONE}
                   </p>
                 </div>
               </motion.button>
@@ -274,8 +296,10 @@ const ContactFAQ = () => {
                   const contactSection = document.getElementById("map-section");
                   if (contactSection) {
                     const headerOffset = window.innerWidth < 640 ? 80 : 100;
-                    const elementPosition = contactSection.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    const elementPosition =
+                      contactSection.getBoundingClientRect().top;
+                    const offsetPosition =
+                      elementPosition + window.pageYOffset - headerOffset;
                     window.scrollTo({
                       top: offsetPosition,
                       behavior: "smooth",
