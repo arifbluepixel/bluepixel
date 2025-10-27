@@ -299,10 +299,10 @@ const PrivacyPolicy = () => {
                     </p>
                     <div className="bg-gray-50 rounded-xl p-6">
                       <p className="text-gray-700">
-                        <strong>Email:</strong> israt@apparelresourcebd.com
+                        <strong>Email:</strong> support@blue-pixel.art
                       </p>
                       <p className="text-gray-700 mt-2">
-                        <strong>Phone:</strong> +8801628101511
+                        <strong>Phone:</strong> +8801679106919
                       </p>
                     </div>
                   </div>

@@ -222,7 +222,7 @@ const ContactFAQ = () => {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => window.open("mailto:israt@apparelresourcebd.com", "_self")}
+                onClick={() => window.open("mailto:support@blue-pixel.art", "_self")}
                 className="group flex flex-col sm:flex-row items-center gap-3 w-full max-w-xs p-3 sm:p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/30"
               >
                 <div className="p-2 sm:p-3 bg-white/20 rounded-lg group-hover:bg-white/30 transition-colors duration-300 flex-shrink-0">
@@ -233,7 +233,7 @@ const ContactFAQ = () => {
                     Email us at
                   </p>
                   <p className="font-semibold text-sm sm:text-base truncate">
-                    israt@apparelresourcebd.com
+                    support@blue-pixel.art
                   </p>
                 </div>
               </motion.button>
@@ -242,7 +242,7 @@ const ContactFAQ = () => {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => window.open("tel:+8801628101511", "_self")}
+                onClick={() => window.open("tel:+8801679106919", "_self")}
                 className="group flex flex-col sm:flex-row items-center gap-3 w-full max-w-xs p-3 sm:p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/30"
               >
                 <div className="p-2 sm:p-3 bg-white/20 rounded-lg group-hover:bg-white/30 transition-colors duration-300 flex-shrink-0">
@@ -253,7 +253,7 @@ const ContactFAQ = () => {
                     Call us
                   </p>
                   <p className="font-semibold text-sm sm:text-base truncate">
-                    +8801628101511
+                    +8801679106919
                   </p>
                 </div>
               </motion.button>
