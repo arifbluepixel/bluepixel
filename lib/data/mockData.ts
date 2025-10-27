@@ -43,78 +43,78 @@ import { Product } from "../types";
 
 export const TITLES = [
   {
-    id: "minimal",
-    title: "Minimal Streetwear",
+    id: "web-development",
+    title: "Web Development",
     image:
-      "https://images.unsplash.com/photo-1590330297626-d7aff25a0431?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=687",
     bgImage:
-      "https://images.unsplash.com/photo-1590330297626-d7aff25a0431?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=687",
     card: {
-      id: "minimal",
-      header: "Minimal Streetwear",
+      id: "web-development",
+      header: "Web Development",
       description:
-        "Precision-cut silhouettes crafted from premium cotton blends built for everyday versatility with a refined edge.",
-      cta: "Shop Capsule",
+        "Custom-coded websites and web applications built with modern frameworks, optimized for performance, scalability, and seamless user experiences.",
+      cta: "Start Your Project",
     },
   },
   {
-    id: "sustainable",
-    title: "Sustainable Fabrics",
+    id: "graphics-design",
+    title: "Graphics Design",
     image:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0",
     bgImage:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0",
     card: {
-      id: "sustainable",
-      header: "Sustainable Collections",
+      id: "graphics-design",
+      header: "Graphics Design",
       description:
-        "Responsibly sourced organic cotton, recycled fibers, and low-impact dyes designed for a cleaner supply chain and a better future.",
-      cta: "Explore Fabrics",
+        "Eye-catching visual designs including logos, branding materials, social media graphics, and marketing collateral that elevate your brand identity.",
+      cta: "View Portfolio",
     },
   },
   {
-    id: "tailored",
-    title: "Tailored Basics",
+    id: "photo-editing",
+    title: "Professional Photo Editing",
     image:
-      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1171",
+      "https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1171",
     bgImage:
-      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1171",
+      "https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1171",
     card: {
-      id: "tailored",
-      header: "Tailored Basics",
+      id: "photo-editing",
+      header: "Professional Photo Editing",
       description:
-        "Every piece engineered for a perfect fit with attention to stitching, drape, and durability that stands up to daily wear.",
-      cta: "View Lookbook",
+        "Expert retouching, color correction, and enhancement services that transform your images with precision attention to detail and natural results.",
+      cta: "See Examples",
     },
   },
   {
-    id: "limited",
-    title: "Limited Drops",
+    id: "clipping-path",
+    title: "Clipping Path Services",
     image:
-      "https://images.unsplash.com/photo-1735039061532-b567eadfe1eb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+      "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=687",
     bgImage:
-      "https://images.unsplash.com/photo-1735039061532-b567eadfe1eb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+      "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=687",
     card: {
-      id: "limited",
-      header: "Limited Drops",
+      id: "clipping-path",
+      header: "Clipping Path Services",
       description:
-        "Small-batch production runs meticulously crafted pieces that guarantee exclusivity and collector-grade quality.",
-      cta: "See Drop",
+        "Pixel-perfect background removal and image masking services delivering clean cutouts for e-commerce, catalogs, and professional photography.",
+      cta: "Get Quote",
     },
   },
   {
-    id: "active",
-    title: "Performance Activewear",
+    id: "video-editing",
+    title: "Video Editing",
     image:
-      "https://images.unsplash.com/photo-1595909315417-2edd382a56dc?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880",
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=880",
     bgImage:
-      "https://images.unsplash.com/photo-1595909315417-2edd382a56dc?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880",
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=880",
     card: {
-      id: "active",
-      header: "Performance Activewear",
+      id: "video-editing",
+      header: "Video Editing",
       description:
-        "Engineered with moisture-wicking fabrics and ergonomic seams designed to support movement, durability, and comfort in motion.",
-      cta: "Shop Active",
+        "Professional video production and post-production services including cutting, color grading, motion graphics, and effects for engaging content.",
+      cta: "Watch Showreel",
     },
   },
 ];

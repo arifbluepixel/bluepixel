@@ -1,5 +1,12 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
+import { ChevronDown, HelpCircleIcon, Home, Minus } from "lucide-react";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { HiOutlineMenuAlt4 } from "react-icons/hi";
+import { ThemeToggle } from "../shared/ThemeToggle";
+import { logo } from "@/lib/constants/images";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
@@ -8,36 +15,23 @@ import {
   SITE_NAME,
   XHandle,
 } from "@/lib/constants/env";
-import { logo } from "@/lib/constants/images";
-import { ChevronDown, HelpCircleIcon, Home, Minus } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { FaFacebook } from "react-icons/fa";
-import { FaInstagram, FaXTwitter } from "react-icons/fa6";
-import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 const servicesPages = [
   {
     id: 11,
-    category: "about",
-    title: "About",
+    category: "Services",
+    title: "Web Development",
     icon: <HelpCircleIcon />,
-    link: "/",
+    link: "web-development",
   },
   {
     id: 12,
-    category: "about",
-    title: "About",
+    category: "Services",
+    title: "Digital Marketing",
     icon: <HelpCircleIcon />,
-    link: "/",
+    link: "digital-marketing",
   },
-];
-const homePages = [
-  { id: 1, category: "home", title: "Home 1", icon: <Home />, link: "/" },
-
-  { id: 2, category: "home", title: "Home 2", icon: <Home />, link: "home2" },
 ];
 
 const compliancePages = [
@@ -57,10 +51,21 @@ const compliancePages = [
   },
 ];
 
-const navLinks = [
+const leftNavLinks = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about-us" },
   { name: "Products", path: "/products" },
+  {
+    name: "Services",
+    path: "#",
+    hasDropdown: true,
+    children: servicesPages,
+    dropdownClass: "",
+    dropdownAlign: "right",
+  },
+];
+
+const rightNavLinks = [
   {
     name: "Compliance & Ethics",
     path: "#",
@@ -70,16 +75,31 @@ const navLinks = [
     dropdownAlign: "left",
   },
   { name: "Gallery", path: "/gallery" },
-  {
-    name: "Services",
-    path: "#",
-    hasDropdown: true,
-    children: servicesPages,
-    dropdownClass: "",
-    dropdownAlign: "right",
-  },
   { name: "Contact Us", path: "/contact-us" },
 ];
+
+const SpinningStar = () => (
+  <div className="flex items-center justify-center">
+    <svg
+      className="animate-spin h-12 w-12"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12 2L14.09 8.26L20 10L14.09 11.74L12 18L9.91 11.74L4 10L9.91 8.26L12 2Z"
+        fill="url(#gradient)"
+        className="drop-shadow-lg"
+      />
+      <defs>
+        <linearGradient id="gradient" x1="4" y1="2" x2="20" y2="18">
+          <stop offset="0%" stopColor="#046cdb" />
+          <stop offset="100%" stopColor="#14b8a6" />
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+);
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -89,9 +109,17 @@ export default function Header() {
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(
     null
   );
+  const [scrolled, setScrolled] = useState(false);
+  const [logoLoaded, setLogoLoaded] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLogoLoaded(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -130,166 +158,166 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setScrolled(scrollY > 10);
+      setScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const linkheader = `text-gray-800 dark:text-white font-semibold text-base lg:text-lg hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-300 ease-in-out cursor-pointer`;
+  const linkheader = `text-gray-800 dark:text-white font-semibold text-sm xl:text-lg hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-300 ease-in-out cursor-pointer whitespace-nowrap`;
+
+  const renderDropdown = (link: any) => {
+    const isOpen = openDesktopDropdown === link.name;
+    const alignClasses =
+      link.dropdownAlign === "right"
+        ? "right-0 origin-top-right"
+        : "left-0 origin-top-left";
+
+    return (
+      <div
+        className="relative"
+        ref={(el) => (dropdownRefs.current[link.name] = el)}
+        key={link.name}
+      >
+        <button
+          className={`flex items-center space-x-1 ${linkheader}`}
+          onClick={() => setOpenDesktopDropdown(isOpen ? null : link.name)}
+          onMouseEnter={() => setOpenDesktopDropdown(link.name)}
+          type="button"
+        >
+          <span>{link.name}</span>
+          <ChevronDown size={14} />
+        </button>
+        <div
+          className={`absolute top-full ${alignClasses} mt-3 ${
+            link.dropdownClass || "w-[280px] sm:w-[320px]"
+          } rounded-xl bg-white dark:bg-gray-800 shadow-2xl ring-1 ring-cyan-200 dark:ring-gray-700 transition-all duration-300 ease-in-out transform ${
+            isOpen
+              ? "scale-100 opacity-100"
+              : "scale-95 opacity-0 pointer-events-none"
+          }`}
+          onMouseEnter={() => setOpenDesktopDropdown(link.name)}
+          onMouseLeave={() => setOpenDesktopDropdown(null)}
+        >
+          <div className="py-4 px-3">
+            {(() => {
+              const categories = [
+                ...new Set(link.children?.map((item: any) => item.category)),
+              ];
+              return categories.map((cat) => (
+                <div key={cat}>
+                  <h3 className="mb-3 uppercase text-base font-bold text-cyan-600 dark:text-cyan-400">
+                    {cat}
+                  </h3>
+                  <ul className="space-y-1">
+                    {link.children
+                      ?.filter((s: any) => s.category === cat)
+                      .map((pages: any) => (
+                        <li
+                          key={pages.id}
+                          className="border-b border-gray-200 dark:border-gray-700 last:border-none"
+                        >
+                          <a
+                            href={`/${pages?.link
+                              .toLowerCase()
+                              .replace(" ", "-")}`}
+                            className="block px-3 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-cyan-500 hover:to-teal-500 hover:text-white rounded-lg"
+                            onClick={() => setOpenDesktopDropdown(null)}
+                          >
+                            {pages.title}
+                          </a>
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              ));
+            })()}
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <>
       <header
-        className={`sticky -mt-5 z-50 w-full px-4 py-2 ${
+        className={`fixed ${
           scrolled ? "top-2" : "top-5"
-        } transition-all duration-300`}
+        } left-0 right-0 z-50 transition-all duration-300`}
       >
-        <div className="mx-auto max-w-7xl px-3 md:px-0 fixed top-5 right-0 left-0 ">
-          <div className="flex items-center justify-between rounded-md bg-gradient-to-br from-cyan-200 to-teal-300 dark:from-gray-900 dark:to-gray-800 px-4 py-3 sm:px-6 sm:py-4 shadow-md border border-cyan-100 dark:border-gray-700 ">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="flex h-10 w-auto items-center justify-center rounded-full bg-gradient-to-br from-cyan-100 to-teal-100 transition duration-300 ease-in-out shadow-lg">
-                <Image
-                  src={logo}
-                  alt="BluePixel"
-                  width={150}
-                  height={50}
-                  priority
-                  className="py-16 px-5"
-                />
-              </div>
+        <div className="mx-auto max-w-7xl w-11/12">
+          <div className="flex items-center justify-between rounded-2xl bg-cyan-200/85 dark:bg-gray-900/95 backdrop-blur-md px-2 lg:px-6 py-2 shadow-xl border border-gray-200 dark:border-gray-700 ">
+            {/* Left Navigation */}
+            <nav className="hidden lg:flex items-center justify-end space-x-6 xl:space-x-8 flex-1 ">
+              {leftNavLinks.map((link) => (
+                <Link key={link.name} href={link.path} className={linkheader}>
+                  {link.name}
+                </Link>
+              ))}
+            </nav>
 
-              {
-                // @ts-expect-error - ignore this
-                logo === "" && (
-                  <button className="text-xl sm:text-2xl text-white relative inline-block bg-gradient-to-r from-cyan-500 to-teal-600 hover:from-cyan-600 hover:to-teal-700 dark:from-cyan-600 dark:to-teal-700 dark:hover:from-cyan-700 dark:hover:to-teal-800 transition-all duration-300 ease-in-out px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-bold font-style3 cursor-pointer shadow-md">
-                    <span>{SITE_NAME}</span>
-                  </button>
-                )
-              }
-            </Link>
+            {/* Center Logo */}
+            <div className="flex items-center justify-start lg:justify-center min-w-[200px]">
+              <a href="/" className="flex items-center">
+                <div className="relative flex h-14 w-auto items-center justify-center rounded-lg md:rounded-2xl lg:rounded-full bg-gradient-to-br from-cyan-100 to-teal-100 dark:from-cyan-400 dark:to-teal-500 shadow-lg transition-all duration-500 ease-in-out hover:shadow-2xl hover:scale-105">
+                  {!logoLoaded ? (
+                    <div className="px-6">
+                      <SpinningStar />
+                    </div>
+                  ) : (
+                    <img
+                      src={logo}
+                      alt={SITE_NAME}
+                      className="h-7 w-auto px-2 md:px-3 transition-opacity duration-500"
+                      style={{ opacity: logoLoaded ? 1 : 0 }}
+                    />
+                  )}
+                </div>
+              </a>
+            </div>
 
-            <div className="flex items-center space-x-2 lg:space-x-6">
-              <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
-                {navLinks.map((link) => {
-                  if (link.hasDropdown) {
-                    const isOpen = openDesktopDropdown === link.name;
-                    const alignClasses =
-                      link.dropdownAlign === "right"
-                        ? "right-0 origin-top-right"
-                        : "left-0 origin-top-left";
-                    return (
-                      <div
-                        className="relative"
-                        // @ts-expect-error - ignore this
-                        ref={(el) => (dropdownRefs.current[link.name] = el)}
-                        key={link.name}
-                      >
-                        <button
-                          className={`flex items-center space-x-1 ${linkheader}`}
-                          onClick={() =>
-                            setOpenDesktopDropdown(isOpen ? null : link.name)
-                          }
-                          onMouseEnter={() => setOpenDesktopDropdown(link.name)}
-                          type="button"
-                        >
-                          <span>{link.name}</span>
-                          <ChevronDown size={16} />
-                        </button>
-                        <div
-                          className={`absolute top-14 ${alignClasses} mt-2 ${
-                            link.dropdownClass ||
-                            "w-[280px] sm:w-[400px] lg:w-[600px]"
-                          } rounded-xl bg-white dark:bg-gray-800 shadow-2xl ring-1 ring-cyan-200 dark:ring-gray-700 transition-all duration-300 ease-in-out transform ${
-                            isOpen
-                              ? "scale-100 opacity-100"
-                              : "scale-95 opacity-0 pointer-events-none"
-                          }`}
-                          onMouseEnter={() => setOpenDesktopDropdown(link.name)}
-                          onMouseLeave={() => setOpenDesktopDropdown(null)}
-                        >
-                          <div className="flex flex-col sm:flex-row py-4 sm:py-6 px-2 sm:px-4 uppercase">
-                            {(() => {
-                              const categories = [
-                                ...new Set(
-                                  link.children?.map((item) => item.category)
-                                ),
-                              ];
-                              return categories.map((cat, index) => (
-                                <div key={cat}>
-                                  {index > 0 && (
-                                    <div className="hidden sm:block self-stretch w-px bg-gray-200 dark:bg-gray-700 mx-4" />
-                                  )}
-                                  <div className="flex-1 px-2 sm:px-4 mt-4 sm:mt-0">
-                                    <h3 className="mb-2 sm:mb-4 uppercase text-lg sm:text-xl font-semibold font-style3 text-cyan-600 dark:text-cyan-400">
-                                      {cat}
-                                    </h3>
-                                    <ul className="space-y-1 sm:space-y-2">
-                                      {link.children
-                                        ?.filter((s) => s.category === cat)
-                                        .map((pages) => (
-                                          <li
-                                            key={pages.id}
-                                            className="border-b border-gray-200 dark:border-gray-700 last:border-none"
-                                          >
-                                            <Link
-                                              href={`/${pages?.link
-                                                .toLowerCase()
-                                                .replace(" ", "-")}`}
-                                              className="block px-2 sm:px-4 py-1 sm:py-2 text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-300 transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-cyan-500 hover:to-teal-500 hover:text-white rounded-lg my-1"
-                                              onClick={() =>
-                                                setOpenDesktopDropdown(null)
-                                              }
-                                            >
-                                              {pages.title}
-                                            </Link>
-                                          </li>
-                                        ))}
-                                    </ul>
-                                  </div>
-                                </div>
-                              ));
-                            })()}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  }
-                  return (
-                    <Link
-                      key={link.name}
-                      href={link.path}
-                      className={linkheader}
-                    >
-                      {link.name}
-                    </Link>
-                  );
-                })}
-              </div>
+            {/* Right Navigation */}
+            <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8 flex-1 justify-start">
+              {rightNavLinks.map((link) => {
+                if (link.hasDropdown) {
+                  return renderDropdown(link);
+                }
+                return (
+                  <Link key={link.name} href={link.path} className={linkheader}>
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* Mobile Menu Button & Theme Toggle */}
+            <div className="flex items-center space-x-3 lg:hidden">
               <ThemeToggle />
               <button
                 type="button"
-                className="inline-flex items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-teal-500 dark:from-cyan-600 dark:to-teal-700 p-2 text-white hover:from-cyan-500 hover:to-teal-600 focus:outline-none transition-all duration-300 ease-in-out shadow-md"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-teal-600 p-2.5 text-white hover:from-cyan-600 hover:to-teal-700 focus:outline-none transition-all duration-300 shadow-lg"
                 onClick={() => setIsMenuOpen(true)}
               >
-                <span className="sr-only">Open main menu</span>
-                <HiOutlineMenuAlt4
-                  className="block h-5 w-5 sm:h-6 sm:w-6"
-                  aria-hidden="true"
-                />
+                <HiOutlineMenuAlt4 className="h-5 w-5" />
               </button>
+            </div>
+
+            {/* Desktop Theme Toggle */}
+            <div className="hidden lg:block ml-4">
+              <ThemeToggle />
             </div>
           </div>
         </div>
       </header>
 
+      {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${
+        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
           isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       />
 
+      {/* Mobile Sidebar */}
       <div
         ref={sidebarRef}
         className={`fixed top-0 left-0 z-50 h-full w-full max-w-sm bg-gradient-to-b from-cyan-900 via-teal-900 to-emerald-900 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-white transform transition-transform duration-300 ease-in-out ${
@@ -300,43 +328,21 @@ export default function Header() {
           <div className="flex justify-end">
             <button
               onClick={() => setIsMenuOpen(false)}
-              className="rounded-full bg-white dark:bg-gray-700 p-2 text-cyan-900 dark:text-white hover:bg-cyan-100 dark:hover:bg-gray-600 transition-colors duration-300"
+              className="rounded-full bg-white/20 p-2 text-white hover:bg-white/30 transition-colors"
             >
               <Minus size={20} />
-              <span className="sr-only">Close menu</span>
             </button>
           </div>
 
-          <div className="mt-4 flex items-center">
-            <div className="flex h-10 mx-auto w-auto items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-teal-500 dark:from-cyan-100 dark:to-teal-100 transition duration-300 ease-in-out shadow-lg">
-              <Link href="/" className="z-50">
-                <Image
-                  src={logo}
-                  alt="BluePixel"
-                  width={150}
-                  height={50}
-                  priority
-                  className="py-16 px-5"
-                />
-              </Link>
+          <div className="mt-6 flex justify-center">
+            <div className="flex h-16 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm px-8 shadow-xl">
+              <img src={logo} alt={SITE_NAME} className="h-10 w-auto" />
             </div>
-            {
-              // @ts-expect-error - ignore this
-              logo === "" && (
-                <Link
-                  href={`/`}
-                  className="ml-2 text-2xl sm:text-3xl text-white relative inline-block bg-gradient-to-r from-cyan-500 to-teal-600 hover:from-cyan-600 hover:to-teal-700 transition ease-in-out duration-300 px-3 py-1.5 rounded-lg font-bold font-style3 shadow-md"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <span>{SITE_NAME}</span>
-                </Link>
-              )
-            }
           </div>
 
           <nav className="mt-8 flex justify-center items-start px-2">
-            <ul className="w-full space-y-4">
-              {navLinks.map((link) => {
+            <ul className="w-full space-y-3">
+              {[...leftNavLinks, ...rightNavLinks].map((link) => {
                 if (link.hasDropdown) {
                   const isMobileOpen = openMobileDropdown === link.name;
                   return (
@@ -345,7 +351,7 @@ export default function Header() {
                         onClick={() =>
                           setOpenMobileDropdown(isMobileOpen ? null : link.name)
                         }
-                        className="w-full text-left flex items-center justify-between text-lg font-semibold text-white py-2 px-4 rounded-lg hover:bg-white/10 transition-colors duration-300"
+                        className="w-full text-left flex items-center justify-between text-base font-semibold text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors"
                       >
                         <span>{link.name}</span>
                         <ChevronDown
@@ -356,23 +362,23 @@ export default function Header() {
                         />
                       </button>
                       <ul
-                        className={`mt-2 ml-4 pl-2 border-l-2 border-cyan-400/50 space-y-2 overflow-hidden transition-all duration-300 ease-in-out ${
+                        className={`mt-2 ml-4 pl-3 border-l-2 border-cyan-400/50 space-y-2 overflow-hidden transition-all duration-300 ${
                           isMobileOpen
                             ? "max-h-96 opacity-100"
                             : "max-h-0 opacity-0"
                         }`}
                       >
-                        {link.children?.map((pages) => (
+                        {link.children?.map((pages: any) => (
                           <li key={pages.id}>
-                            <Link
+                            <a
                               href={`/${pages.link
                                 .toLowerCase()
                                 .replace(" ", "-")}`}
-                              className="block text-base text-gray-200 hover:text-cyan-300 transition-colors duration-300 py-1.5"
+                              className="block text-sm text-gray-200 hover:text-cyan-300 transition-colors py-1.5"
                               onClick={() => setIsMenuOpen(false)}
                             >
                               {pages.title}
-                            </Link>
+                            </a>
                           </li>
                         ))}
                       </ul>
@@ -381,66 +387,62 @@ export default function Header() {
                 }
                 return (
                   <li key={link.name}>
-                    <Link
+                    <a
                       href={link.path}
-                      className="block text-lg font-semibold text-white hover:text-cyan-300 transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-white/10"
+                      className="block text-base font-semibold text-white hover:text-cyan-300 transition-colors py-3 px-4 rounded-lg hover:bg-white/10"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {link.name}
-                    </Link>
+                    </a>
                   </li>
                 );
               })}
             </ul>
           </nav>
 
-          <div className="mt-6 space-y-4">
+          <div className="mt-auto space-y-6">
             <div>
-              <h3 className="text-xl font-bold text-cyan-300">Email</h3>
+              <h3 className="text-lg font-bold text-cyan-300 mb-2">Contact</h3>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                className="mt-1 text-sm sm:text-base text-gray-200 hover:text-cyan-300 transition-colors"
+                className="block text-sm text-gray-200 hover:text-cyan-300 transition-colors mb-2"
               >
                 {CONTACT_EMAIL}
               </a>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold text-cyan-300">Call Now</h3>
               <a
                 href={`tel:${CONTACT_PHONE}`}
-                className="mt-1 text-sm sm:text-base text-gray-200 hover:text-cyan-300 transition-colors"
+                className="block text-sm text-gray-200 hover:text-cyan-300 transition-colors"
               >
                 {CONTACT_PHONE}
               </a>
             </div>
-          </div>
 
-          <div className="mt-6 flex justify-center space-x-4">
-            <Link
-              href={SITE_INSTAGRAM}
-              className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-cyan-400 text-white hover:bg-cyan-400 hover:text-cyan-900 transition-all duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaInstagram size={18} />
-            </Link>
-            <Link
-              href={`https://x.com/${XHandle}`}
-              className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-cyan-400 text-white hover:bg-cyan-400 hover:text-cyan-900 transition-all duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaXTwitter size={18} />
-            </Link>
-            <Link
-              href={SITE_FACEBOOK}
-              className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-cyan-400 text-white hover:bg-cyan-400 hover:text-cyan-900 transition-all duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaFacebook size={18} />
-            </Link>
+            <div className="flex justify-center space-x-4">
+              <a
+                href={SITE_INSTAGRAM}
+                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-cyan-400 text-white hover:bg-cyan-400 hover:text-cyan-900 transition-all"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaInstagram size={18} />
+              </a>
+              <a
+                href={`https://x.com/${XHandle}`}
+                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-cyan-400 text-white hover:bg-cyan-400 hover:text-cyan-900 transition-all"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaXTwitter size={18} />
+              </a>
+              <a
+                href={SITE_FACEBOOK}
+                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-cyan-400 text-white hover:bg-cyan-400 hover:text-cyan-900 transition-all"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaFacebook size={18} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
