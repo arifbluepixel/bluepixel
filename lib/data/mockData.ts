@@ -3,6 +3,7 @@ import {
   backpack,
   cap,
   denim,
+  DesignTeam,
   fHBUTCycling,
   fJacket,
   fPant,
@@ -22,6 +23,9 @@ import {
   longsleeve2,
   longsleeve3,
   longsleeve4,
+  manipulation,
+  patternAdd,
+  Poster,
   slider1,
   slider10,
   slider2,
@@ -36,6 +40,9 @@ import {
   tshirt1,
   tshirt2,
   underWear,
+  video,
+  videoEditing,
+  website,
   wooven,
   woven1,
 } from "@/lib/constants/images";
@@ -121,18 +128,13 @@ export const TITLES = [
 
 // Product images object
 export const PRODUCT_IMAGES = [
-  { title: "Active Wear", image: activeWear },
-  { title: "Backpack", image: backpack },
-  { title: "Cap", image: cap },
-  { title: "Denim", image: denim },
-  { title: "Home Wear", image: homeWear },
-  { title: "Jacket", image: jacket },
-  { title: "Jute Product", image: juteProduct },
-  { title: "Knit", image: knit },
-  { title: "Lingerie And Night Wear", image: lingerieAndNightWear },
-  { title: "Sweater", image: sweater },
-  { title: "Under Wear", image: underWear },
-  { title: "Woven", image: wooven },
+  { title: "Web Design and Development", image: website },
+  { title: "Motion Graphics", image: videoEditing },
+  { title: "Dedicated Design Team", image: DesignTeam },
+  { title: "Image Manipulation", image: manipulation },
+  { title: "Video Editing", image: video },
+  { title: "Adding Patterns", image: patternAdd },
+  { title: "Poster", image: Poster },
 ];
 
 export const mockProducts = [

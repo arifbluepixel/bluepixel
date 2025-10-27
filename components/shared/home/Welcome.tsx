@@ -12,6 +12,7 @@ import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import AnimatedButton from "../AnimatedButton";
+import SlidingStarWithText from "./SlidingStarWithText";
 
 export default function Welcome() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -65,15 +66,14 @@ export default function Welcome() {
 
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
               Welcome to <br />
-              <span className="bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 bg-clip-text text-transparent">
-                BluePixel
-              </span>
+              <SlidingStarWithText />
             </h2>
 
-            <p className="text-lg md:text-xl text-slate-700 dark:text-slate-300 leading-relaxed">
-              A well reputed export-oriented garments trading agent specializing
-              in premium quality apparel. We deliver products to suit all
-              budgets, from luxurious to economic collections.
+            <p className="text-lg md:text-xl text-slate-700 dark:text-slate-300 leading-relaxed ">
+              A creative digital agency specializing in web development, web
+              design, graphics, clipping, video editing, and professional photo
+              retouching. We deliver high-quality solutions tailored to your
+              brand — from modern websites to visually stunning media assets.
             </p>
           </motion.div>
         </motion.div>
@@ -95,12 +95,12 @@ export default function Welcome() {
             <h3
               className={`text-5xl font-bold text-slate-900 dark:text-white pt-10 pb-5 my-8 text-center `}
             >
-              Currently Dealing In
+              Things We Do
             </h3>
 
             <Swiper
               modules={[Autoplay]}
-              autoplay={{ delay: 2500, disableOnInteraction: false }}
+              autoplay={{ delay: 4000, disableOnInteraction: false }}
               grabCursor={true}
               loop={true}
               slidesPerView={1.2}
@@ -120,15 +120,15 @@ export default function Welcome() {
                   spaceBetween: 0,
                 },
                 1024: {
-                  slidesPerView: 3.5,
+                  slidesPerView: 3,
                   spaceBetween: 0,
                 },
                 1280: {
-                  slidesPerView: 4,
+                  slidesPerView: 3.5,
                   spaceBetween: 0,
                 },
                 1536: {
-                  slidesPerView: 5,
+                  slidesPerView: 4,
                   spaceBetween: 0,
                 },
               }}
@@ -197,7 +197,7 @@ export default function Welcome() {
           </motion.div>
           {/* Call to Action */}
           <AnimatedButton
-            text="Explore Our Collections"
+            text="Explore Our Services"
             icon={ArrowRight}
             className="px-20"
             // href="https://BluePixel.vercel.app/"

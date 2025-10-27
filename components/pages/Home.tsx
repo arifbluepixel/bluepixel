@@ -22,7 +22,6 @@ const Home = () => {
       {/* Content sections - overlaps Hero when scrolling */}
       <div className="relative z-20 bg-white dark:bg-gray-950 rounded-t-3xl -mt-8">
         <Welcome />
-        <Products />
         <OurStrengths2 />
         <Quality />
         <OurStory
@@ -39,7 +38,6 @@ const Home = () => {
           parallaxOverlay=" bg-black opacity-30 dark:opacity-50"
           rounded={true}
         />
-        <BottomGallery />
         <Footer />
       </div>
 

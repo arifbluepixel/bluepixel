@@ -19,7 +19,6 @@ export const jacket = "/home/Jacket.jpg";
 export const juteProduct = "/home/JuteProduct.jpg";
 export const knit = "/home/Knit.jpg";
 export const lingerieAndNightWear = "/home/LingerieAndNightWare.jpg";
-export const logo = "/home/logo.png";
 export const manHook = "/home/manhook.png";
 export const order = "/home/order.png";
 export const product = "/home/product.png";
@@ -51,3 +50,15 @@ export const longsleeve3 = "/products/longsleeve3.jpg";
 export const longsleeve4 = "/products/longsleeve4.jpg";
 
 export const woven1 = "/products/woven1.jpg";
+
+// Current
+export const bluepixel = "/home/bluepixel.png";
+export const logo = "/home/logo.png";
+// Services
+export const website = "/home/website.png";
+export const videoEditing = "/home/videoEditing.png";
+export const manipulation = "/home/manipulation.png";
+export const video = "/home/video.png";
+export const patternAdd = "/home/patternAdd.png";
+export const Poster = "/home/Poster.png";
+export const DesignTeam = "/home/DesignTeam.png";
