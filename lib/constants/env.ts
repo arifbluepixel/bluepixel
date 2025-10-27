@@ -52,8 +52,7 @@ export const SENDER_EMAIL =
 // Social
 export const XHandle = process.env.NEXT_PUBLIC_XHandle || "";
 export const SITE_FACEBOOK =
-  process.env.NEXT_PUBLIC_Facebook ||
-  "https://www.facebook.com/apparelresourcebd";
+  process.env.NEXT_PUBLIC_Facebook || "https://www.facebook.com/BluePixel";
 export const SITE_LINKEDIN =
   process.env.NEXT_PUBLIC_SITE_LINKEDIN ||
   "https://www.linkedin.com/company/apparel-resource-bd/";

@@ -45,7 +45,7 @@ const Footer = () => {
     {
       label: "Facebook",
       icon: FaFacebook,
-      href: "https://www.facebook.com/apparelresourcebd",
+      href: "https://www.facebook.com/BluePixel",
       color: "#1877F2",
     },
     {

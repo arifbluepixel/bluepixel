@@ -1,10 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { Shield, Lock, Eye, FileText, Users, Globe } from "lucide-react";
-import Navbar from "@/components/Home/Navbar";
+import Header from "@/components/Home/Header";
 import Footer from "@/components/shared/footer/Footer";
+import { motion } from "framer-motion";
+import { Eye, FileText, Globe, Lock, Shield, Users } from "lucide-react";
+import { useInView } from "react-intersection-observer";
 
 const PrivacyPolicy = () => {
   const [ref, inView] = useInView({
@@ -101,7 +101,7 @@ const PrivacyPolicy = () => {
 
   return (
     <>
-      <Navbar />
+      <Header />
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 mt-10">
         {/* Header Section */}
         <section className="relative py-20 bg-gradient-to-r from-[#0094A6] to-cyan-600 text-white overflow-hidden">

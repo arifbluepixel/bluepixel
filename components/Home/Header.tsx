@@ -58,14 +58,7 @@ const compliancePages = [
 ];
 
 const navLinks = [
-  {
-    name: "Home",
-    path: "#",
-    hasDropdown: true,
-    children: homePages,
-    dropdownClass: "",
-    dropdownAlign: "left",
-  },
+  { name: "Home", path: "/" },
   { name: "About", path: "/about-us" },
   { name: "Products", path: "/products" },
   {
@@ -154,12 +147,12 @@ export default function Header() {
         } transition-all duration-300`}
       >
         <div className="mx-auto max-w-7xl px-3 md:px-0 fixed top-5 right-0 left-0 ">
-          <div className="flex items-center justify-between rounded-full bg-gradient-to-br from-cyan-200 to-teal-300 dark:from-gray-900 dark:to-gray-800 px-4 py-3 sm:px-6 sm:py-4 shadow-md border border-cyan-100 dark:border-gray-700 ">
+          <div className="flex items-center justify-between rounded-md bg-gradient-to-br from-cyan-200 to-teal-300 dark:from-gray-900 dark:to-gray-800 px-4 py-3 sm:px-6 sm:py-4 shadow-md border border-cyan-100 dark:border-gray-700 ">
             <Link href="/" className="flex items-center space-x-2">
               <div className="flex h-10 w-auto items-center justify-center rounded-full bg-gradient-to-br from-cyan-100 to-teal-100 transition duration-300 ease-in-out shadow-lg">
                 <Image
                   src={logo}
-                  alt="apparelresourcebd"
+                  alt="BluePixel"
                   width={150}
                   height={50}
                   priority
@@ -319,7 +312,7 @@ export default function Header() {
               <Link href="/" className="z-50">
                 <Image
                   src={logo}
-                  alt="apparelresourcebd"
+                  alt="BluePixel"
                   width={150}
                   height={50}
                   priority

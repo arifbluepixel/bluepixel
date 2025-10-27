@@ -6,7 +6,7 @@ import { generateMetadata } from "@/lib/generateMetadata";
 export const metadata = generateMetadata({
   title: `Compliance Vision | ${SITE_NAME}`,
   description:
-    "At Apparel Resource BD, our Compliance Vision is rooted in ethical manufacturing, sustainability, and worker well-being. We adhere to international standards to ensure safe workplaces, fair wages, environmental responsibility, and transparent production across our entire supply chain.",
+    "At BluePixel, our Compliance Vision is rooted in ethical manufacturing, sustainability, and worker well-being. We adhere to international standards to ensure safe workplaces, fair wages, environmental responsibility, and transparent production across our entire supply chain.",
   keywords:
     "compliance vision, ethical manufacturing, sustainable garment production, factory compliance Bangladesh, RMG sustainability, fair labor practices, workplace safety, environmental responsibility, apparel sourcing ethics, transparent supply chain",
 });

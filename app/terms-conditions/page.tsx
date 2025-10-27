@@ -1,22 +1,22 @@
 // app/terms-conditions/page.tsx
 "use client";
 
+import Header from "@/components/Home/Header";
+import Footer from "@/components/shared/footer/Footer";
+import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/constants/env";
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import {
+  AlertTriangle,
+  CheckCircle,
+  Clock,
   FileText,
+  Mail,
+  Phone,
   Scale,
   Shield,
   Truck,
-  Clock,
-  Phone,
-  Mail,
-  AlertTriangle,
-  CheckCircle,
 } from "lucide-react";
-import Navbar from "@/components/Home/Navbar";
-import Footer from "@/components/shared/footer/Footer";
-import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/constants/env";
+import { useInView } from "react-intersection-observer";
 
 const TermsConditions = () => {
   const [ref, inView] = useInView({
@@ -51,7 +51,7 @@ const TermsConditions = () => {
       icon: FileText,
       title: "Agreement to Terms",
       content:
-        "By accessing and using Apparel Resource BD's services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.",
+        "By accessing and using BluePixel's services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.",
       points: [
         "These terms govern your use of our garment sourcing services",
         "Continued use constitutes acceptance of any modifications",
@@ -62,7 +62,7 @@ const TermsConditions = () => {
       icon: Scale,
       title: "Services Description",
       content:
-        "Apparel Resource BD operates as an export-oriented garment trading agent connecting international brands with trusted manufacturers in Bangladesh.",
+        "BluePixel operates as an export-oriented garment trading agent connecting international brands with trusted manufacturers in Bangladesh.",
       points: [
         "Product development and sampling services",
         "Quality control and production management",
@@ -131,7 +131,7 @@ const TermsConditions = () => {
 
   return (
     <>
-      <Navbar />
+      <Header />
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 mt-10">
         {/* Header Section */}
         <section className="relative py-20 bg-gradient-to-r from-[#0094A6] to-cyan-600 text-white overflow-hidden">
@@ -216,15 +216,14 @@ const TermsConditions = () => {
                 className="bg-white rounded-2xl shadow-lg p-8 lg:p-12 mb-12"
               >
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                  Welcome to Apparel Resource BD
+                  Welcome to BluePixel
                 </h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-[#0094A6] to-cyan-500 mb-6"></div>
                 <p className="text-lg text-gray-600 leading-relaxed mb-6">
                   These Terms and Conditions outline the rules and regulations
-                  for the use of Apparel Resource BD&apos;s services. As a
-                  reputable garment trading agent based in Dhaka, Bangladesh, we
-                  are committed to transparent and professional business
-                  practices.
+                  for the use of BluePixel&apos;s services. As a reputable
+                  garment trading agent based in Dhaka, Bangladesh, we are
+                  committed to transparent and professional business practices.
                 </p>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   By engaging our services for knitwear, woven wear, and sweater

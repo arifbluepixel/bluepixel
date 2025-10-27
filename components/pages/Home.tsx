@@ -1,5 +1,5 @@
-import Header from "@/components/Home2/Header";
-import Hero from "@/components/Home2/Hero";
+import Header from "@/components/Home/Header";
+import Hero from "@/components/Home/Hero";
 import BackToTop from "@/components/shared/BackToTop";
 import Footer from "@/components/shared/footer/Footer";
 import BottomGallery from "@/components/shared/home/BottomGallery";
@@ -11,7 +11,7 @@ import Welcome from "@/components/shared/home/Welcome";
 import Parallax from "@/components/shared/Parallax";
 import OurStrengths2 from "../shared/home/OurStrengths2";
 
-const Home2 = () => {
+const Home = () => {
   return (
     <>
       <Header />
@@ -58,4 +58,4 @@ const Home2 = () => {
   );
 };
 
-export default Home2;
+export default Home;

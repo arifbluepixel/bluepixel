@@ -1,4 +1,4 @@
-import Navbar from "../Home/Navbar";
+import Header from "../Home/Header";
 import ZeroTolerance from "../pagesExtra/ZeroTolerance";
 import BackToTop from "../shared/BackToTop";
 import Footer from "../shared/footer/Footer";
@@ -6,7 +6,7 @@ import Footer from "../shared/footer/Footer";
 const ZeroTolerancePage = () => {
   return (
     <>
-      <Navbar />
+      <Header />
       <ZeroTolerance />
       <Footer />
       <BackToTop showText={false} showIcon={true} />

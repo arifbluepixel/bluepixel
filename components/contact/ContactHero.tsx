@@ -140,9 +140,9 @@ export default function ContactHero() {
               inter.className
             } ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
           >
-            Apparel Resource BD is a well reputed export oriented garments
-            trading agent in Dhaka, Bangladesh. Our main product is all kinds of
-            knit wear, woven wear and sweater.
+            BluePixel is a well reputed export oriented garments trading agent
+            in Dhaka, Bangladesh. Our main product is all kinds of knit wear,
+            woven wear and sweater.
           </p>
         </div>
 

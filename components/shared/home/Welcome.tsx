@@ -66,7 +66,7 @@ export default function Welcome() {
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
               Welcome to <br />
               <span className="bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 bg-clip-text text-transparent">
-                Apparel Resource BD
+                BluePixel
               </span>
             </h2>
 
@@ -200,7 +200,7 @@ export default function Welcome() {
             text="Explore Our Collections"
             icon={ArrowRight}
             className="px-20"
-            // href="https://apparelresourcebd.vercel.app/"
+            // href="https://BluePixel.vercel.app/"
           />
         </motion.div>
       </div>

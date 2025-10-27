@@ -7,9 +7,9 @@ import React from "react";
 export const metadata = generateMetadata({
   title: `Contact Us | ${SITE_NAME}`,
   description:
-    "Get in touch with Apparel Resource BD — your trusted partner in apparel sourcing and garment manufacturing. Whether you have questions, project inquiries, or partnership opportunities, our team is here to provide prompt support and reliable solutions for all your RMG and fashion production needs.",
+    "Get in touch with BluePixel — your trusted partner in apparel sourcing and garment manufacturing. Whether you have questions, project inquiries, or partnership opportunities, our team is here to provide prompt support and reliable solutions for all your RMG and fashion production needs.",
   keywords:
-    "contact apparel resource bd, garment sourcing contact, clothing manufacturer support, apparel inquiry, fashion production help, RMG contact, buying house Bangladesh, textile supplier contact, knit woven sweater manufacturer",
+    "contact BluePixel, garment sourcing contact, clothing manufacturer support, apparel inquiry, fashion production help, RMG contact, buying house Bangladesh, textile supplier contact, knit woven sweater manufacturer",
 });
 // SEO Ends
 

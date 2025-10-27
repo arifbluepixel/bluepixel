@@ -1,4 +1,3 @@
-// components/contact-faq.tsx
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -217,12 +216,13 @@ const ContactFAQ = () => {
 
             {/* Responsive Contact Buttons */}
             <div className="space-y-4 sm:space-y-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 justify-items-center">
-
               {/* Email */}
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => window.open("mailto:support@blue-pixel.art", "_self")}
+                onClick={() =>
+                  window.open("mailto:israt@apparelresourcebd.com", "_self")
+                }
                 className="group flex flex-col sm:flex-row items-center gap-3 w-full max-w-xs p-3 sm:p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/30"
               >
                 <div className="p-2 sm:p-3 bg-white/20 rounded-lg group-hover:bg-white/30 transition-colors duration-300 flex-shrink-0">
@@ -266,8 +266,10 @@ const ContactFAQ = () => {
                   const mapSection = document.getElementById("map-section");
                   if (mapSection) {
                     const headerOffset = window.innerWidth < 640 ? 80 : 100; // Responsive offset
-                    const elementPosition = mapSection.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    const elementPosition =
+                      mapSection.getBoundingClientRect().top;
+                    const offsetPosition =
+                      elementPosition + window.pageYOffset - headerOffset;
                     window.scrollTo({
                       top: offsetPosition,
                       behavior: "smooth",
@@ -293,7 +295,10 @@ const ContactFAQ = () => {
             {/* Responsive decorative elements */}
             <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
               <div className="absolute top-4 right-4 w-20 h-20 bg-white/5 rounded-full blur-xl animate-pulse" />
-              <div className="absolute bottom-4 left-4 w-16 h-16 bg-white/5 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }} />
+              <div
+                className="absolute bottom-4 left-4 w-16 h-16 bg-white/5 rounded-full blur-xl animate-pulse"
+                style={{ animationDelay: "1s" }}
+              />
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gradient-to-r from-white/10 to-transparent rounded-full blur-3xl opacity-30" />
             </div>
           </motion.div>

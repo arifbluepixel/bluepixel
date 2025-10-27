@@ -1,6 +1,6 @@
 import GalleryHero from "../Gallery/GalleryHero";
 import ImageGrid from "../Gallery/ImageGrid";
-import Navbar from "../Home/Navbar";
+import Header from "../Home/Header";
 import BackToTop from "../shared/BackToTop";
 import Footer from "../shared/footer/Footer";
 import Parallax from "../shared/Parallax";
@@ -8,7 +8,7 @@ import Parallax from "../shared/Parallax";
 const PhotoGalleryPage = () => {
   return (
     <>
-      <Navbar />
+      <Header />
       <GalleryHero />
       <ImageGrid />
       <Parallax

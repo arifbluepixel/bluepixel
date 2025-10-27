@@ -1,268 +1,393 @@
 "use client";
 
-import {
-  appearFromNothing,
-  appearFromNothingToY,
-  showAndVanish,
-} from "@/lib/constants/animation";
-import { heroVideo } from "@/lib/constants/files";
-import { TITLES } from "@/lib/data/mockData";
-import { HeroCard } from "@/lib/types";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { TITLES } from "@/lib/data/mockData";
+import {
+  bgLeftVariants,
+  bgMobileVariants,
+  bgRightVariants,
+  heroContentVariants,
+} from "@/lib/constants/animation";
 
-// Fixed offsets to prevent hydration mismatch
-const TITLE_OFFSETS = [
-  { offsetX: -4, offsetY: -0.5 },
-  { offsetX: 3, offsetY: 0.8 },
-  { offsetX: -2, offsetY: -0.3 },
-  { offsetX: 5, offsetY: 0.5 },
-  { offsetX: -3.5, offsetY: 0.2 },
+// Fallback gradient if image fails to load
+const FALLBACK_GRADIENTS = [
+  "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+  "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+  "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+  "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+  "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
 ];
 
-// Animation variants
-
-const titleItemVariants = {
-  initial: { opacity: 0, scale: 0.8 },
-  animate: {
-    y: [80, 0, -60],
-    opacity: [0, 1, 0.1],
-    scale: [0.8, 1.8, 1.9],
-  },
-};
-
-const cardVariants = {
-  initial: { opacity: 0, y: 30, scale: 0.95 },
-  animate: { opacity: 1, y: 0, scale: 1 },
-  exit: { opacity: 0, y: -20, scale: 0.95 },
-};
-
-const floatingTitleVariants = {
-  initial: { opacity: 0, y: 20 },
-  animate: (isActive: boolean) => ({
-    opacity: isActive ? 1 : 0.7,
-    y: 0,
-    scale: isActive ? 1 : 0.96,
-  }),
-};
-
 export default function Hero() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [showVideo, setShowVideo] = useState(false);
-  const [animationComplete, setAnimationComplete] = useState(false);
+  const [slides, setSlides] = useState(TITLES);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [imageErrors] = useState(new Set());
 
-  // Check for reduced motion preference
+  const handleNext = useCallback(() => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setSlides((prev) => {
+      const newSlides = [...prev];
+      const first = newSlides.shift();
+      // @ts-expect-error - ignore for now
+      newSlides.push(first);
+      return newSlides;
+    });
+    setTimeout(() => setIsAnimating(false), 800);
+  }, [isAnimating]);
+
+  // Autoplay effect
   useEffect(() => {
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (prefersReduced) {
-      setShowVideo(true);
-      setAnimationComplete(true);
-    }
-  }, []);
-
-  // Auto-rotate titles every 5s
-  useEffect(() => {
-    if (!animationComplete) return;
-
     const interval = setInterval(() => {
-      setActiveIndex((i) => (i + 1) % TITLES.length);
+      handleNext();
     }, 5000);
-    return () => clearInterval(interval);
-  }, [animationComplete]);
 
-  const activeCard: HeroCard = TITLES[activeIndex].card;
+    return () => clearInterval(interval);
+  }, [handleNext]);
+
+  const handlePrev = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setSlides((prev) => {
+      const newSlides = [...prev];
+      const last = newSlides.pop();
+      // @ts-expect-error - ignore for now
+      newSlides.unshift(last);
+      return newSlides;
+    });
+    setTimeout(() => setIsAnimating(false), 800);
+  };
+
+  // @ts-expect-error - ignore for now
+  const handleSlideClick = (index) => {
+    if (isAnimating || index === 1) return;
+
+    if (index === 0) {
+      handlePrev();
+    } else if (index === 2) {
+      handleNext();
+    }
+  };
+
+  // @ts-expect-error - ignore for now
+  const getSlidePosition = (index) => {
+    if (index === 0) {
+      return {
+        left: "5%",
+        top: "50%",
+        transform: "translateY(-50%)",
+        width: "280px",
+        height: "400px",
+        zIndex: 2,
+      };
+    }
+    if (index === 1) {
+      return {
+        left: "50%",
+        top: "50%",
+        transform: "translateX(-50%) translateY(-50%)",
+        width: "350px",
+        height: "450px",
+        zIndex: 3,
+      };
+    }
+    if (index === 2) {
+      return {
+        right: "5%",
+        top: "50%",
+        transform: "translateY(-50%)",
+        width: "280px",
+        height: "400px",
+        zIndex: 2,
+      };
+    }
+    return null;
+  };
+
+  const currentSlide = slides[1];
+  const bgImage = currentSlide.bgImage || currentSlide.image;
+  const bgFallback =
+    FALLBACK_GRADIENTS[TITLES.findIndex((t) => t.id === currentSlide.id)];
+  const finalBgImage = imageErrors.has(currentSlide.id)
+    ? bgFallback
+    : `url(${bgImage})`;
 
   return (
-    <section className="relative w-full overflow-hidden bg-gray-50 dark:bg-gray-900 mt-16">
-      {/* Initial greenish-blue overlay with title animation */}
-      <AnimatePresence>
-        {!animationComplete && (
-          <motion.div
-            variants={showAndVanish}
-            initial="initial"
-            exit="exit"
-            transition={{ duration: 1, delay: 0.2 }}
-            className="absolute inset-0 z-10 flex items-center justify-center bg-gradient-to-br from-teal-400 via-cyan-500 to-sky-600 dark:from-teal-500 dark:via-cyan-600 dark:to-sky-700"
-          >
-            <div className="max-w-5xl px-6 text-center">
-              <motion.ul className="space-y-6">
-                {TITLES.map((t, i) => (
-                  <motion.li
-                    key={t.id}
-                    variants={titleItemVariants}
-                    initial="initial"
-                    animate="animate"
-                    transition={{
-                      duration: 1.5,
-                      delay: i * 0.3,
-                      ease: [0.34, 1.56, 0.64, 1],
-                    }}
-                    onAnimationComplete={() => {
-                      if (i === TITLES.length - 1) {
-                        setTimeout(() => {
-                          setShowVideo(true);
-                          setTimeout(() => setAnimationComplete(true), 20);
-                        }, 200);
-                      }
-                    }}
-                    className="text-white font-extrabold drop-shadow-2xl"
-                  >
-                    <span className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight">
-                      {t.title}
-                    </span>
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Video background */}
-      <div className="relative h-[65vh] md:h-[100vh] w-full">
-        {showVideo && (
-          <motion.video
-            variants={appearFromNothing}
-            initial="initial"
-            animate="animate"
-            transition={{ duration: 0.8 }}
-            className="absolute inset-0 h-full w-full object-cover"
-            src={heroVideo}
-            muted
-            loop
-            autoPlay
-            playsInline
-            preload="auto"
-            aria-hidden="true"
-          />
-        )}
-
-        {/* Subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-
-        {/* Main content */}
-        <AnimatePresence>
-          {animationComplete && (
+    <section className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center bg-white dark:bg-gray-950 transition-colors duration-500 z-10">
+      {/* Background Images - Split Screen */}
+      <div className="absolute inset-0 z-0">
+        {/* Desktop/Tablet: Left & Right Split */}
+        <div className="hidden md:block absolute inset-0">
+          {/* Left Background */}
+          <AnimatePresence mode="wait">
             <motion.div
-              variants={appearFromNothing}
+              key={`left-${currentSlide.id}`}
+              // @ts-expect-error - ignore for now
+              variants={bgLeftVariants}
               initial="initial"
               animate="animate"
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="relative z-10 h-full"
+              exit="exit"
+              className="absolute inset-0"
+              style={{
+                backgroundImage: finalBgImage,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
             >
-              <div className="w-11/12 mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-end pb-8 md:pb-12 lg:pb-28 xl:pb-32">
-                <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-end">
-                  {/* Left: Floating titles */}
-                  <div className="flex items-end">
-                    <ul className="space-y-2 md:space-y-3 w-full">
-                      {TITLES.map((t, i) => {
-                        const isActive = i === activeIndex;
-                        const offset = TITLE_OFFSETS[i];
-
-                        return (
-                          <motion.li
-                            key={t.id}
-                            variants={floatingTitleVariants}
-                            initial="initial"
-                            animate="animate"
-                            custom={isActive}
-                            transition={{
-                              duration: 0.5,
-                              delay: i * 0.06,
-                              ease: [0.25, 0.46, 0.45, 0.94],
-                            }}
-                            className={`cursor-pointer select-none transition-all duration-300 w-fit ${
-                              isActive
-                                ? "text-2xl sm:text-3xl md:text-4xl font-bold"
-                                : "text-xl sm:text-2xl md:text-3xl font-semibold"
-                            }`}
-                            onClick={() => setActiveIndex(i)}
-                            whileHover={{ scale: 1.03, x: 8 }}
-                            whileTap={{ scale: 0.97 }}
-                            style={{
-                              transform: `translate(${offset.offsetX}rem, ${offset.offsetY}rem)`,
-                              textShadow: "0 4px 16px rgba(0,0,0,0.7)",
-                            }}
-                          >
-                            <span
-                              className={
-                                isActive
-                                  ? "bg-gradient-to-r from-cyan-300 via-emerald-300 to-teal-300 shadow-xs bg-clip-text text-transparent"
-                                  : "text-white"
-                              }
-                            >
-                              {t.title}
-                            </span>
-                          </motion.li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-
-                  {/* Right: Interactive card */}
-                  <div className="hidden md:flex justify-center md:justify-end ">
-                    <div className="w-full sm:w-96">
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          key={activeCard.header}
-                          variants={cardVariants}
-                          initial="initial"
-                          animate="animate"
-                          exit="exit"
-                          transition={{
-                            duration: 0.45,
-                            ease: [0.25, 0.46, 0.45, 0.94],
-                          }}
-                          className="backdrop-blur-lg bg-white/50 dark:bg-slate-900/50 border border-white/30 dark:border-slate-700/40 rounded-2xl p-6 shadow-2xl"
-                        >
-                          <motion.h3
-                            variants={appearFromNothingToY}
-                            initial="initial"
-                            animate="animate"
-                            transition={{ delay: 0.1, duration: 0.3 }}
-                            className="text-slate-900 dark:text-white text-xl md:text-2xl font-bold mb-3 leading-tight"
-                          >
-                            {activeCard.header}
-                          </motion.h3>
-
-                          <motion.p
-                            variants={appearFromNothingToY}
-                            initial="initial"
-                            animate="animate"
-                            transition={{ delay: 0.15, duration: 0.3 }}
-                            className="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-5"
-                          >
-                            {activeCard.description}
-                          </motion.p>
-
-                          <motion.div
-                            variants={appearFromNothingToY}
-                            initial="initial"
-                            animate="animate"
-                            transition={{ delay: 0.2, duration: 0.3 }}
-                            className="flex justify-end"
-                          >
-                            <motion.button
-                              whileHover={{ scale: 1.04, y: -2 }}
-                              whileTap={{ scale: 0.96 }}
-                              className="px-6 py-3 text-sm font-semibold rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 dark:from-emerald-500 dark:to-teal-500 text-white shadow-lg hover:shadow-xl transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 cursor-pointer"
-                              aria-label={activeCard.cta}
-                            >
-                              {activeCard.cta}
-                            </motion.button>
-                          </motion.div>
-                        </motion.div>
-                      </AnimatePresence>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent dark:from-black/60 dark:via-black/40" />
             </motion.div>
-          )}
-        </AnimatePresence>
+          </AnimatePresence>
+
+          {/* Right Background */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`right-${currentSlide.id}`}
+              // @ts-expect-error - ignore for now
+              variants={bgRightVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="absolute inset-0"
+              style={{
+                backgroundImage: finalBgImage,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-l from-black/50 via-black/30 to-transparent dark:from-black/60 dark:via-black/40" />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Mobile: Full Height Expansion with Enhanced Blur */}
+        <div className="md:hidden absolute inset-0">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`mobile-${currentSlide.id}`}
+              // @ts-expect-error - ignore for now
+              variants={bgMobileVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="absolute inset-0"
+              style={{
+                backgroundImage: finalBgImage,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                filter: "blur(8px)",
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 dark:from-black/90 dark:via-black/60 dark:to-black/40" />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+
+      <div className="w-full max-w-7xl mx-auto relative z-10 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
+          {/* Left Content */}
+          <div className="relative order-2 lg:order-1">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide.id}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="max-w-lg"
+              >
+                <motion.h1
+                  custom={0}
+                  // @ts-expect-error - ignore for now
+                  variants={heroContentVariants}
+                  className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 uppercase tracking-tight leading-tight"
+                >
+                  {currentSlide.title}
+                </motion.h1>
+
+                <motion.p
+                  custom={1}
+                  // @ts-expect-error - ignore for now
+                  variants={heroContentVariants}
+                  className="text-base sm:text-lg lg:text-xl text-gray-100 dark:text-gray-200 mb-6 sm:mb-8 leading-relaxed"
+                >
+                  {currentSlide.card?.description}
+                </motion.p>
+
+                <motion.div
+                  custom={2}
+                  // @ts-expect-error - ignore for now
+                  variants={heroContentVariants}
+                >
+                  <motion.button
+                    whileHover={{
+                      scale: 1.05,
+                      backgroundColor: "rgba(255, 255, 255, 0.95)",
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-6 sm:px-8 py-2.5 sm:py-3 bg-white/80 dark:bg-gray-100 backdrop-blur-sm text-gray-900 dark:text-gray-950 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer text-sm sm:text-base"
+                  >
+                    {currentSlide.card.cta}
+                  </motion.button>
+                </motion.div>
+
+                {/* Indicator Dots - Mobile */}
+                <motion.div
+                  custom={3}
+                  // @ts-expect-error - ignore for now
+                  variants={heroContentVariants}
+                  className="flex gap-2 mt-6 sm:mt-8 lg:hidden"
+                >
+                  {slides.map((_, idx) => (
+                    <div
+                      key={idx}
+                      className={`h-1 rounded-full transition-all ${
+                        idx === 1 ? "w-6 bg-white" : "w-2 bg-white/40"
+                      }`}
+                    />
+                  ))}
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Right Slide Stack - Desktop Only */}
+          <div className="relative h-96 sm:h-[500px] lg:h-[550px] pb-20 order-1 lg:order-2 hidden lg:flex items-center justify-center">
+            <div className="relative w-full h-full flex items-center justify-center">
+              {slides.map((slide, index) => {
+                const position = getSlidePosition(index);
+
+                if (!position) return null;
+
+                const cardImage = slide.image;
+                const hasError = imageErrors.has(slide.id);
+                const cardFallback =
+                  FALLBACK_GRADIENTS[
+                    TITLES.findIndex((t) => t.id === slide.id)
+                  ];
+                const finalCardBg = hasError
+                  ? cardFallback
+                  : `url(${cardImage})`;
+
+                return (
+                  <motion.div
+                    key={slide.id}
+                    initial={false}
+                    animate={position}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.34, 1.56, 0.64, 1],
+                    }}
+                    onClick={() => handleSlideClick(index)}
+                    className={`absolute overflow-hidden shadow-2xl rounded-xl lg:rounded-2xl border border-white/10 dark:border-gray-800 ${
+                      index !== 1
+                        ? "cursor-pointer hover:shadow-3xl"
+                        : "shadow-2xl"
+                    } transition-shadow duration-300`}
+                    whileHover={index !== 1 ? { scale: 1.05 } : {}}
+                    style={{
+                      backgroundImage: finalCardBg,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  >
+                    {index === 1 && (
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent dark:from-black/80" />
+                    )}
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Navigation Buttons */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-3 lg:gap-4">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handlePrev}
+                disabled={isAnimating}
+                className="w-10 h-10 lg:w-12 lg:h-12 rounded-lg bg-white/15 dark:bg-white/10 backdrop-blur-sm border border-white/30 dark:border-white/20 flex items-center justify-center hover:bg-white/25 dark:hover:bg-white/15 transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleNext}
+                disabled={isAnimating}
+                className="w-10 h-10 lg:w-12 lg:h-12 rounded-lg bg-white/15 dark:bg-white/10 backdrop-blur-sm border border-white/30 dark:border-white/20 flex items-center justify-center hover:bg-white/25 dark:hover:bg-white/15 transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
+              </motion.button>
+            </div>
+          </div>
+
+          {/* Mobile Carousel - Simplified */}
+          <div className="relative h-64 sm:h-80 lg:hidden order-1 w-full pb-16">
+            <div className="relative w-full h-full flex items-center justify-center">
+              {slides.map((slide, index) => {
+                if (index !== 1) return null;
+
+                const cardImage = slide.image;
+                const hasError = imageErrors.has(slide.id);
+                const cardFallback =
+                  FALLBACK_GRADIENTS[
+                    TITLES.findIndex((t) => t.id === slide.id)
+                  ];
+                const finalCardBg = hasError
+                  ? cardFallback
+                  : `url(${cardImage})`;
+
+                return (
+                  <motion.div
+                    key={slide.id}
+                    initial={false}
+                    className="absolute inset-0 overflow-hidden rounded-xl shadow-xl"
+                    style={{
+                      backgroundImage: finalCardBg,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent dark:from-black/70 dark:via-black/40" />
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Mobile Navigation Buttons */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-3">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handlePrev}
+                disabled={isAnimating}
+                className="w-10 h-10 rounded-lg bg-white/20 dark:bg-white/15 backdrop-blur-sm border border-white/30 dark:border-white/20 flex items-center justify-center hover:bg-white/30 dark:hover:bg-white/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Previous"
+              >
+                <ChevronLeft className="w-5 h-5 text-white" />
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleNext}
+                disabled={isAnimating}
+                className="w-10 h-10 rounded-lg bg-white/20 dark:bg-white/15 backdrop-blur-sm border border-white/30 dark:border-white/20 flex items-center justify-center hover:bg-white/30 dark:hover:bg-white/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Next"
+              >
+                <ChevronRight className="w-5 h-5 text-white" />
+              </motion.button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
