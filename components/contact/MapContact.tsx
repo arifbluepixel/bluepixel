@@ -18,7 +18,7 @@ const inter = Inter({
 });
 
 export default function MapContact() {
-  const position: [number, number] = [23.8100411, 90.4123207];
+  const position: [number, number] = [23.830052424914633, 90.4182664597695];
 
   const getMapHeight = () => {
     if (typeof window === "undefined") return 500;
