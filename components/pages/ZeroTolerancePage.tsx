@@ -1,0 +1,17 @@
+import Navbar from "../Home/Navbar";
+import ZeroTolerance from "../pagesExtra/ZeroTolerance";
+import BackToTop from "../shared/BackToTop";
+import Footer from "../shared/footer/Footer";
+
+const ZeroTolerancePage = () => {
+  return (
+    <>
+      <Navbar />
+      <ZeroTolerance />
+      <Footer />
+      <BackToTop showText={false} showIcon={true} />
+    </>
+  );
+};
+
+export default ZeroTolerancePage;
