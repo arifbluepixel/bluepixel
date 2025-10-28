@@ -1,3 +1,8 @@
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import ServiceSample from "./ServiceSample";
 import {
   After1,
   After2,
@@ -6,65 +11,95 @@ import {
   Before2,
   Before3,
 } from "@/lib/constants/images";
-import ServiceSample from "./ServiceSample";
 
+// ServiceExamples Component
 export default function ServiceExamples() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { margin: "-100px", once: false });
+
+  const examples = [
+    {
+      title: "Artistic Color Grading & Creative Manipulation",
+      subtitle: "Bring Your Images to Life",
+      description:
+        "Transform your visuals into stunning works of art with our expert color grading and creative enhancement. Whether you're curating a stylish Instagram feed or producing captivating brand content, we fine-tune tones, moods, and aesthetics to match your vision. From elegant retouching to dramatic transformations, we craft imagery that grabs attention and defines your unique style.",
+      left: false,
+      beforeImage: Before3.src,
+      afterImage: After3.src,
+    },
+    {
+      title: "Photo Restoration Excellence",
+      subtitle: "Revive and Restore Your Cherished Memories",
+      description:
+        "Give your old, damaged, or faded photos a new life. Our skilled restoration specialists carefully repair and enhance every detail  preserving the original essence while improving clarity, tone, and vibrancy. Relive your most treasured moments with restored photos that feel timeless once again.",
+      left: true,
+      beforeImage: Before1.src,
+      afterImage: After1.src,
+    },
+    {
+      title: "Professional Image Enhancement",
+      subtitle: "Elevate Every Detail with Precision",
+      description:
+        "Experience flawless visuals through advanced enhancement and manipulation techniques. We refine colors, adjust saturation and lighting, and optimize every pixel to create sharp, balanced, and visually captivating images. With expert masking and precision adjustments, your visuals will stand out with unmatched clarity and style.",
+      left: false,
+      beforeImage: Before2.src,
+      afterImage: After2.src,
+    },
+  ];
+
   return (
-    <div className="bg-gray-300 overflow-hidden">
-      <div className="w-11/12 max-w-7xl space-y-10 mx-auto py-8 md:py-12 lg:py-16 ">
-        {/* Color Grading Image */}
+    <div className="bg-slate-50 dark:bg-gray-400 relative overflow-hidden">
+      {" "}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/5 to-transparent pointer-events-none"></div>
+      <div
+        ref={ref}
+        className="relative w-11/12 max-w-7xl mx-auto py-16 md:py-20 lg:py-24"
+      >
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="inline-block mb-4"
+          >
+            <span className="px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-600 text-sm font-semibold tracking-wider uppercase">
+              Our Work
+            </span>
+          </motion.div>
 
-        <ServiceSample
-          bgcolor="bg-gray-300"
-          title="Stand Out with Color Grading and Creative Image Manipulation"
-          description="Elevate your personal brand with expertly color-graded and creatively enhanced visuals. Whether you're building a cohesive Instagram feed or producing eye-catching content, we adjust tones, enhance moods, and apply unique styles that reflect your aesthetic. From subtle retouching to bold visual transformations, we help you create scroll-stopping imagery that resonates with your audience."
-          left={false}
-          beforeImage={After3}
-          afterImage={Before3}
-          widthData={"90%"}
-          heightData={350}
-        />
-        <hr />
-        {/* Enhance Your Images */}
-        <ServiceSample
-          bgcolor="bg-gray-300"
-          title="Restore Your Precious Images"
-          description="Our expert team handles every image with meticulous care, using advanced restoration techniques to revive old, damaged, or faded photos. We breathe new life into your memories, preserving their original charm while enhancing clarity and detail."
-          left={true}
-          beforeImage={After1}
-          afterImage={Before1}
-          widthData={"90%"}
-          heightData={400}
-        />
-        <hr />
-        {/* Transform Your Images */}
-        <ServiceSample
-          bgcolor="bg-gray-300"
-          title="Transform Your Images with Image Enhancement And Manipulation "
-          description="Through advanced image enhancement and manipulation techniques, we fine-tune color balance, adjust saturation and brightness, and elevate overall tone and vibrancy. Our specialists also perform precise image masking to isolate and enhance individual elements, ensuring each image is visually striking and perfectly refined."
-          left={false}
-          beforeImage={After2}
-          afterImage={Before2}
-          widthData={"90%"}
-          heightData={400}
-        />
+          <h2 className="mt-2 font-bold text-4xl md:text-5xl lg:text-6xl font-oswald uppercase text-slate-900 mb-4 tracking-tight">
+            See The Difference
+          </h2>
 
-        {/* E-commerce ready Image */}
-        {/* <hr /> */}
-        {/* <ServiceSample
-          bgcolor="bg-gray-300"
-          title="E-commerce ready Image Retouching and Manipulation"
-          description="Our expert image retouching and manipulation services can remove
-              imperfections, adjust lighting and color, and create stunning
-              effects that make your images pop. From simple touch-ups to
-              complex image manipulations, our skilled team can help you enhance
-              and transform your images ready for the web!"
-          left={true}
-          beforeImage={After3}
-          afterImage={Before3}
-          widthData={"90%"}
-          heightData={350}
-        /> */}
+          <p className="mt-4 text-slate-600 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+            Witness the transformation. From concept to completion, we bring
+            your vision to life.
+          </p>
+        </motion.div>
+
+        {/* Examples */}
+        <div className="space-y-24">
+          {examples.map((example, index) => (
+            <ServiceSample
+              key={index}
+              title={example.title}
+              subtitle={example.subtitle}
+              description={example.description}
+              left={example.left}
+              beforeImage={example.beforeImage}
+              afterImage={example.afterImage}
+              index={index}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

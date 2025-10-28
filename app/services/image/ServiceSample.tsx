@@ -1,77 +1,153 @@
 "use client";
 
-import React from "react";
-import "react-before-after-slider-component/dist/build.css"; // Import styles
-import { motion } from "framer-motion";
-import BeforeAfterSliderComponent from "./BeforeAfterSection";
-import { StaticImageData } from "next/image";
+import { motion, useInView } from "framer-motion";
+import Image from "next/image";
+import { useRef } from "react";
 
 export default function ServiceSample({
-  bgcolor,
   title,
+  subtitle,
   description,
   left,
   beforeImage,
   afterImage,
-  widthData,
-  heightData,
+  index,
 }: {
-  bgcolor: string;
   title: string;
+  subtitle: string;
   description: string;
   left: boolean;
-  beforeImage?: string | StaticImageData;
-  afterImage?: string | StaticImageData;
-  widthData?: string | number;
-  heightData?: string | number;
+  beforeImage: string;
+  afterImage: string;
+  index: number;
 }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { margin: "-150px", once: false });
+
   return (
-    <div className={`${bgcolor} flex items-center overflow-hidden`}>
-      <div
-        className={`w-full mx-auto flex flex-col ${
-          left ? " md:flex-row " : " md:flex-row-reverse "
-        } gap-5 justify-between items-center`}
+    <div ref={ref} className="relative">
+      {/* Decorative number */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+        transition={{ duration: 0.6 }}
+        className={`absolute -top-8 ${
+          left ? `left-0` : `right-0`
+        } text-8xl font-bold text-slate-200 pointer-events-none select-none`}
       >
-        {/* Left Section - Content */}
+        0{index + 1}
+      </motion.div>
+
+      <div
+        className={`flex flex-col ${
+          left ? "md:flex-row" : "md:flex-row-reverse"
+        } gap-12 items-center relative z-10`}
+      >
+        {/* Content Section */}
         <motion.div
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: false, amount: 0.3 }}
-          className="w-full md:w-2/3"
+          initial={{ opacity: 0, x: left ? -60 : 60 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="w-full md:w-1/2 space-y-6"
         >
-          <h1
-            className={`text-4xl md:text-5xl font-oswald font-normal text-gray-900 mb-6 leading-16 ${
-              left ? " pr-10" : " pl-10"
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className={`flex ${
+              !left ? "md:justify-end pt-6" : "md:justify-start"
             }`}
           >
-            {title}
-          </h1>
-          <p
-            className={`text-xl text-gray-600 mb-6 text-justify leading-8 ${
-              left ? " md:text-left pr-10" : " md:flex-row-reverse pl-10"
-            }`}
+            <span className="inline-block px-4 py-1.5 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-bold tracking-wider uppercase rounded-full shadow-md ">
+              {title}
+            </span>
+          </motion.div>
+
+          {/* Title */}
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-3xl md:text-4xl lg:text-5xl font-oswald font-bold text-slate-900 leading-tight"
+          >
+            {subtitle}
+          </motion.h3>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-lg text-slate-600 leading-relaxed"
           >
             {description}
-          </p>
+          </motion.p>
         </motion.div>
 
-        {/* Right Section - Before/After Image Slider */}
+        {/* Image Section */}
         <motion.div
-          initial={{ opacity: 0, x: 100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: false, amount: 0.3 }}
-          className="w-full md:w-1/3 flex justify-center transition-all "
+          initial={{ opacity: 0, x: left ? 60 : -60 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="w-full md:w-1/2"
         >
-          <BeforeAfterSliderComponent
-            beforeImage={beforeImage ? beforeImage : "/services/before.jpg"}
-            afterImage={afterImage ? afterImage : "/services/after.jpg"}
-            width={widthData ? widthData : "90%"}
-            height={heightData ? heightData : 250}
-          />
+          <div className="relative group">
+            {/* Before/After Container with enhanced styling */}
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+              {/* Gradient overlay on hover */}
+              {/* <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div> */}
+
+              {/* Simple before/after display */}
+              <div className="relative aspect-[4/3] bg-slate-200">
+                <div className="absolute inset-0 grid grid-cols-2">
+                  {/* Before */}
+                  <div className="relative overflow-hidden border-r-2 border-white">
+                    <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-slate-900/80 backdrop-blur-sm text-white text-xs font-bold rounded-full">
+                      BEFORE
+                    </div>
+                    <Image
+                      width={500}
+                      height={500}
+                      src={beforeImage}
+                      alt="Before"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* After */}
+                  <div className="relative overflow-hidden">
+                    <div className="absolute top-4 right-4 z-20 px-3 py-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-bold rounded-full">
+                      AFTER
+                    </div>
+                    <Image
+                      width={500}
+                      height={500}
+                      src={afterImage}
+                      alt="After"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Decorative elements */}
+            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full opacity-20 blur-3xl group-hover:opacity-30 transition-opacity duration-500"></div>
+            <div className="absolute -top-4 -left-4 w-32 h-32 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full opacity-20 blur-3xl group-hover:opacity-30 transition-opacity duration-500"></div>
+          </div>
         </motion.div>
       </div>
+
+      {/* Divider */}
+      {index < 2 && (
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mt-24 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"
+        ></motion.div>
+      )}
     </div>
   );
 }

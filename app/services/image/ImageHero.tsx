@@ -12,6 +12,8 @@ export default function ImageHero() {
 
   return (
     <div ref={ref} className="overflow-hidden">
+      {" "}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
       <ServiceHero
         title={
           <>
@@ -21,14 +23,14 @@ export default function ImageHero() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-[#1F2937]"
             >
-              Ultimate
+              Professional
             </motion.span>{" "}
             <br />{" "}
             <motion.span
               initial={{ opacity: 0, x: -50 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-[#FBCE3A]"
+              className={`text-sky-600 `}
             >
               Image Post Production
             </motion.span>{" "}
@@ -50,9 +52,9 @@ export default function ImageHero() {
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
             className="mt-2 text-gray-600 max-w-xl "
           >
-            Get professional-grade image post-production without breaking the
-            bank. Get a trial of any services before you decide, completely free
-            of charge!
+            Enhance your brand&apos;s visuals with expert image post-production
+            tailored to your needs. Try any service free with a complimentary
+            trial before you commit.
           </motion.p>
         }
         bgColor="#F9FAFB"

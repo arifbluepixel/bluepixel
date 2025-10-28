@@ -1,108 +1,271 @@
 "use client";
 
+import { motion, useInView } from "framer-motion";
+import Link from "next/link";
+import { useRef } from "react";
 import {
-  FaEraser,
+  BsDropletHalf,
+  BsFillImageFill,
+  BsFilter,
+  BsLayers,
+  BsStars,
+} from "react-icons/bs";
+import {
   FaAdjust,
-  FaFileImage,
   FaCloudUploadAlt,
+  FaEraser,
+  FaFileImage,
 } from "react-icons/fa";
-import { TbVectorBezier, TbCrop, TbBrightnessUp } from "react-icons/tb";
+import { GiMagicBroom, GiResize } from "react-icons/gi";
+import { IoIosImages } from "react-icons/io";
 import {
   MdColorLens,
   MdOutlineLayers,
   MdOutlinePhotoSizeSelectLarge,
 } from "react-icons/md";
-import {
-  BsStars,
-  BsFillImageFill,
-  BsLayers,
-  BsDropletHalf,
-  BsFilter,
-} from "react-icons/bs";
-import { RiImageEditFill, RiImageAddFill } from "react-icons/ri";
-import { GiMagicBroom, GiResize } from "react-icons/gi";
-import { IoIosImages } from "react-icons/io";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { RiImageAddFill, RiImageEditFill } from "react-icons/ri";
+import { TbBrightnessUp, TbCrop, TbVectorBezier } from "react-icons/tb";
 
 const services = [
-  { icon: <FaEraser />, title: "Background Removal" },
-  { icon: <TbVectorBezier />, title: "Clipping Path" },
-  { icon: <MdColorLens />, title: "Color Correction" },
-  { icon: <BsStars />, title: "Image Masking" },
-  { icon: <RiImageEditFill />, title: "Image Retouching" },
-  { icon: <GiMagicBroom />, title: "Image Manipulation" },
-  { icon: <TbCrop />, title: "Image Cropping" },
-  { icon: <MdOutlinePhotoSizeSelectLarge />, title: "Image Resizing" },
-  { icon: <FaAdjust />, title: "Brightness & Contrast Adjustment" },
-  { icon: <MdOutlineLayers />, title: "Layer Masking" },
-  { icon: <BsFillImageFill />, title: "Photo Restoration" },
-  { icon: <BsLayers />, title: "Multi-Layer Editing" },
-  { icon: <RiImageAddFill />, title: "Image Enhancement" },
-  { icon: <IoIosImages />, title: "Photo Merging" },
-  { icon: <FaFileImage />, title: "Vector Conversion" },
-  { icon: <GiResize />, title: "Aspect Ratio Adjustment" },
-  { icon: <BsDropletHalf />, title: "Color Grading" },
-  { icon: <TbBrightnessUp />, title: "HDR Image Processing" },
-  { icon: <BsFilter />, title: "Advanced Filters & Effects" },
-  { icon: <FaCloudUploadAlt />, title: "Bulk Image Processing" },
+  {
+    icon: <FaEraser />,
+    title: "Background Removal",
+    description: "Clean, precise background extraction",
+  },
+  {
+    icon: <TbVectorBezier />,
+    title: "Clipping Path",
+    description: "Perfect edge definition",
+  },
+  {
+    icon: <MdColorLens />,
+    title: "Color Correction",
+    description: "Accurate color balance",
+  },
+  {
+    icon: <BsStars />,
+    title: "Image Masking",
+    description: "Complex selection mastery",
+  },
+  {
+    icon: <RiImageEditFill />,
+    title: "Image Retouching",
+    description: "Flawless finishing touches",
+  },
+  {
+    icon: <GiMagicBroom />,
+    title: "Image Manipulation",
+    description: "Creative transformations",
+  },
+  {
+    icon: <TbCrop />,
+    title: "Image Cropping",
+    description: "Optimal composition",
+  },
+  {
+    icon: <MdOutlinePhotoSizeSelectLarge />,
+    title: "Image Resizing",
+    description: "Scale without quality loss",
+  },
+  {
+    icon: <FaAdjust />,
+    title: "Brightness & Contrast",
+    description: "Perfect tonal balance",
+  },
+  {
+    icon: <MdOutlineLayers />,
+    title: "Layer Masking",
+    description: "Advanced layer control",
+  },
+  {
+    icon: <BsFillImageFill />,
+    title: "Photo Restoration",
+    description: "Revive old memories",
+  },
+  {
+    icon: <BsLayers />,
+    title: "Multi-Layer Editing",
+    description: "Complex compositing",
+  },
+  {
+    icon: <RiImageAddFill />,
+    title: "Image Enhancement",
+    description: "Professional refinement",
+  },
+  {
+    icon: <IoIosImages />,
+    title: "Photo Merging",
+    description: "Seamless combinations",
+  },
+  {
+    icon: <FaFileImage />,
+    title: "Vector Conversion",
+    description: "Scalable graphics",
+  },
+  {
+    icon: <GiResize />,
+    title: "Aspect Ratio Adjustment",
+    description: "Perfect proportions",
+  },
+  {
+    icon: <BsDropletHalf />,
+    title: "Color Grading",
+    description: "Cinematic color effects",
+  },
+  {
+    icon: <TbBrightnessUp />,
+    title: "HDR Processing",
+    description: "Dynamic range mastery",
+  },
+  {
+    icon: <BsFilter />,
+    title: "Advanced Filters",
+    description: "Creative effects suite",
+  },
+  {
+    icon: <FaCloudUploadAlt />,
+    title: "Bulk Processing",
+    description: "Efficient batch editing",
+  },
 ];
 
-const ServicesSection: React.FC = () => {
+const ServicesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-100px", once: false });
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.04,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  };
+
   return (
-    <div className="bg-duck-bgblue">
+    <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500 rounded-full filter blur-3xl"></div>
+      </div>
+
       <section
         ref={ref}
-        className="w-11/12 max-w-7xl mx-auto py-8 md:py-12 lg:py-16"
+        className="relative w-11/12 max-w-7xl mx-auto py-16 md:py-20 lg:py-24"
       >
         {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center"
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="text-center mb-16"
         >
-          <h2 className="font-bold text-4xl md:text-5xl font-oswald uppercase text-white">
-            What We Offer
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="inline-block mb-4"
+          >
+            <span className="px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-semibold tracking-wider uppercase">
+              Our Services
+            </span>
+          </motion.div>
+
+          <h2 className=" mt-2 font-bold text-4xl md:text-5xl lg:text-6xl font-oswald uppercase text-white mb-4 tracking-tight">
+            Professional Image Editing
           </h2>
-          <p className="mt-3 text-white text-lg">
-            We provide a wide range of professional image editing services to
-            meet your needs.
+
+          <p className="mt-4 text-slate-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+            Transform your images with our comprehensive suite of professional
+            editing services. From basic adjustments to advanced manipulations,
+            we deliver excellence.
           </p>
         </motion.div>
 
         {/* Services Grid */}
         <motion.div
+          variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="pt-8"
         >
-          <motion.div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                className="text-center p-6 bg-gray-50 hover:bg-yellow-300 transition-all ease-in-out duration-300 rounded-lg shadow-md flex flex-col items-center group"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.05,
-                  ease: "easeOut",
+                // @ts-expect-error - ignore
+                variants={itemVariants}
+                whileHover={{
+                  y: -8,
+                  transition: { duration: 0.3, ease: "easeOut" },
                 }}
-                viewport={{ once: true, amount: 0.5 }}
+                className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 
+                         hover:bg-gradient-to-br hover:from-blue-600 hover:to-cyan-600 
+                         hover:border-transparent hover:shadow-xl hover:shadow-blue-500/20
+                         transition-all duration-300 ease-out cursor-pointer overflow-hidden"
               >
-                <div className="text-5xl text-yellow-500 mb-4 group-hover:text-duck-bgblue">
-                  {service.icon}
+                {/* Icon container with glow effect */}
+                <div className="relative mb-4 inline-block">
+                  <div className="absolute inset-0 bg-blue-500 rounded-lg opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
+                  <div className="relative text-5xl text-blue-400 group-hover:text-white transition-colors duration-300 group-hover:scale-110 transform">
+                    {service.icon}
+                  </div>
                 </div>
-                <h3 className="text-lg font-medium font-oswald">
+
+                {/* Title */}
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-white transition-colors duration-300">
                   {service.title}
                 </h3>
+
+                {/* Description */}
+                <p className="text-sm text-slate-400 group-hover:text-blue-50 transition-colors duration-300">
+                  {service.description}
+                </p>
+
+                {/* Hover accent line */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 to-cyan-500 
+                              transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-b-xl"
+                ></div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Call to action */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="text-center mt-16"
+        >
+          <p className="text-slate-300 text-lg mb-6">
+            Ready to elevate your images?
+          </p>
+          <Link
+            href={"/contact-us"}
+            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-lg
+                           hover:from-blue-500 hover:to-cyan-500 transform hover:scale-105 transition-all duration-300
+                           shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40"
+          >
+            Get Started Today
+          </Link>
         </motion.div>
       </section>
     </div>

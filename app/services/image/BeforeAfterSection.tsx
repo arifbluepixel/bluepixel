@@ -36,7 +36,7 @@ const BeforeAfterSliderComponent: React.FC<BeforeAfterSliderProps> = ({
       </div>
 
       {/* After Text */}
-      <div className="absolute top-4 right-4 bg-yellow-400 bg-opacity-50 text-black font-bold px-2 py-1 rounded-md text-sm z-10">
+      <div className="absolute top-4 right-4 bg-sky-300 bg-opacity-50 text-black font-bold px-2 py-1 rounded-md text-sm z-10">
         After
       </div>
 

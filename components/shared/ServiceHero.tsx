@@ -15,7 +15,7 @@ const ServiceHero: React.FC<HeroSectionProps> = ({
 }) => {
   return (
     <section style={{ backgroundColor: bgColor }}>
-      <div className="w-11/12 max-w-7xl mx-auto h-full flex flex-col md:flex-row items-center justify-center py-8 md:py-12 lg:py-16">
+      <div className="w-11/12 max-w-7xl mx-auto h-full flex flex-col md:flex-row items-center justify-center pb-8 pt-10 md:pt-12 lg:pt-32 md:pb-12 lg:pb-16">
         {/* Left Section - Heading & Subheading */}
         <div className="w-full md:w-2/3 text-black mb-8 md:mb-0 md:pr-8">
           <h1 className="text-4xl md:text-5xl font-bold leading-tight md:leading-[1.3] mb-6 font-oswald">
