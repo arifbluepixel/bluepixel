@@ -15,7 +15,7 @@ export const SMTP_SECURE = process.env.SMTP_SECURE || false;
 
 // SITE Information
 export const FAVICON = process.env.NEXT_PUBLIC_FAVICON || "";
-export const LOGO = process.env.NEXT_PUBLIC_LOGO || "";
+export const LOGO = process.env.NEXT_PUBLIC_LOGO || "/home/bluepixel.png";
 export const SITE_URL =
   process.env.BETTER_AUTH_URL ||
   process.env.NEXT_PUBLIC_SITE_URL ||
@@ -25,8 +25,8 @@ export const SITE_NAME =
 export const SITE_DESCRIPTION =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION || "Blue-Pixel Project Description";
 export const SITE_KEYWORDS = process.env.NEXT_PUBLIC_SITE_KEYWORDS || "";
-export const CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL || "abc@gmail.com";
+export const CONTACT_EMAIL = 
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL || "support@blue-pixel.art";
 export const CONTACT_PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE || "";
 export const CONTACT_ADDRESS = process.env.NEXT_PUBLIC_CONTACT_ADDRESS || "";
 export const DEFAULT_KEYWORDS = process.env.NEXT_PUBLIC_SITE_KEYWORDS || "";
