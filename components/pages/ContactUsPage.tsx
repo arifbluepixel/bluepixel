@@ -10,7 +10,7 @@ const ContactUsPage = () => {
   return (
     <>
       <Header />
-      <div className="mt-10">
+      <div>
         <ContactHero />
       </div>
       <MapWrapper />
