@@ -226,7 +226,6 @@ const Footer = () => {
               </ul>
             </div>
 
-
             {/* Contact Info */}
             <div className="space-y-6">
               <h3 className="text-lg font-bold text-transparent bg-gradient-to-r from-cyan-500 to-sky-400 bg-clip-text">
