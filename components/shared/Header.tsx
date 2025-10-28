@@ -9,7 +9,14 @@ import {
   XHandle,
 } from "@/lib/constants/env";
 import { bluepixel, logo } from "@/lib/constants/images";
-import { ChevronDown, HelpCircleIcon, Home, Minus } from "lucide-react";
+import {
+  ChevronDown,
+  HelpCircleIcon,
+  Home,
+  ImageIcon,
+  Minus,
+  Video,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -20,35 +27,39 @@ import { ThemeToggle } from "./ThemeToggle";
 
 const servicesPages = [
   {
-    id: 11,
+    id: 12,
+    category: "Services",
+    title: "Image",
+    icon: <ImageIcon />,
+    link: "image",
+  },
+  {
+    id: 13,
+    category: "Services",
+    title: "Video",
+    icon: <Video />,
+    link: "video",
+  },
+  {
+    id: 14,
+    category: "Services",
+    title: "3D Rendering",
+    icon: <Video />,
+    link: "3d-rendering",
+  },
+  {
+    id: 15,
+    category: "Services",
+    title: "3D Animation",
+    icon: <Video />,
+    link: "3d-animation",
+  },
+  {
+    id: 16,
     category: "Services",
     title: "Web Development",
     icon: <HelpCircleIcon />,
     link: "web-development",
-  },
-  {
-    id: 12,
-    category: "Services",
-    title: "Digital Marketing",
-    icon: <HelpCircleIcon />,
-    link: "digital-marketing",
-  },
-];
-
-const compliancePages = [
-  {
-    id: 3,
-    category: "Compliance & Ethics",
-    title: "Compliance Vision",
-    icon: <Home />,
-    link: "compliance-vision",
-  },
-  {
-    id: 4,
-    category: "Compliance & Ethics",
-    title: "Zero Tolerance",
-    icon: <Home />,
-    link: "zero-tolerance",
   },
 ];
 
@@ -119,7 +130,7 @@ const AnimatedLogo = () => {
 
       {/* Logo - slides in from left */}
       <div
-        className="absolute inset-0 flex items-center justify-center transition-all duration-600 ease-out"
+        className="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-out"
         style={{
           transform:
             animationStage === "complete"
@@ -230,7 +241,7 @@ export default function Header() {
           <ChevronDown size={14} />
         </button>
         <div
-          className={`absolute top-full ${alignClasses} mt-3 ${
+          className={`absolute top-full ${alignClasses} mt-8 ${
             link.dropdownClass || "w-[280px] sm:w-[320px]"
           } rounded-xl bg-white dark:bg-gray-800 shadow-2xl ring-1 ring-cyan-200 dark:ring-gray-700 transition-all duration-300 ease-in-out transform ${
             isOpen
@@ -296,11 +307,16 @@ export default function Header() {
           <div className="flex items-center justify-between rounded-2xl bg-cyan-200/85 dark:bg-gray-900/95 backdrop-blur-md px-2 lg:px-6 py-2 shadow-xl border border-gray-200 dark:border-gray-700 ">
             {/* Left Navigation */}
             <nav className="hidden lg:flex items-center justify-end space-x-6 xl:space-x-8 flex-1 ">
-              {leftNavLinks.map((link) => (
-                <Link key={link.name} href={link.path} className={linkheader}>
-                  {link.name}
-                </Link>
-              ))}
+              {leftNavLinks.map((link) => {
+                if (link.hasDropdown) {
+                  return renderDropdown(link);
+                }
+                return (
+                  <Link key={link.name} href={link.path} className={linkheader}>
+                    {link.name}
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* Center Logo */}
