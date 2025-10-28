@@ -43,8 +43,8 @@ const contactFormSchema = z.object({
   phone: z.string().min(10, {
     message: "Please enter a valid phone number.",
   }),
-  service: z.string({
-    required_error: "Please select a service.",
+  service: z.string().min(1, {
+    message: "Please select a service.",
   }),
   message: z.string().min(10, {
     message: "Message must be at least 10 characters.",
