@@ -6,9 +6,10 @@ import {
   SERVICE_PROCESSES,
 } from "@/lib/data/mockData";
 import { motion, useInView } from "framer-motion";
-import { CheckCircle, Monitor } from "lucide-react";
+import { ArrowRight, CheckCircle, Monitor } from "lucide-react";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import SectionHeader from "./SectionHeader";
+import AnimatedButton from "../AnimatedButton";
 
 // Components
 const ProcessCard = memo<ProcessCardProps>(
@@ -261,7 +262,7 @@ export default function DigitalServices() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 overflow-hidden"
+      className="relative py-12 md:py-16 lg:py-20 overflow-hidden"
     >
       {/* Static background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
@@ -469,6 +470,15 @@ export default function DigitalServices() {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <AnimatedButton
+          text="Explore All Services"
+          icon={ArrowRight}
+          className="px-20 mt-10 md:mt-20"
+          href="/services"
+          // href="https://BluePixel.vercel.app/"
+        />
       </div>
     </section>
   );

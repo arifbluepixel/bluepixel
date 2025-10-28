@@ -6,14 +6,11 @@ import {
 } from "@/lib/constants/animation";
 import { SERVICE_IMAGES } from "@/lib/data/mockData";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { useRef, useState } from "react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import AnimatedButton from "../AnimatedButton";
 import SlidingStarWithText from "./SlidingStarWithText";
-import { pixelFont } from "@/lib/helper/fontHelper";
 
 export default function Welcome() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -23,7 +20,7 @@ export default function Welcome() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b to-gray-50 from-cyan-50 dark:from-gray-900 dark:to-slate-900 overflow-hidden"
+      className="relative pt-16 md:pt-24  bg-gradient-to-b to-gray-50 from-cyan-50 dark:from-gray-900 dark:to-slate-900 overflow-hidden"
     >
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -195,12 +192,6 @@ export default function Welcome() {
             </Swiper>
           </motion.div>
           {/* Call to Action */}
-          <AnimatedButton
-            text="Explore Our Services"
-            icon={ArrowRight}
-            className="px-20"
-            // href="https://BluePixel.vercel.app/"
-          />
         </motion.div>
       </div>
     </section>

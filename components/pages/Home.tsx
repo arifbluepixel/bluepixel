@@ -2,12 +2,11 @@ import Header from "@/components/Home/Header";
 import Hero from "@/components/Home/Hero";
 import BackToTop from "@/components/shared/BackToTop";
 import Footer from "@/components/shared/footer/Footer";
-import OurStory from "@/components/shared/home/OurStory";
 import DigitalServices from "@/components/shared/home/DigitalServices";
-import Testimonials2 from "@/components/shared/home/Testimonials2";
 import Welcome from "@/components/shared/home/Welcome";
 import Parallax from "@/components/shared/Parallax";
 import OurStrengths from "../shared/home/OurStrengths";
+import Testimonials from "../shared/home/Testimonials";
 
 const Home = () => {
   return (
@@ -20,13 +19,9 @@ const Home = () => {
       {/* Content sections - overlaps Hero when scrolling */}
       <div className="relative z-20 bg-white dark:bg-gray-950 rounded-t-3xl -mt-8">
         <Welcome />
-        <OurStrengths />
         <DigitalServices />
-        <OurStory
-          videoUrl="https://www.youtube.com/watch?v=U6ZvdP9TK-s"
-          signatureString={"Israt Jahan"}
-        />
-        <Testimonials2 />
+        <OurStrengths />
+        <Testimonials />
         <Parallax
           showExtraData={true}
           title="Let's Work Together !"
