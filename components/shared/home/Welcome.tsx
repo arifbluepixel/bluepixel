@@ -4,7 +4,7 @@ import {
   welcomeContainerVariants,
   welcomeItemVariants,
 } from "@/lib/constants/animation";
-import { PRODUCT_IMAGES } from "@/lib/data/mockData";
+import { SERVICE_IMAGES } from "@/lib/data/mockData";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useRef, useState } from "react";
@@ -134,7 +134,7 @@ export default function Welcome() {
               }}
               className="w-full"
             >
-              {PRODUCT_IMAGES.map((product, index) => (
+              {SERVICE_IMAGES.map((product, index) => (
                 <SwiperSlide key={`${product.title}-${index}`} className="">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}

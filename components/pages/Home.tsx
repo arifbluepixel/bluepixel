@@ -3,7 +3,7 @@ import Hero from "@/components/Home/Hero";
 import BackToTop from "@/components/shared/BackToTop";
 import Footer from "@/components/shared/footer/Footer";
 import OurStory from "@/components/shared/home/OurStory";
-import Quality from "@/components/shared/home/Quality";
+import DigitalServices from "@/components/shared/home/DigitalServices";
 import Testimonials2 from "@/components/shared/home/Testimonials2";
 import Welcome from "@/components/shared/home/Welcome";
 import Parallax from "@/components/shared/Parallax";
@@ -21,7 +21,7 @@ const Home = () => {
       <div className="relative z-20 bg-white dark:bg-gray-950 rounded-t-3xl -mt-8">
         <Welcome />
         <OurStrengths />
-        <Quality />
+        <DigitalServices />
         <OurStory
           videoUrl="https://www.youtube.com/watch?v=U6ZvdP9TK-s"
           signatureString={"Israt Jahan"}

@@ -46,6 +46,31 @@ import {
   wooven,
   woven1,
 } from "@/lib/constants/images";
+import {
+  BarChart3,
+  Brush,
+  Camera,
+  CheckCircle,
+  Code,
+  ImageIcon,
+  Layers,
+  Layout,
+  Mail,
+  Monitor,
+  Music,
+  Palette,
+  PenTool,
+  Rocket,
+  Scissors,
+  Smartphone,
+  Sparkles,
+  Target,
+  TrendingUpIcon,
+  Users,
+  Video,
+  Wand2,
+  Zap,
+} from "lucide-react";
 import { Product } from "../types";
 
 export const TITLES = [
@@ -127,7 +152,7 @@ export const TITLES = [
 ];
 
 // Product images object
-export const PRODUCT_IMAGES = [
+export const SERVICE_IMAGES = [
   { title: "Web Design and Development", image: website },
   { title: "Motion Graphics", image: videoEditing },
   { title: "Dedicated Design Team", image: DesignTeam },
@@ -498,3 +523,193 @@ export const demoProducts: Product[] = [
       "Super soft and comfy fabric, skin-friendly and breathable. Womens tops dressy casual, round neck cute lightweight tops",
   },
 ];
+
+export type LucideIcon = typeof Code;
+
+// Types
+export interface ServiceFeature {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  gradient: string;
+  serviceIcon: LucideIcon;
+}
+
+export interface ProcessStep {
+  id: string;
+  name: string;
+  icon: LucideIcon;
+  color: string;
+}
+
+export interface ServiceProcesses {
+  [key: string]: ProcessStep[];
+}
+
+export interface ProcessCardProps {
+  step: ProcessStep;
+  index: number;
+  isInView: boolean;
+  hoveredFeature: string | null;
+  setHoveredFeature: (id: string | null) => void;
+  isActive: boolean;
+}
+
+export interface FeatureCardProps {
+  feature: ServiceFeature;
+  index: number;
+  isInView: boolean;
+  hoveredFeature: string | null;
+  setHoveredFeature: (id: string | null) => void;
+  isSelected: boolean;
+  onSelect: () => void;
+}
+
+export const SERVICE_FEATURES: ServiceFeature[] = [
+  {
+    id: "web-design",
+    title: "Web Design",
+    description: "Stunning, responsive websites that captivate users",
+    icon: "🎨",
+    gradient: "from-purple-500 to-pink-500",
+    serviceIcon: Monitor,
+  },
+  {
+    id: "video-editing",
+    title: "Video Editing",
+    description: "Professional video production and post-production",
+    icon: "🎬",
+    gradient: "from-blue-500 to-cyan-500",
+    serviceIcon: Video,
+  },
+  {
+    id: "image-manipulation",
+    title: "Image Manipulation",
+    description: "Creative image manipulation and enhancement",
+    icon: "🖼️",
+    gradient: "from-orange-500 to-red-500",
+    serviceIcon: ImageIcon,
+  },
+  {
+    id: "marketing",
+    title: "Digital Marketing",
+    description: "Strategic campaigns that drive real results",
+    icon: "📊",
+    gradient: "from-green-500 to-emerald-500",
+    serviceIcon: TrendingUpIcon,
+  },
+];
+
+export const SERVICE_PROCESSES: ServiceProcesses = {
+  "web-design": [
+    { id: "wireframe", name: "Wireframing", icon: Layout, color: "#8b5cf6" },
+    { id: "ui-design", name: "UI Design", icon: Palette, color: "#ec4899" },
+    {
+      id: "prototyping",
+      name: "Prototyping",
+      icon: Smartphone,
+      color: "#3b82f6",
+    },
+    { id: "development", name: "Development", icon: Code, color: "#06b6d4" },
+    {
+      id: "responsive",
+      name: "Responsive Testing",
+      icon: Monitor,
+      color: "#f59e0b",
+    },
+    { id: "optimization", name: "Optimization", icon: Zap, color: "#10b981" },
+    {
+      id: "testing",
+      name: "Quality Testing",
+      icon: CheckCircle,
+      color: "#6366f1",
+    },
+    { id: "launch", name: "Launch & Deploy", icon: Rocket, color: "#ef4444" },
+  ],
+  "video-editing": [
+    { id: "storyboard", name: "Storyboarding", icon: Layout, color: "#3b82f6" },
+    { id: "footage", name: "Footage Review", icon: Camera, color: "#06b6d4" },
+    {
+      id: "cutting",
+      name: "Cutting & Trimming",
+      icon: Scissors,
+      color: "#8b5cf6",
+    },
+    {
+      id: "transitions",
+      name: "Transitions",
+      icon: Sparkles,
+      color: "#ec4899",
+    },
+    { id: "effects", name: "Visual Effects", icon: Wand2, color: "#f59e0b" },
+    { id: "audio", name: "Audio Mixing", icon: Music, color: "#10b981" },
+    {
+      id: "color-grade",
+      name: "Color Grading",
+      icon: Palette,
+      color: "#6366f1",
+    },
+    { id: "export", name: "Export & Deliver", icon: Rocket, color: "#ef4444" },
+  ],
+  "image-manipulation": [
+    {
+      id: "selection",
+      name: "Image Selection",
+      icon: Target,
+      color: "#f59e0b",
+    },
+    { id: "retouching", name: "Retouching", icon: Wand2, color: "#ec4899" },
+    {
+      id: "color-correction",
+      name: "Color Correction",
+      icon: Palette,
+      color: "#8b5cf6",
+    },
+    { id: "masking", name: "Masking & Layers", icon: Layers, color: "#3b82f6" },
+    {
+      id: "effects",
+      name: "Effects & Filters",
+      icon: Sparkles,
+      color: "#06b6d4",
+    },
+    {
+      id: "compositing",
+      name: "Compositing",
+      icon: ImageIcon,
+      color: "#10b981",
+    },
+    { id: "enhancement", name: "Enhancement", icon: Brush, color: "#6366f1" },
+    {
+      id: "final-export",
+      name: "Final Export",
+      icon: Rocket,
+      color: "#ef4444",
+    },
+  ],
+  marketing: [
+    { id: "research", name: "Market Research", icon: Target, color: "#10b981" },
+    {
+      id: "strategy",
+      name: "Strategy Planning",
+      icon: BarChart3,
+      color: "#8b5cf6",
+    },
+    {
+      id: "content",
+      name: "Content Creation",
+      icon: PenTool,
+      color: "#ec4899",
+    },
+    { id: "design", name: "Ad Design", icon: Palette, color: "#3b82f6" },
+    { id: "campaign", name: "Campaign Setup", icon: Rocket, color: "#06b6d4" },
+    { id: "email", name: "Email Marketing", icon: Mail, color: "#f59e0b" },
+    { id: "social", name: "Social Media", icon: Users, color: "#6366f1" },
+    {
+      id: "analytics",
+      name: "Analytics & ROI",
+      icon: TrendingUpIcon,
+      color: "#ef4444",
+    },
+  ],
+};
