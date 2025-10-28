@@ -5,48 +5,42 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const OurPartners = () => {
-    const buyers = [
+    const partners = [
         {
             id: 1,
-            name: "KiK",
-            logo: "/home/buyer1.png",
-            description: "World's leading fashion retailer",
+            name: "Chanel",
+            logo: "/home/chanel.png",
+            description: "Luxury fashion house"
         },
         {
             id: 2,
-            name: "Vanguard",
-            logo: "/home/buyer2.png",
-            description: "Global Spanish fast fashion chain",
+            name: "American Apparel",
+            logo: "/home/american-apparel.png",
+            description: "Classic American clothing"
         },
         {
             id: 3,
-            name: "Have It All",
-            logo: "/home/buyer3.png",
-            description: "World's largest athletic apparel company",
+            name: "Mango",
+            logo: "/home/mango.png",
+            description: "Spanish fashion retailer"
         },
         {
             id: 4,
-            name: "Dunlop",
-            logo: "/home/buyer4.png",
-            description: "German multinational corporation",
+            name: "Cross Country",
+            logo: "/home/cross-country.png",
+            description: "Athletic apparel brand"
         },
         {
             id: 5,
-            name: "Jeronimo Martins",
-            logo: "/home/buyer5.png",
-            description: "Japanese casual wear designer",
+            name: "Kick Fusion",
+            logo: "/home/kick-fusion.png",
+            description: "Urban streetwear brand"
         },
         {
             id: 6,
-            name: "Norma",
-            logo: "/home/buyer6.png",
-            description: "German multinational corporation",
-        },
-        {
-            id: 7,
-            name: "UBS.2",
-            logo: "/home/buyer7.png",
-            description: "American premium lifestyle brand",
+            name: "Prada",
+            logo: "/home/prada.png",
+            description: "Italian luxury fashion"
         },
     ];
 
@@ -71,57 +65,55 @@ const OurPartners = () => {
         },
     };
 
-
     // Don't render animations on server to prevent hydration mismatch
     if (!isClient) {
         return (
             <section
-                className="py-24 bg-white relative overflow-hidden"
+                className="py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden"
                 aria-label="Our Partners Section"
             >
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="text-center mb-20">
                         <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-blue-100 mb-8">
                             <span className="text-blue-700 font-semibold text-sm uppercase tracking-wider">
-                                Trusted Partnerships
+                                Creative Collaborations
                             </span>
                         </div>
                         <h2 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
-                            Global{" "}
-                            <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                                Buyers
+                            Trusted by{" "}
+                            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                                Partners
                             </span>
                         </h2>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                            We proudly collaborate with industry leaders worldwide, delivering
-                            exceptional quality and building lasting partnerships that drive
-                            mutual success.
+                            We collaborate with iconic fashion brands to create stunning visual content 
+                            that showcases their products in the best light possible.
                         </p>
                     </div>
                 </div>
 
                 {/* Static marquee for SSR */}
                 <div className="w-full mb-12">
-                    <div className="relative overflow-hidden bg-white/30 backdrop-blur-sm border-y border-white/20 py-8">
+                    <div className="relative overflow-hidden bg-white/50 backdrop-blur-sm border-y border-white/20 py-12">
                         <div className="flex gap-16 items-center whitespace-nowrap">
-                            {buyers.map((buyer, index) => (
+                            {partners.map((partner, index) => (
                                 <div
                                     key={`static-${index}`}
-                                    className="flex-shrink-0 flex items-center gap-6"
+                                    className="flex-shrink-0 flex items-center gap-8"
                                 >
-                                    <div className="relative w-24 h-12 opacity-60">
+                                    <div className="relative w-32 h-16 opacity-70">
                                         <Image
-                                            src={buyer.logo}
-                                            alt={buyer.name}
+                                            src={partner.logo}
+                                            alt={partner.name}
                                             fill
                                             className="object-contain filter grayscale"
-                                            sizes="96px"
+                                            sizes="128px"
                                         />
                                     </div>
-                                    <div className="text-sm font-medium text-gray-600 min-w-[120px] text-center">
-                                        {buyer.name}
+                                    <div className="text-lg font-semibold text-gray-700 min-w-[140px] text-center">
+                                        {partner.name}
                                     </div>
-                                    <div className="w-1 h-6 bg-gradient-to-b from-cyan-400/50 to-blue-400/50 rounded-full opacity-50" />
+                                    <div className="w-1 h-8 bg-gradient-to-b from-blue-400/50 to-purple-400/50 rounded-full opacity-50" />
                                 </div>
                             ))}
                         </div>
@@ -133,21 +125,21 @@ const OurPartners = () => {
 
     return (
         <section
-            className="py-24 bg-white relative overflow-hidden"
+            className="py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden"
             aria-label="Our Partners Section"
         >
             {/* Animated Background Elements */}
             <div className="absolute inset-0">
-                <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200/10 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute top-1/4 right-0 w-96 h-96 bg-cyan-200/10 rounded-full blur-3xl animate-pulse delay-700" />
-                <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-slate-200/10 rounded-full blur-3xl animate-pulse delay-1000" />
+                <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200/20 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute top-1/4 right-0 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl animate-pulse delay-700" />
+                <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-pink-200/20 rounded-full blur-3xl animate-pulse delay-1000" />
             </div>
 
             {/* Floating Particles */}
             {[...Array(15)].map((_, i) => (
                 <motion.div
                     key={i}
-                    className="absolute w-2 h-2 bg-blue-300/30 rounded-full"
+                    className="absolute w-2 h-2 bg-blue-400/30 rounded-full"
                     style={{
                         left: `${Math.random() * 100}%`,
                         top: `${Math.random() * 100}%`,
@@ -181,16 +173,16 @@ const OurPartners = () => {
                     >
                         <div className="flex gap-1">
                             <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" />
-                            <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce delay-100" />
-                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce delay-200" />
+                            <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce delay-100" />
+                            <div className="w-2 h-2 bg-pink-500 rounded-full animate-bounce delay-200" />
                         </div>
                         <span className="text-blue-700 font-semibold text-sm uppercase tracking-wider">
-                            Trusted Partnerships
+                            Fashion Collaborations
                         </span>
                         <div className="flex gap-1">
                             <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" />
-                            <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce delay-100" />
-                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce delay-200" />
+                            <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce delay-100" />
+                            <div className="w-2 h-2 bg-pink-500 rounded-full animate-bounce delay-200" />
                         </div>
                     </motion.div>
 
@@ -200,9 +192,9 @@ const OurPartners = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.7 }}
                     >
-                        Global{" "}
-                        <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent bg-size-200 animate-gradient">
-                            Buyers
+                        Trusted by{" "}
+                        <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent bg-size-200 animate-gradient">
+                            Partners
                         </span>
                     </motion.h2>
 
@@ -212,9 +204,9 @@ const OurPartners = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5, duration: 0.6 }}
                     >
-                        We proudly collaborate with industry leaders worldwide, delivering
-                        exceptional quality and building lasting partnerships that drive
-                        mutual success.
+                        We collaborate with iconic fashion brands to create stunning visual content 
+                        that showcases their products in the best light possible through professional 
+                        image editing, video production, and digital marketing assets.
                     </motion.p>
                 </motion.div>
             </div>
@@ -222,7 +214,7 @@ const OurPartners = () => {
             {/* First Row - Left to Right */}
             <div className="w-full mb-4">
                 <motion.div
-                    className="relative overflow-hidden bg-white/50 backdrop-blur-sm border-y border-white/30 py-8"
+                    className="relative overflow-hidden bg-white/50 backdrop-blur-sm border-y border-white/30 py-12"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.8, duration: 0.6 }}
@@ -233,22 +225,25 @@ const OurPartners = () => {
                         variants={reverseInfiniteScrollVariants}
                         animate="animate"
                     >
-                        {[...buyers, ...buyers, ...buyers, ...buyers].map(
-                            (buyer, index) => (
+                        {[...partners, ...partners, ...partners, ...partners].map(
+                            (partner, index) => (
                                 <div
                                     key={`marquee-1-${index}`}
-                                    className="flex-shrink-0 flex items-center gap-6 group cursor-pointer"
+                                    className="flex-shrink-0 flex items-center gap-8 group cursor-pointer"
                                 >
-                                    <div className="relative w-24 h-12 opacity-70 group-hover:opacity-100 transition-all duration-500">
+                                    <div className="relative w-32 h-16 opacity-70 group-hover:opacity-100 transition-all duration-500">
                                         <Image
-                                            src={buyer.logo}
-                                            alt={buyer.name}
+                                            src={partner.logo}
+                                            alt={partner.name}
                                             fill
                                             className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110"
-                                            sizes="96px"
+                                            sizes="128px"
                                         />
                                     </div>
-                                    <div className="w-1 h-8 bg-gradient-to-b from-blue-400/50 to-cyan-400/50 rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+                                    <div className="text-lg font-semibold text-gray-700 min-w-[140px] text-center opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+                                        {partner.name}
+                                    </div>
+                                    <div className="w-1 h-8 bg-gradient-to-b from-blue-400/50 to-purple-400/50 rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
                                 </div>
                             )
                         )}

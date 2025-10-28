@@ -2,9 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Ship, Globe, Repeat } from "lucide-react";
+import { Palette, Code, Video, Users, Zap, Clock, Award, Heart } from "lucide-react";
 import { useState, useEffect } from "react";
-import { FaTshirt } from "react-icons/fa";
 
 const Counter = ({ value, inView }: { value: number; inView: boolean }) => {
   const [count, setCount] = useState(0);
@@ -45,32 +44,32 @@ const AboutStatsSimple = () => {
 
   const stats = [
     {
-      icon: FaTshirt,
-      title: "Fabric Quality Assurance",
-      value: 95,
-      description: "Premium material quality with rigorous testing",
-      bgColor: "bg-gradient-to-r from-cyan-500 to-blue-600",
-    },
-    {
-      icon: Ship,
-      title: "On-Time Shipment",
+      icon: Palette,
+      title: "Creative Excellence",
       value: 98,
-      description: "Reliable delivery meeting client deadlines",
-      bgColor: "bg-gradient-to-r from-emerald-500 to-green-600",
-    },
-    {
-      icon: Globe,
-      title: "Global Client Satisfaction",
-      value: 92,
-      description: "Positive feedback from international clients",
-      bgColor: "bg-gradient-to-r from-amber-500 to-orange-500",
-    },
-    {
-      icon: Repeat,
-      title: "Repeat Orders Rate",
-      value: 87,
-      description: "Client loyalty and continued partnerships",
+      description: "Pixel-perfect designs that exceed client expectations",
       bgColor: "bg-gradient-to-r from-purple-500 to-pink-500",
+    },
+    {
+      icon: Code,
+      title: "Technical Precision",
+      value: 96,
+      description: "Flawless code and robust digital solutions",
+      bgColor: "bg-gradient-to-r from-blue-500 to-cyan-500",
+    },
+    {
+      icon: Video,
+      title: "Project Delivery",
+      value: 95,
+      description: "On-time delivery for all creative projects",
+      bgColor: "bg-gradient-to-r from-emerald-500 to-teal-500",
+    },
+    {
+      icon: Users,
+      title: "Client Satisfaction",
+      value: 97,
+      description: "Happy clients across 20+ countries worldwide",
+      bgColor: "bg-gradient-to-r from-orange-500 to-red-500",
     },
   ];
 
@@ -109,7 +108,7 @@ const AboutStatsSimple = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -119,15 +118,14 @@ const AboutStatsSimple = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Driven by{" "}
-            <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-              Quality and Precision
+            Our Commitment to{" "}
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Digital Excellence
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Our commitment to excellence is reflected in every aspect of our
-            operations, ensuring consistent quality and reliable performance for
-            global clients.
+            We measure our success by the quality of our work and the satisfaction of our clients.
+            Every pixel, every frame, every line of code is crafted with precision and passion.
           </p>
         </motion.div>
 
@@ -144,11 +142,11 @@ const AboutStatsSimple = () => {
               key={stat.title}
               // @ts-expect-error - ignore this
               variants={itemVariants}
-              className="group bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
+              className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
             >
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center space-x-4">
-                  <div className={`p-3 rounded-xl ${stat.bgColor} text-white`}>
+                  <div className={`p-3 rounded-xl ${stat.bgColor} text-white shadow-lg`}>
                     <stat.icon size={28} />
                   </div>
                   <div>
@@ -175,6 +173,11 @@ const AboutStatsSimple = () => {
                   >
                     <div className="absolute inset-0 bg-white opacity-30 animate-pulse"></div>
                   </motion.div>
+                </div>
+                <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-2">
+                  <span>0%</span>
+                  <span className="font-semibold">{stat.value}% Success Rate</span>
+                  <span>100%</span>
                 </div>
               </div>
             </motion.div>
