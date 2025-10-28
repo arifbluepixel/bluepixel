@@ -52,7 +52,7 @@ const Footer = () => {
     {
       icon: <Phone size={16} />,
       label: "Phone",
-      value: CONTACT_EMAIL,
+      value: CONTACT_PHONE,
       href: `tel:${CONTACT_PHONE}`,
     },
     {

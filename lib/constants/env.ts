@@ -27,7 +27,7 @@ export const SITE_DESCRIPTION =
 export const SITE_KEYWORDS = process.env.NEXT_PUBLIC_SITE_KEYWORDS || "";
 export const CONTACT_EMAIL = 
   process.env.NEXT_PUBLIC_CONTACT_EMAIL || "support@blue-pixel.art";
-export const CONTACT_PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE || "";
+export const CONTACT_PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE || "+880 1679106919";
 export const CONTACT_ADDRESS = process.env.NEXT_PUBLIC_CONTACT_ADDRESS || "";
 export const DEFAULT_KEYWORDS = process.env.NEXT_PUBLIC_SITE_KEYWORDS || "";
 export const SITE_LOCALE = process.env.NEXT_PUBLIC_SITE_LOCALE || "en_US";
