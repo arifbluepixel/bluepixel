@@ -65,8 +65,8 @@ const ProjectCardComponent = React.memo(function ProjectCardComponent({
   // preload images to reduce flicker
   useEffect(() => {
     project.imageUrls.forEach((u) => {
+      const i = {};
       // @ts-expect-error - ignore
-      const i = new Image();
       i.src = u;
     });
   }, [project.imageUrls]);
@@ -277,11 +277,11 @@ function ProjectModal({
 
   useEffect(() => {
     if (!project.imageUrls || project.imageUrls.length === 0) return;
+    const next = {};
+    const prev = {};
     // @ts-expect-error - ignore
-    const next = new Image();
-    // @ts-expect-error - ignore
-    const prev = new Image();
     next.src = project.imageUrls[(idx + 1) % project.imageUrls.length];
+    // @ts-expect-error - ignore
     prev.src =
       project.imageUrls[
         (idx - 1 + project.imageUrls.length) % project.imageUrls.length

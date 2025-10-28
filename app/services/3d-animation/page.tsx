@@ -4,8 +4,9 @@ import ThreeDHero from "./ThreeDHero";
 import CreativeTeam from "./CreativeTeam";
 import IndustriesWeWork from "./IndustriesWeWork";
 import VideoBox from "./VideoBox";
-import FAQ from "./FAQs";
 import HowWeWork from "./HowWeWork";
+import { ThreedAnimationFaqs } from "@/lib/data/faqData";
+import FAQ from "@/components/shared/FAQ";
 
 // SEO Starts
 export const metadata = generateMetadata({
@@ -26,7 +27,8 @@ export default function page() {
       <IndustriesWeWork />
       <CreativeTeam />
       <HowWeWork />
-      <FAQ />
+
+      <FAQ faqs={ThreedAnimationFaqs} />
 
       <script
         type="application/ld+json"

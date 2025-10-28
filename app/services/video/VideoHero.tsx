@@ -15,6 +15,7 @@ const VideoHero: React.FC = () => {
 
   return (
     <div ref={ref} className="overflow-hidden">
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
       <ServiceHero
         title={
           <>
@@ -31,7 +32,7 @@ const VideoHero: React.FC = () => {
               initial={{ opacity: 0, x: -50 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-yellow-500"
+              className="text-sky-500"
             >
               Video Editing
             </motion.span>{" "}

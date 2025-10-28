@@ -3,33 +3,31 @@ import {
   CONTACT_ADDRESS,
   CONTACT_EMAIL,
   CONTACT_PHONE,
-  LOGO,
   SITE_NAME,
 } from "@/lib/constants/env";
+import { bluepixel } from "@/lib/constants/images";
+import { jaroFont } from "@/lib/helper/fontHelper";
 import { motion } from "framer-motion";
 import {
+  Award,
+  CheckCircle2,
+  Clock,
   Home,
   Info,
   Mail,
+  MapPin,
   Package,
   Phone,
-  MapPin,
-  Clock,
-  Award,
   Shield,
-  CheckCircle2,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   FaFacebook,
   FaInstagram,
   FaLinkedinIn,
-  FaQ,
   FaYoutube,
 } from "react-icons/fa6";
-import Image from "next/image";
-import { bluepixel } from "@/lib/constants/images";
-import { jaroFont } from "@/lib/helper/fontHelper";
 
 const Footer = () => {
   const quickLinks = [

@@ -6,56 +6,16 @@ import { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import faq from "@/public/animations/faq.json";
 
-const faqs = [
-  {
-    question: "How long does image editing take?",
-    answer:
-      "It depends on the complexity of the project, but we typically deliver within 3-5 business days.",
-  },
-  {
-    question: "Do you offer revisions?",
-    answer: "Yes, we offer up to 2 rounds of revisions for free.",
-  },
-  {
-    question: "What file formats do you support?",
-    answer:
-      "We support JPEG, PNG, TIFF, PSD, and more. Let us know your requirements.",
-  },
-  {
-    question: "Can you remove backgrounds from images?",
-    answer: "Yes, we specialize in background removal and replacement.",
-  },
-  {
-    question: "Do you provide color correction services?",
-    answer:
-      "Absolutely! We ensure your images have perfect color balance and tone.",
-  },
-  {
-    question: "Can you retouch portraits?",
-    answer:
-      "Yes, we offer professional portrait retouching, including skin smoothing, blemish removal, and more.",
-  },
-  {
-    question: "Do you work with businesses and individuals?",
-    answer: "Yes, we cater to both individuals and businesses of all sizes.",
-  },
-  {
-    question: "Can you edit images for social media?",
-    answer:
-      "Absolutely! We optimize images for platforms like Instagram, Facebook, and LinkedIn.",
-  },
-  {
-    question: "What payment methods do you accept?",
-    answer: "We accept PayPal, credit/debit cards, and bank transfers.",
-  },
-  {
-    question: "How do I get started?",
-    answer:
-      "Simply contact us with your project details, and we'll guide you through the process.",
-  },
-];
+interface FaqsProps {
+  question: string;
+  answer: string;
+}
 
-const FAQ = () => {
+interface FAQComponentProps {
+  faqs: FaqsProps[];
+}
+
+const FAQ = ({ faqs }: FAQComponentProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
   const ref = useRef(null);
@@ -186,7 +146,7 @@ const FAQ = () => {
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="w-full md:w-3/5"
+            className="w-full md:w-3/5 md:my-auto"
           >
             <div className="space-y-4">
               {faqs.map((faq, index) => (

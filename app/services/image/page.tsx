@@ -1,4 +1,3 @@
-import FAQ from "./FAQ";
 import ImageHero from "./ImageHero";
 import ServicesSection from "./ServicesSection";
 import { generateMetadata } from "@/lib/generateMetadata";
@@ -6,6 +5,8 @@ import WhyChooseUs from "./WhyChooseUs";
 import ProcessSection from "./ProcessSection";
 import ToolsSoftware from "./ToolsSoftware";
 import ServiceExamples from "./ServiceExamples";
+import FAQ from "@/components/shared/FAQ";
+import { imageFaqs } from "@/lib/data/faqData";
 
 // SEO Starts
 export const metadata = generateMetadata({
@@ -26,7 +27,7 @@ export default function page() {
       <WhyChooseUs />
       <ProcessSection />
       <ToolsSoftware />
-      <FAQ />
+      <FAQ faqs={imageFaqs} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

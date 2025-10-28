@@ -5,6 +5,8 @@ import ServicesOverview from "./ServicesOverview";
 import ClientTestimonials from "./ClientTestimonials";
 import TechnologiesTools from "./TechnologiesTools";
 import ProcessWorkflow from "./ProcessWorkflow";
+import FAQ from "@/components/shared/FAQ";
+import { ThreedRenderingFaqs } from "@/lib/data/faqData";
 
 // SEO Starts
 export const metadata = generateMetadata({
@@ -25,6 +27,7 @@ export default function page() {
       <ClientTestimonials />
       <ProcessWorkflow />
       <TechnologiesTools />
+      <FAQ faqs={ThreedRenderingFaqs} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

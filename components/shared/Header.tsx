@@ -9,6 +9,7 @@ import {
   XHandle,
 } from "@/lib/constants/env";
 import { bluepixel, logo } from "@/lib/constants/images";
+import { jaroFont } from "@/lib/helper/fontHelper";
 import {
   ChevronDown,
   HelpCircleIcon,
@@ -23,7 +24,6 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { ThemeToggle } from "./ThemeToggle";
-import { honkFont, jaroFont, pixelFont } from "@/lib/helper/fontHelper";
 
 const servicesPages = [
   {
@@ -260,9 +260,6 @@ export default function Header() {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 (cat: any) => (
                   <div key={cat}>
-                    <h3 className="mb-3 uppercase text-base font-bold text-cyan-600 dark:text-cyan-400">
-                      {cat}
-                    </h3>
                     <ul className="space-y-1">
                       {link.children
                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -271,7 +268,7 @@ export default function Header() {
                         .map((pages: any) => (
                           <li
                             key={pages.id}
-                            className="border-b border-gray-200 dark:border-gray-700 last:border-none"
+                            className="border-b pb-0.5 border-gray-200 dark:border-gray-700 last:border-none"
                           >
                             <a
                               href={`/${pages?.link

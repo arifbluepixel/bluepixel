@@ -1,5 +1,7 @@
+import FAQ from "@/components/shared/FAQ";
+import Projects from "@/components/shared/ProjectShowcase";
+import { webFaqs } from "@/lib/data/faqData";
 import { generateMetadata } from "@/lib/generateMetadata";
-import FAQ from "./FAQs";
 import HowWeWork from "./HowWeWork";
 import Industry from "./Industry";
 import LetsCreate from "./LetsCreate";
@@ -7,7 +9,6 @@ import Technologies from "./Technologies";
 import WebHero from "./WebHero";
 import WhatWeDo from "./WhatWeDo";
 import WhyUs from "./WhyUs";
-import Projects from "@/components/shared/ProjectShowcase";
 
 // SEO Starts
 export const metadata = generateMetadata({
@@ -28,8 +29,8 @@ export default function page() {
       <HowWeWork />
       <WhyUs />
       <Technologies />
-      <FAQ />
       <Projects />
+      <FAQ faqs={webFaqs} />
       <LetsCreate />
       <script
         type="application/ld+json"
