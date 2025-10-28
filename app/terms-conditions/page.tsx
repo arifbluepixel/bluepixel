@@ -1,8 +1,5 @@
-// app/terms-conditions/page.tsx
 "use client";
 
-import Header from "@/components/Home/Header";
-import Footer from "@/components/shared/footer/Footer";
 import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/constants/env";
 import { motion } from "framer-motion";
 import {
@@ -131,7 +128,6 @@ const TermsConditions = () => {
 
   return (
     <>
-      <Header />
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 mt-10">
         {/* Header Section */}
         <section className="relative py-20 bg-gradient-to-r from-[#0094A6] to-cyan-600 text-white overflow-hidden">
@@ -414,7 +410,6 @@ const TermsConditions = () => {
           </div>
         </section>
       </div>
-      <Footer />
     </>
   );
 };

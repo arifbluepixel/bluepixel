@@ -5,7 +5,7 @@ import { ChevronDown, HelpCircleIcon, Home, Minus } from "lucide-react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import { ThemeToggle } from "../shared/ThemeToggle";
+import { ThemeToggle } from "./ThemeToggle";
 import { logo } from "@/lib/constants/images";
 import {
   CONTACT_EMAIL,

@@ -244,6 +244,10 @@ export default function DigitalServices() {
     setActiveStep(0);
     setAnimationKey((prev) => prev + 1);
   }, [selectedService]);
+  useEffect(() => {
+    setActiveStep(0);
+    setAnimationKey((prev) => prev + 1);
+  }, []);
 
   // Synchronized step progression - 2 seconds per step
   useEffect(() => {
@@ -266,7 +270,7 @@ export default function DigitalServices() {
     >
       {/* Static background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-3xl opacity-5" />
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-sky-500 to-cyan-500 rounded-full blur-3xl opacity-5" />
         <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-gradient-to-tr from-blue-500 to-cyan-500 rounded-full blur-3xl opacity-5" />
       </div>
 
@@ -283,7 +287,7 @@ export default function DigitalServices() {
               />
 
               <div className="relative">
-                <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-200 via-pink-200 to-blue-200 dark:from-purple-800 dark:via-pink-800 dark:to-blue-800 -translate-y-1/2" />
+                <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-200 via-teal-200 to-blue-200 dark:from-cyan-800 dark:via-teal-800 dark:to-blue-800 -translate-y-1/2" />
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative max-w-6xl mx-auto">
                   {SERVICE_FEATURES.map((feature, index) => (
@@ -392,7 +396,7 @@ export default function DigitalServices() {
                     cx={pos.x}
                     cy={pos.y}
                     r={activeStep === pos.idx ? "1.8" : "1"}
-                    className="fill-purple-500 dark:fill-purple-400 transition-all duration-150"
+                    className="fill-cyan-500 dark:fill-sky-700 transition-all duration-150"
                     style={{
                       opacity: activeStep === pos.idx ? 1 : 0.6,
                     }}

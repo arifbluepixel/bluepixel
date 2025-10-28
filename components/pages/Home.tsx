@@ -1,7 +1,5 @@
-import Header from "@/components/Home/Header";
 import Hero from "@/components/Home/Hero";
 import BackToTop from "@/components/shared/BackToTop";
-import Footer from "@/components/shared/footer/Footer";
 import DigitalServices from "@/components/shared/home/DigitalServices";
 import Welcome from "@/components/shared/home/Welcome";
 import Parallax from "@/components/shared/Parallax";
@@ -11,13 +9,11 @@ import Testimonials from "../shared/home/Testimonials";
 const Home = () => {
   return (
     <>
-      <Header />
-
       {/* Hero Section - Sticky */}
       <Hero />
 
       {/* Content sections - overlaps Hero when scrolling */}
-      <div className="relative z-20 bg-white dark:bg-gray-950 rounded-t-3xl -mt-8">
+      <div className="relative z-20 bg-white dark:bg-gray-950 rounded-t-3xl">
         <Welcome />
         <DigitalServices />
         <OurStrengths />
@@ -31,7 +27,6 @@ const Home = () => {
           parallaxOverlay=" bg-black opacity-30 dark:opacity-50"
           rounded={true}
         />
-        <Footer />
       </div>
 
       {/* Back to Top Button */}

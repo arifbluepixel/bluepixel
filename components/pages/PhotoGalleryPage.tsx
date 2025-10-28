@@ -1,14 +1,11 @@
 import GalleryHero from "../Gallery/GalleryHero";
 import ImageGrid from "../Gallery/ImageGrid";
-import Header from "../Home/Header";
 import BackToTop from "../shared/BackToTop";
-import Footer from "../shared/footer/Footer";
 import Parallax from "../shared/Parallax";
 
 const PhotoGalleryPage = () => {
   return (
     <>
-      <Header />
       <GalleryHero />
       <ImageGrid />
       <Parallax
@@ -20,7 +17,6 @@ const PhotoGalleryPage = () => {
         parallaxOverlay=" bg-black opacity-30 dark:opacity-50"
         rounded={true}
       />
-      <Footer />
       <BackToTop showText={false} showIcon={true} />
     </>
   );

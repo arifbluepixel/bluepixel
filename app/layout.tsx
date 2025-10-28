@@ -8,6 +8,8 @@ import {
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/shared/Footer";
+import Header from "@/components/shared/Header";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -85,7 +87,9 @@ export default function RootLayout({
       </head>
       <body>
         <Providers>
-          <main className="min-h-screen ">{children}</main>
+          <Header />
+          <main className="min-h-screen -mt-20">{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>
