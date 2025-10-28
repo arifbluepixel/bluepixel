@@ -13,7 +13,7 @@ const playfair = Playfair_Display({
 export default function ContactBottom() {
   return (
     <section className="max-w-5xl w-11/12 mx-auto">
-      <div className="flex flex-col  justify-center items-center  gap-6">
+      <div className="flex flex-col items-stretch gap-6">
         <h2
           className={`${playfair.className} text-4xl md:text-5xl lg:text-6xl text-center tracking-wide text-gray-900`}
         >
