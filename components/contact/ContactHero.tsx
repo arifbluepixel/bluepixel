@@ -114,7 +114,7 @@ export default function ContactHero() {
       {/* Main Container - Centered with max width */}
       <div className="max-w-7xl mx-auto w-full">
         {/* Centered Header Section */}
-        <div className="text-center mb-12 lg:mb-16">
+        <div className="text-center mb-12 lg:mb-16 mt-10">
           <div
             className={`inline-flex items-center gap-2 px-4 py-2 bg-teal-100 dark:bg-teal-900/30 rounded-full text-teal-700 dark:text-teal-300 text-sm font-medium mb-6 ${
               isVisible ? "animate-fade-in-up" : "opacity-0"

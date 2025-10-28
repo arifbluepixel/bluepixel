@@ -238,7 +238,6 @@ const ContactFAQ = () => {
             <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 md:mb-6">
               Ready to Transform Your Digital Presence?
             </h3>
-
             <p className="text-blue-100 text-sm sm:text-base md:text-lg mb-4 sm:mb-6 md:mb-8 max-w-2xl mx-auto px-2 leading-relaxed">
               Let&#39;s discuss how our digital expertise can elevate your
               brand. Get a free consultation and project estimate today.
