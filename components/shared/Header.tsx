@@ -378,7 +378,6 @@ export default function Header() {
           isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       />
-
       {/* Mobile Sidebar */}
       <div
         ref={sidebarRef}
