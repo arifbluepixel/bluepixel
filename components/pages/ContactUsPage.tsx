@@ -7,9 +7,7 @@ import BackToTop from "../shared/BackToTop";
 const ContactUsPage = () => {
   return (
     <>
-      <div>
-        <ContactHero />
-      </div>
+      <ContactHero />
       <MapWrapper />
       <ContactBottom />
       <ContactFAQ />
