@@ -3,7 +3,6 @@ import {
   CONTACT_ADDRESS,
   CONTACT_EMAIL,
   CONTACT_PHONE,
-  LOGO,
   SITE_NAME,
 } from "@/lib/constants/env";
 import { motion } from "framer-motion";
@@ -24,7 +23,6 @@ import {
   FaFacebook,
   FaInstagram,
   FaLinkedinIn,
-  FaQ,
   FaYoutube,
 } from "react-icons/fa6";
 import Image from "next/image";
