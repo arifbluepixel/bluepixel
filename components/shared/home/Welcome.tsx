@@ -13,6 +13,7 @@ import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import AnimatedButton from "../AnimatedButton";
 import SlidingStarWithText from "./SlidingStarWithText";
+import { pixelFont } from "@/lib/helper/fontHelper";
 
 export default function Welcome() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -64,8 +65,7 @@ export default function Welcome() {
               </span>
             </motion.div>
 
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
-              Welcome to <br />
+            <h2 className="py-4 ">
               <SlidingStarWithText />
             </h2>
 
@@ -135,7 +135,7 @@ export default function Welcome() {
               className="w-full"
             >
               {PRODUCT_IMAGES.map((product, index) => (
-                <SwiperSlide key={`${product.title}-${index}`}>
+                <SwiperSlide key={`${product.title}-${index}`} className="">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -145,7 +145,7 @@ export default function Welcome() {
                     }}
                     onHoverStart={() => setHoveredIndex(index)}
                     onHoverEnd={() => setHoveredIndex(null)}
-                    className="relative h-[450px] overflow-hidden cursor-pointer group"
+                    className="relative h-[450px] overflow-hidden cursor-pointer group space-x-0.5 bg-cyan-800 "
                   >
                     {/* Image placeholder with gradient */}
                     <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 via-teal-400 to-emerald-400" />
@@ -157,23 +157,22 @@ export default function Welcome() {
                         backgroundImage: `url(${product.image})`,
                         backgroundColor: "#0891b2",
                       }}
-                      whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.4 }}
                     />
 
                     {/* Hover overlay */}
                     <motion.div
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
+                      animate={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
-                      className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex items-center justify-center"
+                      className="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-cyan-200/10 hover:via-cyan-500/50 to-transparent flex items-center justify-center"
                     >
                       <div className="text-center px-4">
                         <motion.h4
-                          initial={{ y: 20, opacity: 0 }}
+                          initial={{ y: 50, opacity: 0 }}
                           animate={{
-                            y: hoveredIndex === index ? 0 : 20,
-                            opacity: hoveredIndex === index ? 1 : 0,
+                            y: 150,
+                            opacity: 1,
                           }}
                           transition={{ duration: 0.3 }}
                           className="text-white font-bold text-2xl md:text-3xl drop-shadow-2xl"

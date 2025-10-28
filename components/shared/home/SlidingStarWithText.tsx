@@ -1,6 +1,7 @@
 "use client";
 
 import { bluepixel } from "@/lib/constants/images";
+import { pixelFont } from "@/lib/helper/fontHelper";
 import { motion, useAnimation, useInView } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -60,13 +61,13 @@ const SlidingStarWithText = () => {
           height={48}
           src={bluepixel}
           alt="Logo"
-          className="h-10 md:h-12 w-10 md:w-12 drop-shadow-lg"
+          className={`h-10 md:h-12 w-10 md:w-12 drop-shadow-lg mr-2`}
         />
       </motion.div>
 
       {/* Text Reveal with Typing Effect */}
       <motion.span
-        className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 bg-clip-text text-transparent"
+        className={`text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 bg-clip-text text-transparent ${pixelFont.className}`}
         initial={{ opacity: 0, x: -10 }}
         animate={textControls}
       >
