@@ -35,7 +35,7 @@ const LetsCreate = () => {
         variants={itemVariants}
         className="text-3xl md:text-6xl lg:text-7xl font-extrabold text-white"
       >
-        Let's Co-Create Something
+        Let&apos;s Co-Create Something
       </motion.h1>
       <motion.h2
         variants={itemVariants}

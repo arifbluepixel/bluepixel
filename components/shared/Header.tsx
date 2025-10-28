@@ -12,7 +12,6 @@ import { bluepixel, logo } from "@/lib/constants/images";
 import {
   ChevronDown,
   HelpCircleIcon,
-  Home,
   ImageIcon,
   Minus,
   Video,

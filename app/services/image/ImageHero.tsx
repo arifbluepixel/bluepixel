@@ -5,7 +5,6 @@ import {
   ImageHero1,
   ImageHero2,
   ImageHero3,
-  ImageHeroTest,
 } from "@/lib/constants/images";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";

@@ -1,5 +1,4 @@
 import Home from "@/components/pages/Home";
-import { SITE_NAME } from "@/lib/constants/env";
 import { generateMetadata } from "@/lib/generateMetadata";
 
 // SEO Starts

@@ -57,7 +57,7 @@ const LetsCraft: React.FC = () => {
           Delivered with Impact
         </h3>
         <button className="mt-4 bg-white text-yellow-500 border border-yellow-500 px-5 py-2 rounded-md text-lg font-medium hover:bg-yellow-500 hover:text-white transition cursor-pointer">
-          Let's Estimate The Cost ?
+          Let&apos;s Estimate The Cost ?
         </button>
       </motion.div>
       <motion.div variants={itemVariants} className="lg:px-6">

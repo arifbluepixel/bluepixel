@@ -3,15 +3,11 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import AnimatedButton from "../shared/AnimatedButton";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import ScrollIndicator from "../ScrollIndicator";
 
 const AboutHero = () => {
   const nextSectionRef = useRef<HTMLDivElement>(null);
-
-  const scrollToNextSection = () => {
-    nextSectionRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
 
   const scrollToServices = () => {
     // Scroll to services section on the same page

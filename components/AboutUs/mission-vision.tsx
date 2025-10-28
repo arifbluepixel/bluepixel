@@ -11,7 +11,6 @@ import {
   Users,
   ArrowRight,
   Code,
-  Video,
 } from "lucide-react";
 
 const MissionVisionValues = () => {

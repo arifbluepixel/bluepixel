@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Palette, Code, Video, Users, Zap, Clock, Award, Heart } from "lucide-react";
+import { Palette, Code, Video, Users } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const Counter = ({ value, inView }: { value: number; inView: boolean }) => {

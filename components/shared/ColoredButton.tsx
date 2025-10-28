@@ -6,7 +6,6 @@ export const ColoredButton: React.FC<ColoredButtonProps> = ({
   ColoringButton,
   isPrimary,
   isFullWidth,
-  isRightPositioned = false,
 }) => {
   return (
     <Link href={ColoringButton.link}>
