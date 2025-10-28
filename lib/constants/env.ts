@@ -20,9 +20,10 @@ export const SITE_URL =
   process.env.BETTER_AUTH_URL ||
   process.env.NEXT_PUBLIC_SITE_URL ||
   "http://localhost:3000/";
-export const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || "DuckIQ Project";
+export const SITE_NAME =
+  process.env.NEXT_PUBLIC_SITE_NAME || "Blue-Pixel Project";
 export const SITE_DESCRIPTION =
-  process.env.NEXT_PUBLIC_SITE_DESCRIPTION || "DuckIQ Project Description";
+  process.env.NEXT_PUBLIC_SITE_DESCRIPTION || "Blue-Pixel Project Description";
 export const SITE_KEYWORDS = process.env.NEXT_PUBLIC_SITE_KEYWORDS || "";
 export const CONTACT_EMAIL =
   process.env.NEXT_PUBLIC_CONTACT_EMAIL || "abc@gmail.com";
@@ -45,7 +46,7 @@ export const COUNTRY = process.env.NEXT_PUBLIC_COUNTRY || ``;
 
 // Configuration for Mailer
 export const SENDER_NAME =
-  process.env.NEXT_PUBLIC_SENDER_NAME || "DuckIQ Project";
+  process.env.NEXT_PUBLIC_SENDER_NAME || "Blue-Pixel Project";
 export const SENDER_EMAIL =
   process.env.NEXT_PUBLIC_SENDER_EMAIL || "abc@gmail.com";
 

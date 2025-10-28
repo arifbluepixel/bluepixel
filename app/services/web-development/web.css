@@ -1,0 +1,25 @@
+@keyframes scrollImages {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.animate-scroll {
+  animation: scrollImages 20s linear infinite;
+}
+
+.pause-scroll {
+  animation-play-state: paused;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

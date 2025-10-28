@@ -5,6 +5,22 @@ const nextConfig: NextConfig = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
   ),
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.ibb.co",
+      },
+      {
+        protocol: "https",
+        hostname: "i.ibb.co.com",
+      },
+      {
+        protocol: "https",
+        hostname: "img.youtube.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
