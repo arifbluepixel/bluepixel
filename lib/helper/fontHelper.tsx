@@ -1,6 +1,7 @@
 import {
   Grenze_Gotisch,
   Honk,
+  Jaro,
   Press_Start_2P,
   Sixtyfour,
 } from "next/font/google";
@@ -8,6 +9,7 @@ import {
 export const pixelFont = Press_Start_2P({ subsets: ["latin"], weight: "400" });
 export const pixelFont2 = Sixtyfour({ subsets: ["latin"], weight: "400" });
 export const honkFont = Honk({ subsets: ["latin"], weight: "400" });
+export const jaroFont = Jaro({ subsets: ["latin"], weight: "400" });
 export const Grenze_GotischFont = Grenze_Gotisch({
   subsets: ["latin"],
   weight: "400",

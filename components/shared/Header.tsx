@@ -23,6 +23,7 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { ThemeToggle } from "./ThemeToggle";
+import { honkFont, jaroFont, pixelFont } from "@/lib/helper/fontHelper";
 
 const servicesPages = [
   {
@@ -76,7 +77,6 @@ const leftNavLinks = [
 
 const rightNavLinks = [
   { name: "About", path: "/about-us" },
-  { name: "FAQ", path: "/faq" },
   { name: "Contact Us", path: "/contact-us" },
 ];
 
@@ -325,13 +325,23 @@ export default function Header() {
                   {!logoLoaded ? (
                     <AnimatedLogo />
                   ) : (
-                    <Image
-                      src={logo}
-                      alt={SITE_NAME}
-                      height={28}
-                      width={200}
-                      className="h-7 w-36 px-2 md:px-3"
-                    />
+                    <div className="flex items-center gap-1">
+                      <Image
+                        width={32}
+                        height={32}
+                        src={bluepixel}
+                        alt="Loading"
+                        className="h-6 w-6 drop-shadow-lg "
+                        style={{
+                          animationDuration: "1s",
+                        }}
+                      />
+                      <span
+                        className={`text-[24px] font-bold text-sky-800 ${jaroFont.className}`}
+                      >
+                        BluePixel
+                      </span>
+                    </div>
                   )}
                 </div>
               </Link>

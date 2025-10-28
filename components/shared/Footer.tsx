@@ -28,6 +28,8 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 import Image from "next/image";
+import { bluepixel } from "@/lib/constants/images";
+import { jaroFont } from "@/lib/helper/fontHelper";
 
 const Footer = () => {
   const quickLinks = [
@@ -35,7 +37,6 @@ const Footer = () => {
     { name: "About Us", path: "/about-us", icon: <Info size={16} /> },
     { name: "Services", path: "/services", icon: <Package size={16} /> },
     { name: "Contact Us", path: "/contact-us", icon: <Mail size={16} /> },
-    { name: "FAQ", path: "/faq", icon: <FaQ size={16} /> },
   ];
 
   const services = [
@@ -53,14 +54,14 @@ const Footer = () => {
     {
       icon: <Phone size={16} />,
       label: "Phone",
-      value: "+880 1234-567890",
-      href: `tel:+${CONTACT_PHONE}`,
+      value: CONTACT_EMAIL,
+      href: `tel:${CONTACT_PHONE}`,
     },
     {
       icon: <Mail size={16} />,
       label: "Email",
-      value: "info@bluepixel.com",
-      href: `mailto:+${CONTACT_EMAIL}`,
+      value: CONTACT_EMAIL,
+      href: `mailto:${CONTACT_EMAIL}`,
     },
     {
       icon: <MapPin size={16} />,
@@ -127,16 +128,26 @@ const Footer = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <Link href="/" className="inline-block">
-                  <div className="p-4 rounded-xl bg-gradient-to-br from-cyan-600/70 to-sky-400 backdrop-blur-sm border border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300">
-                    {LOGO !== "" ? (
-                      <Image
-                        src={LOGO}
-                        alt={SITE_NAME}
-                        height={32}
-                        width={200}
-                        className="h-8 w-auto"
-                      />
+                <Link href="/" className="inline-block ">
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-cyan-100 to-sky-100 backdrop-blur-sm border border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300">
+                    {bluepixel ? (
+                      <div className="flex items-center gap-1">
+                        <Image
+                          width={32}
+                          height={32}
+                          src={bluepixel}
+                          alt="Loading"
+                          className="h-6 w-6 drop-shadow-lg animate-pulse"
+                          style={{
+                            animationDuration: "1s",
+                          }}
+                        />
+                        <span
+                          className={`text-[24px] font-bold text-sky-800 ${jaroFont.className}`}
+                        >
+                          BluePixel
+                        </span>
+                      </div>
                     ) : (
                       <span className="text-2xl font-bold bg-gradient-to-r from-cyan-500 to-sky-400 bg-clip-text text-transparent">
                         {SITE_NAME}
