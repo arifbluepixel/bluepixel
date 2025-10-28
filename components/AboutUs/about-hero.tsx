@@ -49,7 +49,7 @@ const AboutHero = () => {
             className="max-w-6xl space-y-8"
           >
             {/* Main Heading */}
-            <h1 className="text-4xl font-bold leading-tight md:text-6xl md:leading-tight lg:text-7xl lg:leading-tight">
+            <h1 className="text-4xl font-bold leading-tight md:text-6xl md:leading-tight lg:text-7xl lg:leading-tight mt-20">
               Where Creativity Meets{" "}
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 Technology
@@ -107,7 +107,7 @@ const AboutHero = () => {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center py-10"
             >
               <AnimatedButton
                 text="View Our Services"
