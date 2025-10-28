@@ -1,7 +1,13 @@
 "use client";
 
-import * as motion from "motion/react-client";
+import Commercial from "@/public/3danimation/Commercial.png";
+import Educational from "@/public/3danimation/Educational.png";
+import Entertainment from "@/public/3danimation/entertainment.png";
+import Healthcare from "@/public/3danimation/Healthcare.png";
+import NonProfit from "@/public/3danimation/NonProfit.png";
 import { useInView } from "motion/react";
+import * as motion from "motion/react-client";
+import Image from "next/image";
 import { useRef } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -9,12 +15,6 @@ import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./3dStyles.css";
-import Entertainment from "@/public/3danimation/entertainment.png";
-import Commercial from "@/public/3danimation/Commercial.png";
-import NonProfit from "@/public/3danimation/NonProfit.png";
-import Healthcare from "@/public/3danimation/Healthcare.png";
-import Educational from "@/public/3danimation/Educational.png";
-import Image from "next/image";
 
 const industries = [
   {
@@ -71,6 +71,7 @@ const IndustriesWeWork = () => {
       <motion.div className="w-11/12 max-w-7xl mx-auto overflow-hidden py-12 md:py-16 lg:py-20">
         <motion.div
           ref={ref}
+          // @ts-expect-error - ignore
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -109,7 +110,7 @@ const IndustriesWeWork = () => {
           >
             {industries.map((industry) => (
               <SwiperSlide key={industry.id}>
-                {({ isActive, isVisible }) => {
+                {({ isActive }) => {
                   // Calculate if this is the center slide based on current viewport
                   let isCenter = false;
 

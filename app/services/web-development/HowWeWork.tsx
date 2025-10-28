@@ -38,6 +38,7 @@ export default function HowWeWork() {
   return (
     <section className="overflow-hidden bg-[#0A314F] px-5 w-full py-12 md:py-16 lg:py-20 mt-2">
       <motion.div
+        // @ts-expect-error - ignore
         variants={containerVariants}
         ref={ref}
         initial="hidden"
@@ -45,12 +46,14 @@ export default function HowWeWork() {
         className="w-11/12 max-w-7xl mx-auto py-4 space-y-5 z-10 "
       >
         <motion.h2
+          // @ts-expect-error - ignore
           variants={itemVariants}
           className="text-center font-oswald text-4xl md:text-5xl text-white font-extrabold z-10 leading-14 uppercase"
         >
           Teams Workflow
         </motion.h2>{" "}
         <motion.p
+          // @ts-expect-error - ignore
           variants={itemVariants}
           className="text-center text-lg md:text-xl text-gray-200 font-semibold w-full md:w-2/3 mx-auto"
         >

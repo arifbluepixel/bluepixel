@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Code, Palette, Users, Video } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Palette, Code, Video, Users } from "lucide-react";
-import { useState, useEffect } from "react";
 
 const Counter = ({ value, inView }: { value: number; inView: boolean }) => {
   const [count, setCount] = useState(0);
@@ -124,8 +124,9 @@ const AboutStatsSimple = () => {
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            We measure our success by the quality of our work and the satisfaction of our clients.
-            Every pixel, every frame, every line of code is crafted with precision and passion.
+            We measure our success by the quality of our work and the
+            satisfaction of our clients. Every pixel, every frame, every line of
+            code is crafted with precision and passion.
           </p>
         </motion.div>
 
@@ -146,7 +147,9 @@ const AboutStatsSimple = () => {
             >
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center space-x-4">
-                  <div className={`p-3 rounded-xl ${stat.bgColor} text-white shadow-lg`}>
+                  <div
+                    className={`p-3 rounded-xl ${stat.bgColor} text-white shadow-lg`}
+                  >
                     <stat.icon size={28} />
                   </div>
                   <div>
@@ -176,7 +179,9 @@ const AboutStatsSimple = () => {
                 </div>
                 <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-2">
                   <span>0%</span>
-                  <span className="font-semibold">{stat.value}% Success Rate</span>
+                  <span className="font-semibold">
+                    {stat.value}% Success Rate
+                  </span>
                   <span>100%</span>
                 </div>
               </div>

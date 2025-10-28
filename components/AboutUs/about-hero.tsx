@@ -1,18 +1,18 @@
 "use client";
 
-import { useRef } from "react";
 import { motion } from "framer-motion";
 import AnimatedButton from "../shared/AnimatedButton";
 import { ArrowRight } from "lucide-react";
 import ScrollIndicator from "../ScrollIndicator";
+import { useRef } from "react";
 
 const AboutHero = () => {
   const nextSectionRef = useRef<HTMLDivElement>(null);
 
   const scrollToServices = () => {
     // Scroll to services section on the same page
-    const servicesSection = document.getElementById('services');
-    servicesSection?.scrollIntoView({ behavior: 'smooth' });
+    const servicesSection = document.getElementById("services");
+    servicesSection?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -31,7 +31,7 @@ const AboutHero = () => {
           }}
         >
           <div className="absolute inset-0 bg-black/50"></div>
-          
+
           {/* Animated background elements */}
           <div className="absolute inset-0 opacity-30">
             <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500 rounded-full mix-blend-soft-light filter blur-xl opacity-60 animate-pulse"></div>
@@ -63,9 +63,10 @@ const AboutHero = () => {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="mx-auto max-w-3xl text-xl md:text-2xl text-gray-200 leading-relaxed"
             >
-              BluePixel transforms visions into stunning visual experiences. 
-              We specialize in professional image editing, cinematic video production, 
-              immersive 3D animation, and cutting-edge web development.
+              BluePixel transforms visions into stunning visual experiences. We
+              specialize in professional image editing, cinematic video
+              production, immersive 3D animation, and cutting-edge web
+              development.
             </motion.p>
 
             {/* Stats */}
@@ -76,19 +77,27 @@ const AboutHero = () => {
               className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto pt-8"
             >
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-cyan-400">5000+</div>
+                <div className="text-2xl md:text-3xl font-bold text-cyan-400">
+                  5000+
+                </div>
                 <div className="text-sm text-gray-200">Projects Completed</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-blue-400">8+</div>
+                <div className="text-2xl md:text-3xl font-bold text-blue-400">
+                  8+
+                </div>
                 <div className="text-sm text-gray-200">Years Experience</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-purple-400">1000+</div>
+                <div className="text-2xl md:text-3xl font-bold text-purple-400">
+                  1000+
+                </div>
                 <div className="text-sm text-gray-200">Happy Clients</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-cyan-400">5</div>
+                <div className="text-2xl md:text-3xl font-bold text-cyan-400">
+                  5
+                </div>
                 <div className="text-sm text-gray-200">Creative Services</div>
               </div>
             </motion.div>

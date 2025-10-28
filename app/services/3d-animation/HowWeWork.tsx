@@ -42,6 +42,7 @@ export default function HowWeWork() {
     <section className=" overflow-hidden">
       <motion.div
         ref={HowWeWorkRef}
+        // @ts-expect-error - ignore
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -49,10 +50,15 @@ export default function HowWeWork() {
       >
         <>
           <motion.div
+            // @ts-expect-error - ignore
             variants={containerVariants}
             className="grid grid-cols-1 md:grid-cols-2 gap-5 justify-between items-center"
           >
-            <motion.div variants={LeftToRight} className="space-y-3 col-span-1">
+            <motion.div
+              // @ts-expect-error - ignore
+              variants={LeftToRight}
+              className="space-y-3 col-span-1"
+            >
               <h2 className="text-yellow-500 text-4xl md:text-5xl font-bold mt-1 font-oswald">
                 Transforming Ideas
               </h2>
@@ -68,7 +74,11 @@ export default function HowWeWork() {
                 life with cutting-edge animation that stands out.
               </p>
             </motion.div>
-            <motion.div variants={RightToLeft} className="space-y-3">
+            <motion.div
+              // @ts-expect-error - ignore
+              variants={RightToLeft}
+              className="space-y-3"
+            >
               <Lottie
                 animationData={spreadinmarket}
                 loop

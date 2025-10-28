@@ -138,12 +138,14 @@ export default function CreativeTeam() {
     <section className="bg-gray-50">
       <motion.div
         ref={ref}
+        // @ts-expect-error - ignore
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         className="max-w-7xl w-11/12 mx-auto pb-12 md:pb-16 lg:pb-20"
       >
         <motion.div
+          // @ts-expect-error - ignore
           variants={popScale}
           ref={ref}
           initial="hidden"
@@ -160,6 +162,7 @@ export default function CreativeTeam() {
 
         <motion.div
           ref={ref}
+          // @ts-expect-error - ignore
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -168,6 +171,7 @@ export default function CreativeTeam() {
           {teamMembers.map((team, index) => (
             <motion.div
               key={index}
+              // @ts-expect-error - ignore
               variants={BottomToTop}
               className="bg-[#0a1744] rounded-lg px-6 pt-6 pb-20 text-white flex flex-col gap-2 relative group"
             >

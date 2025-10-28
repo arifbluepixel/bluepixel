@@ -65,7 +65,7 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
-  
+
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -81,7 +81,7 @@ export default function ContactForm() {
     setIsSubmitting(true);
     setResponseMessage("");
     setIsSuccess(false);
-    
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -91,26 +91,32 @@ export default function ContactForm() {
         body: JSON.stringify(data),
       });
       const result = await response.json();
-     
+
       if (result.success) {
         setIsSuccess(true);
-        setResponseMessage("Your message has been sent successfully! We'll get back to you soon.");
+        setResponseMessage(
+          "Your message has been sent successfully! We'll get back to you soon."
+        );
         form.reset();
-       
+
         // Clear both success state and message after 3 seconds
         setTimeout(() => {
           setIsSuccess(false);
           setResponseMessage(""); // Clear the message as well
         }, 3000);
-       
+
         toast.success("Message Sent Successfully!");
       } else {
-        setResponseMessage(result.error || "Something went wrong. Please try again.");
+        setResponseMessage(
+          result.error || "Something went wrong. Please try again."
+        );
         toast.error("Failed to send message");
       }
     } catch (err) {
-      setResponseMessage("Network error. Please check your connection and try again.");
-      toast.error("Network error occurred");
+      setResponseMessage(
+        "Network error. Please check your connection and try again."
+      );
+      if (err) toast.error("Network error occurred");
     } finally {
       setIsSubmitting(false);
     }
@@ -122,25 +128,25 @@ export default function ContactForm() {
       return {
         text: "SENDING...",
         icon: Loader2,
-        className: "bg-blue-600 cursor-not-allowed"
+        className: "bg-blue-600 cursor-not-allowed",
       };
     }
     if (isSuccess) {
       return {
         text: "MESSAGE SENT!",
         icon: CheckCircle2,
-        className: "bg-green-600 cursor-default"
+        className: "bg-green-600 cursor-default",
       };
     }
     return {
       text: "SEND MESSAGE",
       icon: Send,
-      className: "bg-blue-600 hover:bg-blue-700"
+      className: "bg-blue-600 hover:bg-blue-700",
     };
   };
 
   const buttonContent = getButtonContent();
-  
+
   return (
     <div className="pt-5 pb-10 md:pb-20">
       <motion.div
@@ -166,7 +172,8 @@ export default function ContactForm() {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <CardDescription className="text-base md:text-lg">
-                Tell us about your project and we&apos;ll bring your vision to life!
+                Tell us about your project and we&apos;ll bring your vision to
+                life!
               </CardDescription>
             </motion.div>
           </CardHeader>
@@ -259,7 +266,10 @@ export default function ContactForm() {
                           <FormLabel className="text-sm font-semibold">
                             Service Needed *
                           </FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
                             <FormControl>
                               <SelectTrigger className="focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400">
                                 <SelectValue placeholder="Select a service" />
@@ -267,7 +277,10 @@ export default function ContactForm() {
                             </FormControl>
                             <SelectContent>
                               {SERVICE_OPTIONS.map((service) => (
-                                <SelectItem key={service.value} value={service.value}>
+                                <SelectItem
+                                  key={service.value}
+                                  value={service.value}
+                                >
                                   {service.label}
                                 </SelectItem>
                               ))}
@@ -316,8 +329,12 @@ export default function ContactForm() {
                     type="submit"
                     disabled={isSubmitting || isSuccess}
                     className={`flex items-center justify-center space-x-2 px-8 py-3 text-white font-semibold rounded-lg transition-all duration-300 ${buttonContent.className} min-w-[200px]`}
-                    whileHover={!isSubmitting && !isSuccess ? { scale: 1.02 } : {}}
-                    whileTap={!isSubmitting && !isSuccess ? { scale: 0.98 } : {}}
+                    whileHover={
+                      !isSubmitting && !isSuccess ? { scale: 1.02 } : {}
+                    }
+                    whileTap={
+                      !isSubmitting && !isSuccess ? { scale: 0.98 } : {}
+                    }
                   >
                     <AnimatePresence mode="wait">
                       <motion.div
@@ -335,7 +352,11 @@ export default function ContactForm() {
                             }
                             transition={
                               isSubmitting
-                                ? { duration: 1, repeat: Infinity, ease: "linear" }
+                                ? {
+                                    duration: 1,
+                                    repeat: Infinity,
+                                    ease: "linear",
+                                  }
                                 : { duration: 0.3 }
                             }
                           >
@@ -357,11 +378,7 @@ export default function ContactForm() {
                       transition={{ duration: 0.3 }}
                     >
                       <Alert
-                        variant={
-                          isSuccess
-                            ? "default"
-                            : "destructive"
-                        }
+                        variant={isSuccess ? "default" : "destructive"}
                         className={
                           isSuccess
                             ? "bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border-green-200 dark:border-green-700"

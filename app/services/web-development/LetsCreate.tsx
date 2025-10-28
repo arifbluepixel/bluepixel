@@ -26,24 +26,28 @@ const itemVariants = {
 const LetsCreate = () => {
   return (
     <motion.div
+      // @ts-expect-error - ignore
       variants={containerVariants}
       initial="hidden"
       animate="visible"
       className="flex flex-col items-center justify-center bg-[#0B2A4A] text-center p-6 font-oswald py-12 md:py-16 lg:py-20"
     >
       <motion.h1
+        // @ts-expect-error - ignore
         variants={itemVariants}
         className="text-3xl md:text-6xl lg:text-7xl font-extrabold text-white"
       >
         Let&apos;s Co-Create Something
       </motion.h1>
       <motion.h2
+        // @ts-expect-error - ignore
         variants={itemVariants}
         className="text-3xl md:text-6xl lg:text-7xl font-extrabold text-[#C5A6FF] mt-4"
       >
         <span className="text-yellow-400">Remarkable</span> For Your
       </motion.h2>
       <motion.h3
+        // @ts-expect-error - ignore
         variants={itemVariants}
         className="text-3xl md:text-6xl lg:text-7xl font-extrabold text-white mt-4"
       >

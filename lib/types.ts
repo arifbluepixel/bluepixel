@@ -24,6 +24,7 @@ export interface ProductCardProps {
 export interface Service {
   id: number;
   title: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   photo: any;
   description: string;
   link: string;
@@ -53,7 +54,6 @@ export interface ColoredButtonProps {
   ColoringButton: ColoringButton;
   isPrimary: boolean;
   isFullWidth: boolean;
-  isRightPositioned?: boolean;
 }
 
 // Define types for our data structure

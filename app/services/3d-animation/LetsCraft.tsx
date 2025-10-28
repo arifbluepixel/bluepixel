@@ -36,6 +36,7 @@ const LetsCraft: React.FC = () => {
   return (
     <motion.div
       ref={ref}
+      // @ts-expect-error - ignore
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
@@ -47,6 +48,7 @@ const LetsCraft: React.FC = () => {
       }}
     >
       <motion.div
+        // @ts-expect-error - ignore
         variants={itemVariants}
         className="flex flex-col gap-4 items-center md:items-start justify-center"
       >
@@ -60,7 +62,11 @@ const LetsCraft: React.FC = () => {
           Let&apos;s Estimate The Cost ?
         </button>
       </motion.div>
-      <motion.div variants={itemVariants} className="lg:px-6">
+      <motion.div
+        // @ts-expect-error - ignore
+        variants={itemVariants}
+        className="lg:px-6"
+      >
         <Lottie
           animationData={bingeWatch}
           loop

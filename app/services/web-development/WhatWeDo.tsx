@@ -159,6 +159,7 @@ export default function WhatWeDo() {
   return (
     <section className="overflow-hidden bg-gray-200 py-12 md:py-16 lg:py-20">
       <motion.div
+        // @ts-expect-error - ignore
         variants={containerVariants}
         ref={ref}
         initial="hidden"
@@ -166,12 +167,14 @@ export default function WhatWeDo() {
         className="w-full mx-auto pb-10 z-10 "
       >
         <motion.h2
+          // @ts-expect-error - ignore
           variants={itemVariants}
           className="text-center font-oswald text-4xl mb-6 md:text-5xl text-duck-bluefont uppercase font-extrabold z-10"
         >
           What We Do
         </motion.h2>{" "}
         <motion.p
+          // @ts-expect-error - ignore
           variants={itemVariants}
           className="text-center text-lg md:text-xl mb-12 text-duck-bluefontlight font-semibold w-2/3 mx-auto"
         >
@@ -182,6 +185,7 @@ export default function WhatWeDo() {
         </motion.p>
       </motion.div>
       <motion.div
+        // @ts-expect-error - ignore
         variants={containerVariants}
         ref={ref}
         initial="hidden"
@@ -213,6 +217,7 @@ export default function WhatWeDo() {
           ))}
         </motion.div>
         <motion.div
+          // @ts-expect-error - ignore
           variants={itemVariants}
           className="col-span-1 md:col-span-3 lg:col-span-3 px-4 flex flex-col gap-3"
         >

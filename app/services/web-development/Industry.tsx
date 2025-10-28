@@ -1,6 +1,6 @@
 "use client";
 
-import { Industry } from "@/app/types";
+import { Industry } from "@/lib/types";
 import { IndustryButton } from "@/components/shared/IndustryButton";
 import { useInView } from "motion/react";
 import * as motion from "motion/react-client";
@@ -137,18 +137,21 @@ const IndustriesSection: React.FC = () => {
     <div className="relative py-8 md:py-12 lg:py-16 px-6 overflow-hidden w-11/12 max-w-7xl mx-auto">
       <motion.div
         ref={ref}
+        // @ts-expect-error - ignore
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         className="w-full mx-auto py-8 md:py-12 lg:py-16 z-10 bg-white"
       >
         <motion.h2
+          // @ts-expect-error - ignore
           variants={itemVariants}
           className="text-center font-oswald text-4xl md:text-5xl text-duck-bluefontlight font-extrabold z-10 mb-6 uppercase"
         >
           Industry We Work
         </motion.h2>{" "}
         <motion.p
+          // @ts-expect-error - ignore
           variants={itemVariants}
           className="text-center text-lg md:text-xl text-duck-bluefontlight font-semibold w-11/12 md:w-2/3 mx-auto "
         >
@@ -156,8 +159,13 @@ const IndustriesSection: React.FC = () => {
           reliable products that meet your requirements and captivate users.
         </motion.p>
       </motion.div>
-      <motion.div variants={containerMotion} className="relative z-10 ">
+      <motion.div
+        // @ts-expect-error - ignore
+        variants={containerMotion}
+        className="relative z-10 "
+      >
         <motion.div
+          // @ts-expect-error - ignore
           variants={containerMotion}
           ref={ref}
           initial="hidden"
@@ -190,6 +198,7 @@ const IndustriesSection: React.FC = () => {
           {/* TODO Ends !Show in mobile */}
           {/* Left Side Industries */}
           <motion.div
+            // @ts-expect-error - ignore
             variants={itemVariants}
             className="flex flex-wrap gap-5 w-full md:w-1/3 justify-center items-center md:flex-col md:items-end"
             // className="flex justify-evenly items-center mx-auto flex-wrap gap-3 flex-row  md:items-end"
@@ -206,6 +215,7 @@ const IndustriesSection: React.FC = () => {
 
           {/* Center Industries */}
           <motion.div
+            // @ts-expect-error - ignore
             variants={itemVariants}
             className="relative grid grid-cols-2 gap-x-20 md:gap-x-36 lg:gap-x-40 gap-y-5 w-full md:w-2/3 place-items-center p-10 md:mt-10 lg:mb-10 lg:mt-20 md:my-0"
           >
@@ -231,6 +241,7 @@ const IndustriesSection: React.FC = () => {
 
           {/* Right Side Industries */}
           <motion.div
+            // @ts-expect-error - ignore
             variants={itemVariants}
             className="flex gap-5 flex-wrap w-full md:w-1/3 justify-center items-center md:flex-col md:items-start"
           >

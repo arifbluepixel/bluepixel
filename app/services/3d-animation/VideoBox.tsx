@@ -31,6 +31,7 @@ const videos = [
     url: "https://www.youtube.com/embed/nVxS9eloWvo",
   },
 ];
+
 const containerVariants = {
   hidden: { opacity: 0.8, scale: 0.7 },
   visible: {
@@ -44,15 +45,64 @@ const containerVariants = {
   },
 };
 
+interface VideoItemProps {
+  video: {
+    id: number;
+    thumbnail: string;
+    alt: string;
+    url: string;
+  };
+  index: number;
+  onClick: (url: string) => void;
+}
+
+const VideoItem = ({ video, index, onClick }: VideoItemProps) => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["0.1 1", "0.8 1"],
+  });
+
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [index % 2 === 0 ? -100 : 100, 0]
+  );
+  const opacity = useTransform(scrollYProgress, [0, 1], [0.2, 1]);
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ x, opacity }}
+      className="relative group cursor-pointer"
+      onClick={() => onClick(video.url)}
+    >
+      <Image
+        src={video.thumbnail}
+        alt={video.alt}
+        width={300}
+        height={200}
+        className="w-full h-auto rounded-lg"
+      />
+
+      <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-50 transition duration-300 rounded-lg flex items-center justify-center">
+        <PlayCircle className="text-white w-24 h-24" />
+      </div>
+    </motion.div>
+  );
+};
+
 const VideoBox = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false });
+
   return (
     <section className="px-5 text-center max-w-7xl mx-auto w-11/12 py-12 md:py-16 lg:py-20 overflow-hidden">
       <motion.div
         ref={ref}
+        // @ts-expect-error - ignore
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -66,44 +116,16 @@ const VideoBox = () => {
           Turning Ideas Into Visuals
         </motion.h3>
       </motion.div>
+
       <div className="grid grid-cols-2 gap-4 mt-6">
-        {videos.map((video, index) => {
-          const ref = useRef(null);
-          const { scrollYProgress } = useScroll({
-            target: ref,
-            offset: ["0.1 1", "0.8 1"],
-          });
-
-          // Smoothly move from -100px to 0 as it enters the viewport
-          const x = useTransform(
-            scrollYProgress,
-            [0, 1],
-            [index % 2 === 0 ? -100 : 100, 0]
-          );
-          const opacity = useTransform(scrollYProgress, [0, 1], [0.2, 1]);
-
-          return (
-            <motion.div
-              key={video.id}
-              ref={ref}
-              style={{ x, opacity }}
-              className="relative group cursor-pointer"
-              onClick={() => setSelectedVideo(video.url)}
-            >
-              <Image
-                src={video.thumbnail}
-                alt={video.alt}
-                width={300}
-                height={200}
-                className="w-full h-auto rounded-lg"
-              />
-
-              <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-50 transition duration-300 rounded-lg flex items-center justify-center">
-                <PlayCircle className="text-white w-24 h-24" />
-              </div>
-            </motion.div>
-          );
-        })}
+        {videos.map((video, index) => (
+          <VideoItem
+            key={video.id}
+            video={video}
+            index={index}
+            onClick={setSelectedVideo}
+          />
+        ))}
       </div>
 
       <button className="mt-6 px-6 py-2 text-duck-bluefont border border-duck-cardblue rounded-lg hover:text-yellow-400 hover:bg-black cursor-pointer font-semibold font-pacifico text-xl bg-gray-200 transition">

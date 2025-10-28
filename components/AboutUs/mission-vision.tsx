@@ -1,17 +1,16 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import {
-  Target,
-  Globe,
-  Award,
-  Palette,
-  Users,
   ArrowRight,
+  Award,
   Code,
+  Globe,
+  Palette,
+  Target,
+  Users,
 } from "lucide-react";
+import Image from "next/image";
 
 const MissionVisionValues = () => {
   const missionVisionContent = {
@@ -103,10 +102,14 @@ const MissionVisionValues = () => {
         >
           <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
             Our Creative
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> Philosophy</span>
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              {" "}
+              Philosophy
+            </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Where artistic vision meets technical excellence to create unforgettable digital experiences
+            Where artistic vision meets technical excellence to create
+            unforgettable digital experiences
           </p>
         </motion.div>
 
@@ -197,7 +200,8 @@ const MissionVisionValues = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              The principles that guide every pixel, every frame, and every line of code we create
+              The principles that guide every pixel, every frame, and every line
+              of code we create
             </p>
           </motion.div>
 
@@ -268,7 +272,9 @@ const MissionVisionValues = () => {
               Bringing Creativity to Life
             </h3>
             <p className="text-gray-600 text-lg leading-relaxed">
-              Through cutting-edge technology and artistic innovation, we transform ideas into stunning visual experiences that captivate audiences and drive results across all digital platforms.
+              Through cutting-edge technology and artistic innovation, we
+              transform ideas into stunning visual experiences that captivate
+              audiences and drive results across all digital platforms.
             </p>
             <div className="grid grid-cols-3 gap-4 pt-4">
               <div className="text-center p-4 bg-blue-50 rounded-xl border border-blue-200">

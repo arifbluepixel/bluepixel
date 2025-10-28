@@ -252,9 +252,9 @@ const Footer = () => {
                   Connect With Us
                 </h4>
                 <div className="flex gap-3">
-                  {socialLinks.map((social) => (
+                  {socialLinks.map((social, index) => (
                     <motion.a
-                      key={social.label}
+                      key={social.label + index}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"

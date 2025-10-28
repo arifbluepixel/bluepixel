@@ -1,11 +1,7 @@
 "use client";
 
 import ServiceHero from "@/components/shared/ServiceHero";
-import {
-  ImageHero1,
-  ImageHero2,
-  ImageHero3,
-} from "@/lib/constants/images";
+import { ImageHero1, ImageHero2, ImageHero3 } from "@/lib/constants/images";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
