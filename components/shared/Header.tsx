@@ -1,12 +1,5 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { ChevronDown, HelpCircleIcon, Home, Minus } from "lucide-react";
-import { FaFacebook, FaInstagram } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import { ThemeToggle } from "./ThemeToggle";
-import { logo } from "@/lib/constants/images";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
@@ -15,8 +8,15 @@ import {
   SITE_NAME,
   XHandle,
 } from "@/lib/constants/env";
-import Link from "next/link";
+import { bluepixel, logo } from "@/lib/constants/images";
+import { ChevronDown, HelpCircleIcon, Home, Minus } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { HiOutlineMenuAlt4 } from "react-icons/hi";
+import { ThemeToggle } from "./ThemeToggle";
 
 const servicesPages = [
   {
@@ -70,28 +70,75 @@ const rightNavLinks = [
   { name: "Contact Us", path: "/contact-us" },
 ];
 
-const SpinningStar = () => (
-  <div className="flex items-center justify-center">
-    <svg
-      className="animate-spin h-12 w-12"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M12 2L14.09 8.26L20 10L14.09 11.74L12 18L9.91 11.74L4 10L9.91 8.26L12 2Z"
-        fill="url(#gradient)"
-        className="drop-shadow-lg"
-      />
-      <defs>
-        <linearGradient id="gradient" x1="4" y1="2" x2="20" y2="18">
-          <stop offset="0%" stopColor="#046cdb" />
-          <stop offset="100%" stopColor="#14b8a6" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </div>
-);
+const AnimatedLogo = () => {
+  const [animationStage, setAnimationStage] = useState<
+    "spinning" | "sliding" | "complete"
+  >("spinning");
+
+  useEffect(() => {
+    // Spin for 1.7 seconds
+    const spinTimer = setTimeout(() => {
+      setAnimationStage("sliding");
+    }, 1500);
+
+    // Complete animation after slide
+    const completeTimer = setTimeout(() => {
+      setAnimationStage("complete");
+    }, 2000);
+
+    return () => {
+      clearTimeout(spinTimer);
+      clearTimeout(completeTimer);
+    };
+  }, []);
+
+  return (
+    <div className="relative w-full h-full overflow-hidden px-2 md:px-3">
+      {/* Spinning star - moves to right */}
+      <div
+        className="absolute inset-0 flex items-center justify-center transition-all duration-300 ease-out"
+        style={{
+          transform:
+            animationStage === "sliding" || animationStage === "complete"
+              ? "translateX(100%)"
+              : "translateX(0)",
+          opacity: animationStage === "complete" ? 0 : 1,
+        }}
+      >
+        <Image
+          width={32}
+          height={32}
+          src={bluepixel}
+          alt="Loading"
+          className="h-8 w-8 drop-shadow-lg animate-spin"
+          style={{
+            animationDuration: "1s",
+          }}
+        />
+      </div>
+
+      {/* Logo - slides in from left */}
+      <div
+        className="absolute inset-0 flex items-center justify-center transition-all duration-600 ease-out"
+        style={{
+          transform:
+            animationStage === "complete"
+              ? "translateX(0)"
+              : "translateX(-100%)",
+          opacity: animationStage === "complete" ? 1 : 0,
+        }}
+      >
+        <Image
+          src={logo}
+          alt={SITE_NAME}
+          height={28}
+          width={200}
+          className="h-7 w-36"
+        />
+      </div>
+    </div>
+  );
+};
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -259,19 +306,16 @@ export default function Header() {
             {/* Center Logo */}
             <div className="flex items-center justify-start lg:justify-center min-w-[200px]">
               <Link href="/" className="flex items-center">
-                <div className="relative flex h-14 w-auto items-center justify-center rounded-lg md:rounded-2xl lg:rounded-full bg-gradient-to-br from-cyan-100 to-teal-100 dark:from-cyan-400 dark:to-teal-500 shadow-lg transition-all duration-500 ease-in-out hover:shadow-2xl hover:scale-105">
+                <div className="relative flex h-14 w-auto min-w-36 items-center justify-center rounded-lg md:rounded-2xl lg:rounded-full bg-gradient-to-br from-cyan-100 to-teal-100 dark:from-cyan-400 dark:to-teal-500 shadow-lg transition-all duration-500 ease-in-out hover:shadow-2xl hover:scale-105">
                   {!logoLoaded ? (
-                    <div className="px-6">
-                      <SpinningStar />
-                    </div>
+                    <AnimatedLogo />
                   ) : (
                     <Image
                       src={logo}
                       alt={SITE_NAME}
                       height={28}
                       width={200}
-                      className="h-7 w-36 px-2 md:px-3 transition-opacity duration-500"
-                      style={{ opacity: logoLoaded ? 1 : 0 }}
+                      className="h-7 w-36 px-2 md:px-3"
                     />
                   )}
                 </div>
@@ -339,7 +383,13 @@ export default function Header() {
 
           <div className="mt-6 flex justify-center">
             <div className="flex h-16 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm px-8 shadow-xl">
-              <Image fill src={logo} alt={SITE_NAME} className="h-10 w-auto" />
+              <Image
+                src={logo}
+                alt={SITE_NAME}
+                height={40}
+                width={160}
+                className="h-10 w-auto"
+              />
             </div>
           </div>
 
