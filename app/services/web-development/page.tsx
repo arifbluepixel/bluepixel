@@ -1,10 +1,9 @@
 import FAQ from "@/components/shared/FAQ";
-import Projects from "@/components/shared/ProjectShowcase";
+import Projects from "@/app/services/web-development/ProjectShowcase";
 import { webFaqs } from "@/lib/data/faqData";
 import { generateMetadata } from "@/lib/generateMetadata";
 import HowWeWork from "./HowWeWork";
 import Industry from "./Industry";
-import LetsCreate from "./LetsCreate";
 import Technologies from "./Technologies";
 import WebHero from "./WebHero";
 import WhatWeDo from "./WhatWeDo";
@@ -30,8 +29,7 @@ export default function page() {
       <WhyUs />
       <Technologies />
       <Projects />
-      <FAQ faqs={webFaqs} />
-      <LetsCreate />
+      <FAQ faqs={webFaqs} dark />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

@@ -16,19 +16,20 @@ import React, {
   useRef,
   useState,
 } from "react";
+import PageSectionHeader from "../../../components/shared/PageSectionHeader";
+import { GrayContainer } from "../../../components/shared/PageSections";
 
 export interface Project {
   id: number;
   title: string;
   description: string;
-  imageUrls: string[]; // support multiple images per project
+  imageUrls: string[];
   status: "Live" | "In Progress" | "Completed";
   technologies: string[];
   links: {
     label: string;
     url?: string;
     type: "demo" | "code" | "other" | "credentials";
-    // credentials payload (optional, only used when type === 'credentials')
     credentials?: {
       username?: string;
       email?: string;
@@ -62,18 +63,15 @@ const ProjectCardComponent = React.memo(function ProjectCardComponent({
   const [isHovered, setIsHovered] = useState(false);
   const intervalRef = useRef<number | null>(null);
 
-  // preload images to reduce flicker
   useEffect(() => {
     project.imageUrls.forEach((u) => {
       const i = {};
-      // @ts-expect-error - ignore
+      // @ts-expect-error -ignore
       i.src = u;
     });
   }, [project.imageUrls]);
 
-  // auto-rotate logic with cleanup
   useEffect(() => {
-    // don't auto rotate if single or hovered
     if (project.imageUrls.length <= 1 || isHovered) return;
 
     intervalRef.current = window.setInterval(() => {
@@ -88,7 +86,6 @@ const ProjectCardComponent = React.memo(function ProjectCardComponent({
     };
   }, [project.imageUrls.length, isHovered]);
 
-  // clear interval on unmount
   useEffect(() => {
     return () => {
       if (intervalRef.current) {
@@ -105,25 +102,23 @@ const ProjectCardComponent = React.memo(function ProjectCardComponent({
       onClick={() => onOpen(project)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="cursor-pointer bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 border-2 border-gray-200 flex flex-col"
+      className="group cursor-pointer bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl dark:shadow-cyan-500/10 dark:hover:shadow-cyan-500/20 transition-all duration-300 border border-gray-200 dark:border-slate-700 flex flex-col hover:-translate-y-1"
       aria-label={`Open project ${project.title}`}
     >
-      {/* Image area (crossfade) */}
-      <div className="relative h-96 bg-gray-300 overflow-hidden flex-shrink-0">
+      {/* Image area */}
+      <div className="relative h-96 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-slate-700 dark:to-slate-600 overflow-hidden flex-shrink-0">
         <AnimatePresence initial={false} mode="wait">
           <motion.img
             key={currentImage}
             src={currentImage}
             alt={`${project.title} screenshot ${index + 1}`}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             {...imgAnim}
           />
         </AnimatePresence>
 
-        {/* subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
 
-        {/* Prev / Next */}
         {project.imageUrls.length > 1 && (
           <>
             <button
@@ -136,9 +131,21 @@ const ProjectCardComponent = React.memo(function ProjectCardComponent({
                 );
               }}
               aria-label="Previous image"
-              className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/30 text-white rounded-full p-2 shadow-md hover:bg-black/45 focus:ring-2 focus:ring-yellow-300"
+              className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 dark:bg-white/20 dark:hover:bg-white/30 text-white rounded-full p-2.5 shadow-lg backdrop-blur-sm transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-500"
             >
-              ‹
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
             </button>
 
             <button
@@ -147,10 +154,40 @@ const ProjectCardComponent = React.memo(function ProjectCardComponent({
                 setIndex((i) => (i + 1) % project.imageUrls.length);
               }}
               aria-label="Next image"
-              className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/30 text-white rounded-full p-2 shadow-md hover:bg-black/45 focus:ring-2 focus:ring-yellow-300"
+              className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 dark:bg-white/20 dark:hover:bg-white/30 text-white rounded-full p-2.5 shadow-lg backdrop-blur-sm transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-500"
             >
-              ›
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
             </button>
+
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {project.imageUrls.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIndex(i);
+                  }}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    i === index
+                      ? "w-8 bg-cyan-400 dark:bg-cyan-500"
+                      : "w-1.5 bg-white/60 hover:bg-white/80"
+                  }`}
+                  aria-label={`Go to image ${i + 1}`}
+                />
+              ))}
+            </div>
           </>
         )}
       </div>
@@ -158,39 +195,51 @@ const ProjectCardComponent = React.memo(function ProjectCardComponent({
       {/* Content */}
       <div className="p-6 flex-1 flex flex-col">
         <div className="flex justify-between items-start mb-3 gap-4">
-          <h3 className="text-xl font-bold text-black truncate">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white truncate group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
             {project.title}
           </h3>
 
-          <span className="bg-yellow-400 text-black text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">
+          <span
+            className={`text-xs font-semibold px-3 py-1.5 rounded-full whitespace-nowrap shadow-sm ${
+              project.status === "Live"
+                ? "bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-cyan-400 dark:to-blue-400 text-white"
+                : project.status === "In Progress"
+                ? "bg-gradient-to-r from-amber-400 to-orange-500 text-white"
+                : "bg-gradient-to-r from-gray-400 to-gray-500 dark:from-gray-500 dark:to-gray-600 text-white"
+            }`}
+          >
             {project.status}
           </span>
         </div>
 
-        <p className="text-gray-700 mb-4 line-clamp-3">{project.description}</p>
+        <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3 leading-relaxed">
+          {project.description}
+        </p>
 
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.map((tech, idx) => (
+          {project.technologies.slice(0, 4).map((tech, idx) => (
             <span
               key={idx}
-              className="bg-gray-200 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded"
+              className="bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 text-xs font-medium px-2.5 py-1 rounded-md border border-sky-200 dark:border-sky-800"
             >
               {tech}
             </span>
           ))}
+          {project.technologies.length > 4 && (
+            <span className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-medium px-2.5 py-1 rounded-md">
+              +{project.technologies.length - 4}
+            </span>
+          )}
         </div>
 
-        {/* Links: responsive auto-fit grid so many links don't break layout */}
         <div className="mt-auto">
           <div
             className="grid gap-3"
-            // use CSS grid auto-fit to keep buttons tidy when link count grows
             style={{
               gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
             }}
           >
             {project.links.map((link, i) => {
-              // credentials button
               if (link.type === "credentials") {
                 return (
                   <button
@@ -206,14 +255,13 @@ const ProjectCardComponent = React.memo(function ProjectCardComponent({
                         window.open(link.url, "_blank", "noopener,noreferrer");
                       }
                     }}
-                    className="w-full text-center py-2 px-4 rounded-lg font-medium transition-colors bg-yellow-400 hover:bg-yellow-500 text-black min-w-0"
+                    className="w-full text-center py-2.5 px-4 rounded-lg font-medium transition-all duration-200 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 dark:from-cyan-400 dark:to-blue-400 dark:hover:from-cyan-500 dark:hover:to-blue-500 text-white shadow-md hover:shadow-lg min-w-0"
                   >
                     {link.label}
                   </button>
                 );
               }
 
-              // regular link
               return (
                 <a
                   key={i}
@@ -221,10 +269,10 @@ const ProjectCardComponent = React.memo(function ProjectCardComponent({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className={`w-full text-center py-2 px-4 rounded-lg font-medium transition-colors min-w-0 ${
+                  className={`w-full text-center py-2.5 px-4 rounded-lg font-medium transition-all duration-200 min-w-0 shadow-md hover:shadow-lg ${
                     link.type === "demo"
-                      ? "bg-yellow-400 hover:bg-yellow-500 text-black"
-                      : "bg-gray-800 hover:bg-gray-900 text-white"
+                      ? "bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 dark:from-cyan-400 dark:to-blue-400 dark:hover:from-cyan-500 dark:hover:to-blue-500 text-white"
+                      : "bg-gray-800 dark:bg-gray-700 hover:bg-gray-900 dark:hover:bg-gray-600 text-white"
                   }`}
                 >
                   {link.label}
@@ -279,9 +327,9 @@ function ProjectModal({
     if (!project.imageUrls || project.imageUrls.length === 0) return;
     const next = {};
     const prev = {};
-    // @ts-expect-error - ignore
+    // @ts-expect-error -ignore
     next.src = project.imageUrls[(idx + 1) % project.imageUrls.length];
-    // @ts-expect-error - ignore
+    // @ts-expect-error -ignore
     prev.src =
       project.imageUrls[
         (idx - 1 + project.imageUrls.length) % project.imageUrls.length
@@ -291,7 +339,7 @@ function ProjectModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/70 dark:bg-black/80 backdrop-blur-md"
         onClick={onClose}
         aria-hidden
       />
@@ -301,10 +349,10 @@ function ProjectModal({
         tabIndex={-1}
         role="dialog"
         aria-modal="true"
-        className="relative w-full max-w-7xl max-h-[96vh] bg-white rounded-2xl shadow-2xl overflow-hidden outline-none"
+        className="relative w-full max-w-7xl max-h-[96vh] bg-white dark:bg-slate-900 rounded-3xl shadow-2xl overflow-hidden outline-none"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 h-full">
-          <div className="relative bg-gray-900 flex items-center justify-center min-h-[360px] md:min-h-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
+          <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 dark:from-slate-950 dark:to-slate-900 flex items-center justify-center min-h-[360px] lg:min-h-0">
             <AnimatePresence initial={false} mode="wait">
               <motion.img
                 key={project.imageUrls[idx]}
@@ -318,7 +366,7 @@ function ProjectModal({
               />
             </AnimatePresence>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
 
             {project.imageUrls.length > 1 && (
               <>
@@ -330,48 +378,75 @@ function ProjectModal({
                         project.imageUrls.length
                     )
                   }
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-3 shadow-md hover:bg-black/50 focus:ring-2 focus:ring-yellow-300"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full p-3 shadow-xl transition-all duration-200 focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-500"
                   aria-label="Previous"
                 >
-                  ‹
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
                 </button>
 
                 <button
                   onClick={() =>
                     setIdx((i) => (i + 1) % project.imageUrls.length)
                   }
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-3 shadow-md hover:bg-black/50 focus:ring-2 focus:ring-yellow-300"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full p-3 shadow-xl transition-all duration-200 focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-500"
                   aria-label="Next"
                 >
-                  ›
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
                 </button>
               </>
             )}
 
-            <div className=" md:hidden absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
+            <div className="lg:hidden absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
               {project.imageUrls.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setIdx(i)}
-                  className={`w-2.5 h-2.5 rounded-full ${
-                    i === idx ? "bg-white" : "bg-white/40"
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === idx
+                      ? "w-8 bg-cyan-400 dark:bg-cyan-500"
+                      : "w-2 bg-white/40 hover:bg-white/60"
                   }`}
                   aria-label={`Go to image ${i + 1}`}
                 />
               ))}
             </div>
 
-            {/* thumbnails - visible on md+ (now scrollable when many images) */}
             <div
-              className="hidden md:flex absolute bottom-4 left-4 right-4 gap-2 flex-wrap whitespace-nowrap px-3 py-1"
+              className="hidden lg:flex absolute bottom-4 left-4 right-4 gap-2 overflow-x-auto px-3 py-1"
               style={{ WebkitOverflowScrolling: "touch" }}
             >
               {project.imageUrls.map((u, i) => (
                 <button
                   key={i}
                   onClick={() => setIdx(i)}
-                  className={`inline-block flex-none w-12 h-10 overflow-hidden rounded-md border ${
-                    i === idx ? "ring-2 ring-yellow-400" : "border-transparent"
+                  className={`inline-block flex-none w-14 h-11 overflow-hidden rounded-lg border-2 transition-all duration-200 ${
+                    i === idx
+                      ? "ring-2 ring-cyan-400 dark:ring-cyan-500 border-cyan-400 dark:border-cyan-500"
+                      : "border-transparent hover:border-white/30"
                   }`}
                   aria-label={`Thumbnail ${i + 1}`}
                 >
@@ -380,49 +455,81 @@ function ProjectModal({
                     alt={`thumb ${i + 1}`}
                     className="w-full h-full object-cover"
                     loading="lazy"
-                    width={10}
-                    height={10}
+                    width={56}
+                    height={44}
                   />
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="p-8 overflow-y-auto">
-            <div className="flex items-start justify-between gap-4">
+          <div className="p-8 overflow-y-auto bg-white dark:bg-slate-900">
+            <div className="flex items-start justify-between gap-4 mb-6">
               <div className="flex-1">
-                <h3 className="text-3xl font-semibold text-slate-900">
+                <h3 className="text-3xl font-bold text-slate-900 dark:text-white">
                   {project.title}
                 </h3>
                 {project.status && (
-                  <div className="mt-1 text-sm text-slate-500">
+                  <span
+                    className={`inline-block mt-2 text-xs font-semibold px-3 py-1.5 rounded-full ${
+                      project.status === "Live"
+                        ? "bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-cyan-400 dark:to-blue-400 text-white"
+                        : project.status === "In Progress"
+                        ? "bg-gradient-to-r from-amber-400 to-orange-500 text-white"
+                        : "bg-gradient-to-r from-gray-400 to-gray-500 text-white"
+                    }`}
+                  >
                     {project.status}
-                  </div>
+                  </span>
                 )}
               </div>
 
-              <div className="flex flex-col items-end gap-2">
-                <button
-                  onClick={onClose}
-                  className="ml-auto text-slate-600 hover:text-slate-900"
-                  aria-label="Close"
+              <button
+                onClick={onClose}
+                className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
+                aria-label="Close"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  ✕
-                </button>
-              </div>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
             </div>
 
-            <p className="mt-5 text-slate-700">{project.description}</p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+              {project.description}
+            </p>
 
             {project.features && project.features.length > 0 && (
               <div className="mt-6">
-                <h4 className="text-sm font-medium text-slate-700">
-                  Highlights
+                <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wide mb-3">
+                  Key Features
                 </h4>
-                <ul className="mt-3 grid grid-cols-1 gap-2 text-sm text-slate-600">
+                <ul className="grid grid-cols-1 gap-2.5 text-sm text-slate-600 dark:text-slate-400">
                   {project.features.map((f, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="mt-1 text-amber-500">•</span>
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="mt-0.5 text-cyan-500 dark:text-cyan-400 flex-shrink-0">
+                        <svg
+                          className="w-5 h-5"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </span>
                       <span>{f}</span>
                     </li>
                   ))}
@@ -431,14 +538,14 @@ function ProjectModal({
             )}
 
             <div className="mt-6">
-              <h4 className="text-sm font-medium text-slate-700">
+              <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wide mb-3">
                 Technologies
               </h4>
-              <div className="flex flex-wrap gap-2 mt-3">
+              <div className="flex flex-wrap gap-2">
                 {project.technologies.map((t, i) => (
                   <span
                     key={i}
-                    className="text-xs font-medium px-3 py-1 rounded-2xl bg-slate-100 text-slate-700"
+                    className="text-xs font-medium px-3 py-1.5 rounded-lg bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800"
                   >
                     {t}
                   </span>
@@ -458,7 +565,7 @@ function ProjectModal({
                           credentials: link.credentials!,
                         })
                       }
-                      className="w-full py-3 px-4 rounded-lg font-semibold bg-yellow-400 hover:bg-yellow-500 text-black"
+                      className="w-full py-3 px-4 rounded-lg font-semibold transition-all duration-200 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 dark:from-cyan-400 dark:to-blue-400 dark:hover:from-cyan-500 dark:hover:to-blue-500 text-white shadow-md hover:shadow-lg"
                     >
                       {link.label}
                     </button>
@@ -471,10 +578,10 @@ function ProjectModal({
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-full text-center py-3 px-4 rounded-lg font-semibold transition ${
+                    className={`w-full text-center py-3 px-4 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg ${
                       link.type === "demo"
-                        ? "bg-yellow-400 hover:bg-yellow-500 text-black"
-                        : "bg-slate-800 hover:bg-slate-900 text-white"
+                        ? "bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 dark:from-cyan-400 dark:to-blue-400 dark:hover:from-cyan-500 dark:hover:to-blue-500 text-white"
+                        : "bg-slate-800 hover:bg-slate-900 dark:bg-slate-700 dark:hover:bg-slate-600 text-white"
                     }`}
                   >
                     {link.label}
@@ -483,8 +590,9 @@ function ProjectModal({
               })}
             </div>
 
-            <div className="mt-6 text-xs text-slate-400">
-              Tip: Use ← and → to browse screenshots, Esc to close.
+            <div className="mt-6 p-3 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs text-slate-600 dark:text-slate-400">
+              <span className="font-medium">💡 Tip:</span> Use ← → arrow keys to
+              navigate images, press Esc to close.
             </div>
           </div>
         </div>
@@ -503,82 +611,113 @@ function CredentialsModal({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-60 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+      <div
+        className="absolute inset-0 bg-black/60 dark:bg-black/75 backdrop-blur-sm"
+        onClick={onClose}
+      />
 
-      <div className="relative max-w-xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden p-6">
-        <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold">
-            Credentials — {project.title}
+      <div className="relative max-w-xl w-full bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden p-6 border border-gray-200 dark:border-slate-700">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+            Access Credentials
           </h3>
           <button
             onClick={onClose}
-            className="text-gray-600 hover:text-gray-900"
+            className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700"
+            aria-label="Close"
           >
-            ✕
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
           </button>
         </div>
 
-        <div className="mt-4 text-gray-700">
+        <div className="mb-4 p-3 bg-cyan-50 dark:bg-cyan-900/20 border border-cyan-200 dark:border-cyan-800 rounded-lg">
+          <p className="text-sm font-medium text-cyan-900 dark:text-cyan-300">
+            {project.title}
+          </p>
+        </div>
+
+        <div className="space-y-4">
           {credentials.email && (
-            <div className="mb-2">
-              <div className="text-xs text-gray-500">Email / Username</div>
-              <div className="font-mono mt-1 break-words">
+            <div>
+              <label className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                Email / Username
+              </label>
+              <div className="mt-1.5 p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg font-mono text-sm text-slate-900 dark:text-slate-100 break-words">
                 {credentials.email}
               </div>
             </div>
           )}
 
-          {credentials.password && (
-            <div className="mb-2">
-              <div className="text-xs text-gray-500">Password</div>
-              <div className="font-mono mt-1 break-words">
-                {credentials.password}
-              </div>
-            </div>
-          )}
-
           {credentials.username && (
-            <div className="mb-2">
-              <div className="text-xs text-gray-500">Username</div>
-              <div className="font-mono mt-1 break-words">
+            <div>
+              <label className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                Username
+              </label>
+              <div className="mt-1.5 p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg font-mono text-sm text-slate-900 dark:text-slate-100 break-words">
                 {credentials.username}
               </div>
             </div>
           )}
 
-          {credentials.note && (
-            <div className="mt-2 text-sm text-gray-500">{credentials.note}</div>
+          {credentials.password && (
+            <div>
+              <label className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                Password
+              </label>
+              <div className="mt-1.5 p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg font-mono text-sm text-slate-900 dark:text-slate-100 break-words">
+                {credentials.password}
+              </div>
+            </div>
           )}
 
-          <div className="flex gap-3 mt-6">
-            {/** if the link for sign-in exists, show a button to go there **/}
-            {(() => {
-              const credLink = project.links.find(
-                (l) => l.type === "credentials" && l.url
-              );
-              if (credLink && credLink.url) {
-                return (
-                  <a
-                    href={credLink.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 text-center py-2 px-4 rounded-lg font-medium transition-colors bg-gray-800 hover:bg-gray-900 text-white"
-                  >
-                    Go to Sign-in
-                  </a>
-                );
-              }
-              return null;
-            })()}
+          {credentials.note && (
+            <div className="p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
+              <p className="text-sm text-amber-900 dark:text-amber-200">
+                <span className="font-semibold">Note:</span> {credentials.note}
+              </p>
+            </div>
+          )}
+        </div>
 
-            <button
-              onClick={onClose}
-              className="flex-1 text-center py-2 px-4 rounded-lg font-medium transition-colors bg-gray-200 hover:bg-gray-300 text-black"
-            >
-              Close
-            </button>
-          </div>
+        <div className="flex gap-3 mt-6">
+          {(() => {
+            const credLink = project.links.find(
+              (l) => l.type === "credentials" && l.url
+            );
+            if (credLink && credLink.url) {
+              return (
+                <a
+                  href={credLink.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-center py-2.5 px-4 rounded-lg font-semibold transition-all duration-200 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 dark:from-cyan-400 dark:to-blue-400 dark:hover:from-cyan-500 dark:hover:to-blue-500 text-white shadow-md hover:shadow-lg"
+                >
+                  Go to Sign-in
+                </a>
+              );
+            }
+            return null;
+          })()}
+
+          <button
+            onClick={onClose}
+            className="flex-1 text-center py-2.5 px-4 rounded-lg font-semibold transition-all duration-200 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-900 dark:text-white shadow-md hover:shadow-lg"
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>
@@ -612,7 +751,6 @@ export default function Projects() {
         {
           label: "View Credentials",
           type: "credentials",
-          // note: modal will show these creds and then provide a button to go to sign-in link if provided
           credentials: {
             email: "admin@gmail.com",
             password: "admin@gmail.com",
@@ -733,14 +871,10 @@ export default function Projects() {
     },
   ];
 
-  // // memoize projects so they are stable across renders and not re-created
-  // const sampleProjects = useMemo(() => rawProjects, []);
-
   const [openProject, setOpenProject] = useState<Project | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [openCredentials, setOpenCredentials] = useState<any>(null);
 
-  // memoize the lazy wrapper so it doesn't recreate on each render
   const LazyProjectCard = useMemo(
     () =>
       React.lazy(() =>
@@ -758,23 +892,24 @@ export default function Projects() {
   );
 
   return (
-    <section className="py-16 bg-gray-100">
+    <GrayContainer className="py-16 md:py-20">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col gap-3 py-10 ">
-          <h2 className="text-2xl font-semibold  italic text-yellow-600 text-center uppercase">
-            * Explore our latest web development projects showcasing modern
-            technologies and innovative solutions!
-          </h2>
-          <p className="text-4xl md:text-5xl font-extrabold  text-duck-bluefont text-center uppercase">
-            Featured Projects
-          </p>
-        </div>
-
+        <PageSectionHeader
+          badge="Portfolio"
+          title="Featured Projects"
+          description="Explore our latest web development projects showcasing modern technologies and innovative solutions!"
+          darkMode={false}
+        />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
           <Suspense
             fallback={
-              <div className="col-span-full flex justify-center items-center">
-                Loading projects...
+              <div className="col-span-full flex justify-center items-center py-20">
+                <div className="flex flex-col items-center gap-3">
+                  <div className="w-12 h-12 border-4 border-cyan-500 border-t-transparent dark:border-cyan-400 dark:border-t-transparent rounded-full animate-spin"></div>
+                  <p className="text-slate-600 dark:text-slate-400 font-medium">
+                    Loading projects...
+                  </p>
+                </div>
               </div>
             }
           >
@@ -789,7 +924,6 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* detail modal */}
       {openProject && (
         <ProjectModal
           project={openProject}
@@ -798,10 +932,8 @@ export default function Projects() {
         />
       )}
 
-      {/* credentials modal: this covers both card-level and modal-level 'View Credentials' */}
       {openCredentials &&
         (() => {
-          // normalize the payload
           if (openCredentials.project && openCredentials.credentials) {
             const { project, credentials } = openCredentials;
             return (
@@ -813,7 +945,6 @@ export default function Projects() {
             );
           }
           if (openCredentials && openCredentials.links) {
-            // fallback: if openCredentials is a Project itself
             const project = openCredentials as Project;
             const credLink = project.links.find(
               (l) => l.type === "credentials" && l.credentials
@@ -830,6 +961,6 @@ export default function Projects() {
           }
           return null;
         })()}
-    </section>
+    </GrayContainer>
   );
 }

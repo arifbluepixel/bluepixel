@@ -3,16 +3,12 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 
 interface PageSectionHeaderProps {
-  /** Badge text displayed above the title */
   badge: string;
-  /** Main heading text */
   title: string;
-  /** Description text below the title */
   description: string;
-  /** Whether dark mode styles should be applied */
   darkMode?: boolean;
-  /** Custom className for additional styling */
   className?: string;
+  customPWidth?: string;
 }
 
 export default function PageSectionHeader({
@@ -21,6 +17,7 @@ export default function PageSectionHeader({
   description,
   darkMode = false,
   className = "",
+  customPWidth = "",
 }: PageSectionHeaderProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -53,7 +50,9 @@ export default function PageSectionHeader({
       </h2>
 
       <p
-        className={`mt-4 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed ${
+        className={`mt-4 text-lg md:text-xl ${
+          customPWidth !== "" ? customPWidth : `max-w-3xl`
+        }  mx-auto leading-relaxed ${
           darkMode ? "text-slate-300" : "text-slate-600 dark:text-slate-300"
         }`}
       >

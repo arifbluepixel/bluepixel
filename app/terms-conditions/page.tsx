@@ -4,17 +4,16 @@ import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/constants/env";
 import { motion } from "framer-motion";
 import {
   AlertTriangle,
+  Camera,
   CheckCircle,
   Clock,
+  Code,
   FileText,
   Mail,
-  Phone,
-  Scale,
-  Shield,
   Palette,
-  Code,
+  Phone,
+  Shield,
   Video,
-  Camera
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -126,10 +125,11 @@ const TermsConditions = () => {
               transition={{ duration: 0.8 }}
               className="text-center max-w-4xl mx-auto"
             >
-
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                animate={
+                  isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+                }
                 transition={{ delay: 0.3, duration: 0.7 }}
                 className="text-4xl lg:text-6xl font-bold mb-6"
               >
@@ -138,11 +138,14 @@ const TermsConditions = () => {
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                animate={
+                  isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                }
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed"
               >
-                Clear guidelines for our creative partnership. Understand the terms that govern our digital services and collaboration.
+                Clear guidelines for our creative partnership. Understand the
+                terms that govern our digital services and collaboration.
               </motion.p>
             </motion.div>
           </div>
@@ -157,7 +160,8 @@ const TermsConditions = () => {
         >
           <div className="bg-white rounded-2xl shadow-lg p-6 text-center max-w-4xl mx-auto">
             <p className="text-sm text-gray-500 mt-2">
-              These terms govern all creative service relationships with Blue Pixel
+              These terms govern all creative service relationships with Blue
+              Pixel
             </p>
           </div>
         </motion.div>
@@ -169,7 +173,9 @@ const TermsConditions = () => {
               {/* Introduction */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                animate={
+                  isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+                }
                 transition={{ duration: 0.6, delay: 0.8 }}
                 className="bg-white rounded-2xl shadow-lg p-8 lg:p-12 mb-12"
               >
@@ -179,38 +185,64 @@ const TermsConditions = () => {
                 <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mb-6"></div>
                 <p className="text-lg text-gray-600 leading-relaxed mb-6">
                   These Terms and Conditions outline the rules and regulations
-                  for the use of Blue Pixel&apos;s creative services. As a professional
-                  creative agency specializing in digital solutions, we are committed
-                  to transparent and professional business practices.
+                  for the use of Blue Pixel&apos;s creative services. As a
+                  professional creative agency specializing in digital
+                  solutions, we are committed to transparent and professional
+                  business practices.
                 </p>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  By engaging our services for image editing, video production, 3D animation,
-                  or web development, you agree to comply with these terms. We encourage
-                  you to read them carefully and contact us with any questions about our
-                  creative process and deliverables.
+                  By engaging our services for image editing, video production,
+                  3D animation, or web development, you agree to comply with
+                  these terms. We encourage you to read them carefully and
+                  contact us with any questions about our creative process and
+                  deliverables.
                 </p>
               </motion.div>
 
               {/* Service Overview */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                animate={
+                  isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+                }
                 transition={{ duration: 0.6, delay: 1.0 }}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 lg:p-10 text-white mb-12"
               >
-                <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-center">Our Creative Services</h3>
+                <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-center">
+                  Our Creative Services
+                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {[
-                    { icon: Camera, service: "Image Editing", desc: "Professional photo editing, retouching, and manipulation" },
-                    { icon: Video, service: "Video Production", desc: "Video editing, color grading, motion graphics" },
-                    { icon: Palette, service: "3D Animation", desc: "3D modeling, rendering, and animation services" },
-                    { icon: Code, service: "Web Development", desc: "Custom websites, web apps, and digital solutions" },
+                    {
+                      icon: Camera,
+                      service: "Image Editing",
+                      desc: "Professional photo editing, retouching, and manipulation",
+                    },
+                    {
+                      icon: Video,
+                      service: "Video Production",
+                      desc: "Video editing, color grading, motion graphics",
+                    },
+                    {
+                      icon: Palette,
+                      service: "3D Animation",
+                      desc: "3D modeling, rendering, and animation services",
+                    },
+                    {
+                      icon: Code,
+                      service: "Web Development",
+                      desc: "Custom websites, web apps, and digital solutions",
+                    },
                   ].map((item, index) => (
-                    <motion.div 
+                    <motion.div
                       key={index}
                       initial={{ opacity: 0, scale: 0.8 }}
-                      animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                      transition={{ duration: 0.5, delay: 1.2 + (index * 0.1) }}
+                      animate={
+                        isVisible
+                          ? { opacity: 1, scale: 1 }
+                          : { opacity: 0, scale: 0.8 }
+                      }
+                      transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
                       className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm"
                     >
                       <item.icon className="w-8 h-8 mx-auto mb-3" />
@@ -227,8 +259,10 @@ const TermsConditions = () => {
                   <motion.div
                     key={section.title}
                     initial={{ opacity: 0, y: 30 }}
-                    animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                    transition={{ duration: 0.6, delay: 1.4 + (index * 0.1) }}
+                    animate={
+                      isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+                    }
+                    transition={{ duration: 0.6, delay: 1.4 + index * 0.1 }}
                     className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                   >
                     <div className="flex items-center gap-4 mb-6">
@@ -261,7 +295,9 @@ const TermsConditions = () => {
               {/* Important Notes */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                animate={
+                  isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+                }
                 transition={{ duration: 0.6, delay: 1.9 }}
                 className="bg-white rounded-2xl shadow-lg p-8 lg:p-12 mb-12"
               >
@@ -274,8 +310,10 @@ const TermsConditions = () => {
                     <motion.div
                       key={note.title}
                       initial={{ opacity: 0, y: 20 }}
-                      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                      transition={{ duration: 0.5, delay: 2.0 + (index * 0.1) }}
+                      animate={
+                        isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                      }
+                      transition={{ duration: 0.5, delay: 2.0 + index * 0.1 }}
                       className="text-center p-6 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors duration-300"
                     >
                       <div className="inline-flex p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white mb-4">
@@ -295,7 +333,9 @@ const TermsConditions = () => {
               {/* Additional Terms */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                animate={
+                  isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+                }
                 transition={{ duration: 0.6, delay: 2.3 }}
                 className="bg-white rounded-2xl shadow-lg p-8 lg:p-12 mb-12"
               >
@@ -310,14 +350,20 @@ const TermsConditions = () => {
                       File Delivery & Formats
                     </h3>
                     <p className="text-gray-600 leading-relaxed mb-4">
-                      Final deliverables are provided in agreed formats via secure transfer.
-                      We support all standard file formats and can provide specific formats upon request.
+                      Final deliverables are provided in agreed formats via
+                      secure transfer. We support all standard file formats and
+                      can provide specific formats upon request.
                     </p>
                     <ul className="text-gray-600 space-y-2 ml-6">
                       <li>• Image formats: JPG, PNG, PSD, TIFF, RAW</li>
-                      <li>• Video formats: MP4, MOV, AVI, with various codec options</li>
+                      <li>
+                        • Video formats: MP4, MOV, AVI, with various codec
+                        options
+                      </li>
                       <li>• 3D formats: FBX, OBJ, STL, with texture maps</li>
-                      <li>• Web formats: Responsive HTML/CSS/JS with documentation</li>
+                      <li>
+                        • Web formats: Responsive HTML/CSS/JS with documentation
+                      </li>
                     </ul>
                   </div>
 
@@ -326,9 +372,11 @@ const TermsConditions = () => {
                       Revisions & Changes
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Each project includes a specified number of revision rounds. Additional revisions
-                      beyond the agreed scope may incur extra charges. Major changes to project scope
-                      after approval may require timeline adjustments and additional costs.
+                      Each project includes a specified number of revision
+                      rounds. Additional revisions beyond the agreed scope may
+                      incur extra charges. Major changes to project scope after
+                      approval may require timeline adjustments and additional
+                      costs.
                     </p>
                   </div>
 
@@ -337,10 +385,11 @@ const TermsConditions = () => {
                       Source File Ownership
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Clients retain full ownership of provided source files. Final delivered creative
-                      work is owned by the client upon full payment. Blue Pixel retains the right to
-                      display completed work in our portfolio and marketing materials unless otherwise
-                      agreed in writing.
+                      Clients retain full ownership of provided source files.
+                      Final delivered creative work is owned by the client upon
+                      full payment. Blue Pixel retains the right to display
+                      completed work in our portfolio and marketing materials
+                      unless otherwise agreed in writing.
                     </p>
                   </div>
 
@@ -349,9 +398,11 @@ const TermsConditions = () => {
                       Project Cancellation
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Projects can be cancelled before significant work has begun with a 25% administrative
-                      fee. After work has commenced, cancellation fees are based on work completed to date.
-                      All work completed up to cancellation point will be delivered to the client.
+                      Projects can be cancelled before significant work has
+                      begun with a 25% administrative fee. After work has
+                      commenced, cancellation fees are based on work completed
+                      to date. All work completed up to cancellation point will
+                      be delivered to the client.
                     </p>
                   </div>
                 </div>
@@ -360,7 +411,9 @@ const TermsConditions = () => {
               {/* Contact & Agreement */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                animate={
+                  isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+                }
                 transition={{ duration: 0.6, delay: 2.6 }}
                 className="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 lg:p-12 text-white"
               >
@@ -368,8 +421,9 @@ const TermsConditions = () => {
                   Need Clarification?
                 </h3>
                 <p className="text-blue-100 text-lg max-w-2xl mx-auto leading-relaxed mb-8">
-                  We believe in transparent creative partnerships. If any term is unclear 
-                  or you need specific modifications for your project, let&apos;s discuss it.
+                  We believe in transparent creative partnerships. If any term
+                  is unclear or you need specific modifications for your
+                  project, let&apos;s discuss it.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -396,8 +450,9 @@ const TermsConditions = () => {
 
                 <div className="mt-8 pt-6 border-t border-blue-400/30">
                   <p className="text-blue-200 text-sm">
-                    By proceeding with our creative services, you acknowledge acceptance
-                    of these Terms and Conditions for digital creative work.
+                    By proceeding with our creative services, you acknowledge
+                    acceptance of these Terms and Conditions for digital
+                    creative work.
                   </p>
                 </div>
               </motion.div>

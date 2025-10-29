@@ -7,15 +7,17 @@ interface ContainerProps {
   gridLines?: boolean;
   dark?: boolean;
   decorativeElements?: ReactNode;
+  className?: string;
 }
 
 export function DarkContainer({
   children,
   gridLines = true,
   decorativeElements,
+  className = "",
 }: ContainerProps) {
   return (
-    <section className={darkSectionCSS}>
+    <section className={darkSectionCSS + " " + className}>
       {gridLines && (
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
       )}
@@ -31,9 +33,10 @@ export function GrayContainer({
   children,
   gridLines = true,
   decorativeElements,
+  className = "",
 }: ContainerProps) {
   return (
-    <section className={lightSectionCSS}>
+    <section className={lightSectionCSS + " " + className}>
       {" "}
       {gridLines && (
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
@@ -50,6 +53,7 @@ export function SingleContainer({
   dark = false,
   gridLines = true,
   decorativeElements,
+  className = "",
 }: ContainerProps) {
   return (
     <>
@@ -57,6 +61,7 @@ export function SingleContainer({
         <DarkContainer
           gridLines={gridLines}
           decorativeElements={decorativeElements}
+          className={className}
         >
           {children}
         </DarkContainer>
@@ -64,6 +69,7 @@ export function SingleContainer({
         <GrayContainer
           gridLines={gridLines}
           decorativeElements={decorativeElements}
+          className={className}
         >
           {children}
         </GrayContainer>

@@ -7,7 +7,6 @@ import Image from "next/image";
 import frontend from "@/public/webdev/whatwedo/frontend.png";
 import backend from "@/public/webdev/whatwedo/backend.png";
 import framework from "@/public/webdev/whatwedo/framework.png";
-// import wordpress from "@/public/webdev/wordpress.png";
 import cms from "@/public/webdev/whatwedo/cms.jpg";
 import email from "@/public/webdev/whatwedo/email.png";
 import add from "@/public/webdev/whatwedo/add.png";
@@ -17,25 +16,36 @@ import ai from "@/public/webdev/whatwedo/ai.png";
 import qa from "@/public/webdev/whatwedo/qa.jpg";
 import support from "@/public/webdev/whatwedo/support.png";
 import custom_web from "@/public/webdev/whatwedo/custom_web.png";
+import { DarkContainer } from "@/components/shared/PageSections";
+import PageSectionHeader from "@/components/shared/PageSectionHeader";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.3,
+      staggerChildren: 0.2,
       ease: "easeInOut",
-      duration: 0.3,
+      duration: 0.4,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, x: 100 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
-    x: 0,
-    transition: { duration: 0.3, ease: "easeInOut" },
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
+const imageVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut" },
   },
 };
 
@@ -44,7 +54,7 @@ const whatwedo = [
     id: 1,
     title: "WebPage Design",
     description: [
-      "Your website is often the first impression your customers have of your business. Make it count! Our website design services combine cutting-edge design principles with a user-first approach to create websites that not only look amazing but also provide a seamless user experience.\n\nWe focus on creating visually appealing, mobile-optimized, and intuitive websites that are aligned with your brand’s values and goals. Whether you need a sleek business website or an engaging e-commerce platform, we design websites that captivate visitors and convert them into customers. Ready to make an impact online? Let’s design your digital future.",
+      "First impressions matter, especially online. We craft stunning, user centric websites that capture attention and deliver exceptional experiences. Our design philosophy merges aesthetic excellence with strategic functionality, ensuring every element serves your business objectives.\n\nFrom responsive layouts to intuitive navigation, we create digital experiences that resonate with your audience. Whether launching a corporate presence or building an interactive e-commerce destination, our designs drive engagement and foster meaningful connections. Transform your online presence into a powerful business asset.",
     ],
     image: frontend,
   },
@@ -52,38 +62,32 @@ const whatwedo = [
     id: 2,
     title: "API Development",
     description: [
-      "Behind every successful web application is a powerful backend, and that’s where we come in. Our backend development services ensure that your website runs smoothly, securely, and efficiently. From API development to database management, we create scalable and robust server-side solutions that support your website’s growth.\n\nWhether you're building a custom platform or integrating complex functionalities, our team of backend developers has the expertise to deliver solutions that scale with your business needs. Let's build the powerful backend that will help your business thrive and grow.",
+      "Powerful applications require robust foundations. Our backend architecture services deliver secure, scalable, and high performance server solutions that power your digital ecosystem. We specialize in RESTful API design, microservices architecture, and database optimization to ensure seamless operations.\n\nFrom handling complex business logic to managing millions of transactions, our backend solutions are engineered for reliability and growth. We build the invisible infrastructure that keeps your platform running flawlessly, allowing you to focus on what matters most—your business.",
     ],
     image: backend,
   },
   {
     id: 3,
-    title: "Framework-Based",
+    title: "Framework Based",
     description: [
-      "In today's digital world, speed, scalability, and performance are essential – and that's exactly what our framework-based web development services deliver. Whether it's a dynamic web app built on the MERN stack, a fast, SEO-friendly Next.js website, or a robust and modern TALL stack solution, we have the expertise to build the perfect platform for your needs.\n\nOur team leverages cutting-edge technologies to develop high-performance websites and applications that grow with your business. From complex web applications to simple landing pages, we craft solutions that are secure, scalable, and fast. Ready to scale your business to new heights? Let us build the framework for your success.",
+      "Modern challenges demand modern solutions. We harness industry leading frameworks like MERN, Next.js, and TALL stack to build lightning-fast, SEO optimized applications that scale effortlessly. Our framework expertise ensures you get production ready solutions with best practices built in.\n\nWhether developing sophisticated web applications or streamlined landing experiences, we architect solutions that prioritize performance, security, and maintainability. Leverage cutting edge technology stacks designed to accelerate your growth and keep you ahead of the competition.",
     ],
     image: framework,
   },
-
   {
     id: 4,
     title: "WordPress (CMS)",
     description: [
-      [
-        `Your website is the digital face of your brand, and at [Your Company], we transform that face into a masterpiece. With our WordPress web development services, we don't just build websites – we create captivating, user-friendly experiences that reflect your unique business identity.\n\nWhy settle for a generic template when you can have a tailor-made website that speaks directly to your audience? Our team of WordPress experts is dedicated to bringing your vision to life with seamless functionality, beautiful design, and easy-to-manage content. `,
-      ],
-      [
-        `Let’s create a website that’s not only functional but also a true representation of your brand’s personality and values.Managing your content shouldn’t be a hassle.With our Dynamic CMS- based web development, you’ll have a powerful, user - friendly content management system that puts you in control.Whether you’re using WordPress, Joomla, or Drupal, we’ll customize your CMS to match your business needs and ensure a seamless experience for both you and your visitors.\n\nOur custom - built CMS solutions make it easy to update and manage your site content without the need for technical knowledge.With our expertise, you’ll be empowered to effortlessly grow and scale your website, while providing your users with the dynamic experience they crave.`,
-      ],
+      "Your brand deserves a unique digital identity. We specialize in custom WordPress development that goes beyond templates, creating bespoke experiences that authentically represent your business. Our WordPress solutions combine visual excellence with intuitive content management.\n\nEvery element is crafted to reflect your brand's personality while providing effortless control over your content. From sophisticated design to streamlined workflows, we empower you to manage your digital presence with confidence.",
+      "Content management should empower, not complicate. Our CMS solutions—spanning WordPress, Joomla, and Drupal—put you in complete control without requiring technical expertise. We customize platforms to match your unique workflows, ensuring content updates are intuitive and efficient.\n\nWith our tailored CMS implementations, you gain the freedom to evolve your website independently while maintaining professional quality. Focus on creating compelling content while we ensure your platform grows alongside your ambitions.",
     ],
-    // image: wordpress,
     image: cms,
   },
   {
     id: 5,
     title: "Email Template",
     description: [
-      "Emails are one of the most powerful tools in your marketing arsenal, and we help you make the most of them. Our email template design and development services provide you with beautifully designed, responsive, and functional email templates that are optimized for conversions.\n\nWhether it’s a welcome email, a promotional campaign, or a monthly newsletter, we create designs that grab attention and inspire action. With our attention to detail, your emails will not only look amazing but also deliver measurable results. Let’s create emails that get noticed – and get clicked.",
+      "Email remains your most direct channel to customers. We design responsive, conversion optimized email templates that command attention in crowded inboxes. Each template is meticulously crafted to reflect your brand while driving measurable engagement.\n\nFrom welcoming new subscribers to announcing product launches, our email designs blend compelling visuals with strategic messaging. Every element is tested across devices to ensure flawless delivery and maximum impact. Elevate your email marketing with templates that truly perform.",
     ],
     image: email,
   },
@@ -91,7 +95,7 @@ const whatwedo = [
     id: 6,
     title: "Add / Remove Features",
     description: [
-      "Stay ahead of the curve by adding new features or remove unnecessary and unused features that enhance your website or web application. Our new feature addition service allows you to seamlessly integrate advanced functionality into your existing platform.\n\nFrom adding e-commerce capabilities to integrating new payment systems, we help you stay current with industry trends and user demands. Our goal is to provide scalable and efficient solutions that improve user engagement and enhance the overall experience. Ready to take your platform to the next level? Let’s add features that drive growth.",
+      "Digital platforms must evolve with your business. Our feature enhancement services keep your website agile and competitive. We seamlessly integrate new capabilities while streamlining or removing outdated functionality that no longer serves your goals.\n\nWhether implementing advanced e-commerce features, adding payment integrations, or optimizing existing workflows, we ensure every change enhances user experience. Stay relevant and responsive to market demands with strategic platform evolution that drives continuous improvement.",
     ],
     image: add,
   },
@@ -99,7 +103,7 @@ const whatwedo = [
     id: 7,
     title: "VPS Integration",
     description: [
-      "When your website or application needs to scale, VPS integration is a key component of performance and security. Our VPS integration services include everything you need to host, deploy, and manage your website on a virtual private server.\n\nWe handle the technical side of things, from server setup and configuration to deploying your application with automation scripts. With our help, you can be confident your platform will run efficiently, securely, and without downtime. Ready to take your infrastructure to the next level? Let’s scale your business with VPS integration.",
+      "Scale demands infrastructure that can keep pace. Our VPS deployment services provide enterprise grade hosting solutions with complete control and optimal performance. We handle the complexity of server provisioning, configuration, and automation so you can focus on growth.\n\nFrom initial setup to ongoing management, we ensure your infrastructure delivers consistent uptime and blazing fast performance. With automated deployment pipelines and proactive monitoring, your platform remains reliable and secure as your business expands.",
     ],
     image: vps,
   },
@@ -107,7 +111,7 @@ const whatwedo = [
     id: 8,
     title: "E-Commerce Solutions",
     description: [
-      "Create a robust e-commerce platform that attracts your audience, drives sales, and ensures high user retention. Our solutions incorporate the latest trends, including AI-driven personalization and seamless checkout experiences.\n\nFrom product management to payment gateways and analytics, we provide end-to-end development to enhance your online store. Let’s build an e-commerce experience that keeps customers engaged and coming back for more.",
+      "Transform browsers into buyers with comprehensive e-commerce platforms built for conversion. We integrate intelligent personalization, frictionless checkout flows, and robust analytics to maximize your revenue potential while delighting customers.\n\nFrom inventory management to payment processing and customer insights, we create end-to-end shopping experiences that drive loyalty. Build an online store that doesn't just sell products—it creates lasting customer relationships and sustainable growth.",
     ],
     image: ecommerce,
   },
@@ -115,7 +119,7 @@ const whatwedo = [
     id: 9,
     title: "AI Integration",
     description: [
-      "Enhance your business with AI-powered automation and predictive analytics. Our AI integration services streamline routine tasks, analyze large datasets, and help you make data-driven decisions.\n\nFrom chatbot automation to recommendation systems and advanced data insights, we implement AI solutions that drive efficiency and innovation. Stay ahead of the competition by leveraging AI for smarter operations.",
+      "Unlock competitive advantages through intelligent automation. Our AI integration services transform operations by automating repetitive tasks, extracting insights from complex data, and enabling smarter decision making across your organization.\n\nFrom conversational AI assistants to predictive analytics and personalized recommendation engines, we implement practical AI solutions that deliver tangible business value. Stay ahead by harnessing artificial intelligence to work smarter, not harder.",
     ],
     image: ai,
   },
@@ -123,7 +127,7 @@ const whatwedo = [
     id: 10,
     title: "QA for Web",
     description: [
-      "Ensure flawless user experiences with our rigorous quality assurance (QA) testing. We identify potential issues before they escalate, ensuring your web application meets the highest performance and usability standards.\n\nUsing manual and automated testing techniques, we help you maintain a secure, bug-free, and efficient platform. Deliver excellence with our QA expertise.",
+      "Excellence requires vigilance. Our comprehensive quality assurance processes catch issues before they reach your users, ensuring every interaction meets the highest standards. We combine automated testing frameworks with manual expertise to validate functionality, performance, and security.\n\nThrough rigorous testing protocols, we maintain platform stability while identifying optimization opportunities. Deliver flawless experiences that build trust and keep users coming back with our thorough QA methodology.",
     ],
     image: qa,
   },
@@ -131,15 +135,15 @@ const whatwedo = [
     id: 11,
     title: "Website Support",
     description: [
-      "Fixing Existing Bugs and Keep your website running smoothly with our comprehensive support services. We use DevOps CI/CD practices and Site Reliability Engineering (SRE) approaches to optimize performance, security, and uptime.\n\nFrom regular maintenance to rapid issue resolution, we ensure a seamless user experience while keeping your website fast, secure, and scalable.",
+      "Reliable operations require dedicated support. Our maintenance services leverage DevOps best practices and SRE principles to keep your platform performing optimally. We proactively monitor, rapidly resolve issues, and continuously optimize for speed, security, and reliability.\n\nFrom bug fixes to performance tuning and security updates, we ensure your website remains fast, secure, and available. Focus on your business while we handle the technical complexities of keeping your digital presence running smoothly.",
     ],
     image: support,
   },
   {
     id: 12,
-    title: "Custom Web Application ",
+    title: "Custom Web Application",
     description: [
-      "Build a tailor-made web application that aligns perfectly with your business goals. Unlike off-the-shelf solutions, our custom development approach ensures flexibility, scalability, and seamless integration with your workflow.\n\nFrom concept to deployment, we work closely with you to create a web application that enhances efficiency, user engagement, and business growth.",
+      "Generic solutions rarely address unique challenges. Our custom application development creates tailored software that perfectly aligns with your specific workflows and business objectives. Unlike off the shelf products, custom applications offer the flexibility to adapt as your needs evolve.\n\nFrom initial conception through deployment and beyond, we partner with you to build applications that enhance productivity, streamline operations, and drive measurable business outcomes. Invest in technology that grows with your vision.",
     ],
     image: custom_web,
   },
@@ -147,117 +151,183 @@ const whatwedo = [
 
 export default function WhatWeDo() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false });
+  const contentRef = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
+  const isContentInView = useInView(contentRef, { once: false, amount: 0.3 });
   const [selectedwedo, setSelectedWeDo] = useState(0);
+
+  const baseButtonStyle =
+    "relative px-4 py-3 rounded-lg border transition-all duration-300 ease-out text-base md:text-lg font-medium overflow-hidden group";
   const hoverEffect =
-    "bg-gray-50 p-1 rounded-lg hover:bg-yellow-400 hover:text-black  font-light hover:font-semibold hover:text-center";
+    "bg-slate-800/40 border-slate-700/50 text-slate-200 hover:bg-sky-500/20 hover:border-sky-400/50 hover:text-sky-100 hover:shadow-lg hover:shadow-sky-500/20 hover:scale-[1.02]";
   const activeEffect =
-    "bg-yellow-400 p-1 rounded-lg text-black font-semibold  text-center ";
+    "bg-gradient-to-r from-sky-500 to-blue-600 border-sky-400 text-white shadow-xl shadow-sky-500/30 scale-[1.02]";
+
   const handleSelectedBtn = (selected: number): void => {
     setSelectedWeDo(selected);
   };
+
   return (
-    <section className="overflow-hidden bg-gray-200 py-12 md:py-16 lg:py-20">
+    <DarkContainer
+      className="py-16 md:py-20 lg:py-24"
+      gridLines={true}
+      decorativeElements={
+        <>
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/30 rounded-full filter blur-3xl animate-pulse"></div>
+            <div
+              className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-purple-500/30 rounded-full filter blur-3xl animate-pulse"
+              style={{ animationDelay: "1.5s" }}
+            ></div>
+          </div>
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sky-500/50 to-transparent"></div>
+        </>
+      }
+    >
+      <PageSectionHeader
+        badge="Our Services"
+        title="What We Do"
+        description="Transforming ideas into powerful digital experiences from custom WordPress sites and cutting-edge web development to seamless backend solutions and impactful email campaigns, we build the digital presence that drives your business forward."
+        darkMode={true}
+        customPWidth="max-w-5xl"
+      />
+
       <motion.div
         // @ts-expect-error - ignore
         variants={containerVariants}
         ref={ref}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="w-full mx-auto pb-10 z-10 "
+        className="relative z-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 w-11/12 xl:max-w-7xl mx-auto"
       >
-        <motion.h2
-          // @ts-expect-error - ignore
-          variants={itemVariants}
-          className="text-center  text-4xl mb-6 md:text-5xl text-duck-bluefont uppercase font-extrabold z-10"
-        >
-          What We Do
-        </motion.h2>{" "}
-        <motion.p
-          // @ts-expect-error - ignore
-          variants={itemVariants}
-          className="text-center text-lg md:text-xl mb-12 text-duck-bluefontlight font-semibold w-2/3 mx-auto"
-        >
-          Transforming ideas into powerful digital experiences – from custom
-          WordPress sites and cutting-edge web development to seamless backend
-          solutions and impactful email campaigns, we build the digital presence
-          that drives your business forward.
-        </motion.p>
-      </motion.div>
-      <motion.div
-        // @ts-expect-error - ignore
-        variants={containerVariants}
-        ref={ref}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 w-11/12 xl:max-w-7xl mx-auto "
-      >
-        <motion.div className="col-span-1 md:col-span-3 lg:col-span-1 w-full font-medium flex flex-row flex-wrap justify-center lg:justify-start gap-2 lg:flex-col">
-          {whatwedo.slice(0, 6).map((wedo) => (
-            <button
-              onClick={() => handleSelectedBtn(wedo.id - 1)}
-              className={`${
-                selectedwedo === wedo.id - 1 ? activeEffect : hoverEffect
-              } flex items-center justify-center text-left md:justify-start lg:w-full min-h-8 max-h-16 my-0.5 px-2 md:px-4 md:py-5 cursor-pointer border border-gray-400 text-[16px] md:text-xl`}
-              key={wedo.id}
-            >
-              {wedo.title}
-            </button>
-          ))}
-          {whatwedo.slice(6).map((wedo) => (
-            <button
-              onClick={() => handleSelectedBtn(wedo.id - 1)}
-              className={`${
-                selectedwedo === wedo.id - 1 ? activeEffect : hoverEffect
-              } flex lg:hidden  items-center justify-center text-left md:justify-start lg:w-full min-h-8 max-h-16 my-0.5 px-2 md:px-4 md:py-5 cursor-pointer border border-gray-400 text-[16px] md:text-xl`}
-              key={wedo.id}
-            >
-              {wedo.title}
-            </button>
-          ))}
-        </motion.div>
+        {/* Left Column - First 6 Services */}
         <motion.div
           // @ts-expect-error - ignore
           variants={itemVariants}
-          className="col-span-1 md:col-span-3 lg:col-span-3 px-4 flex flex-col gap-3"
+          className="col-span-1 md:col-span-3 lg:col-span-1 w-full flex flex-row flex-wrap justify-center lg:justify-start gap-3 lg:flex-col"
         >
-          <h2 className="text-2xl my-3 text-center  font-extrabold text-duck-bluefontlight md:border-t-0 border-t-gray-300 border-t-2 pt-5 md:pt-0">
-            {whatwedo[selectedwedo].title}
-          </h2>
-
-          <div className="relative overflow-hidden">
-            <Image
-              src={whatwedo[selectedwedo].image}
-              alt={whatwedo[selectedwedo].title}
-              width={300}
-              height={100}
-              quality={100}
-              className="float-left w-full md:w-1/2 lg:w-2/5 md:h-[25vh] lg:h-[30vh] xl:h-[35vh] object-fit rounded-lg my-2 md:my-0 md:mr-4 mb-3"
-            />
-            <div className="text-justify text-lg space-y-2">
-              {whatwedo[selectedwedo].description.map((des, index) => (
-                <p key={index}>
-                  {des} <br />
-                </p>
-              ))}
-            </div>
-            <div className="clear-both"></div>
-          </div>
-        </motion.div>
-        <motion.div className="col-span-1 w-full font-medium hidden lg:flex justify-start flex-wrap flex-col gap-2">
-          {whatwedo.slice(6).map((wedo, index) => (
+          {whatwedo.slice(0, 6).map((wedo) => (
             <button
               onClick={() => handleSelectedBtn(wedo.id - 1)}
-              className={`${
+              className={`${baseButtonStyle} ${
                 selectedwedo === wedo.id - 1 ? activeEffect : hoverEffect
-              } flex items-center justify-center md:justify-start text-left md:w-full min-h-10 max-h-16 my-0.5 px-2 md:px-4 md:py-5 cursor-pointer border border-gray-400 text-lg text-[16px] md:text-xl`}
-              key={index}
+              }`}
+              key={wedo.id}
             >
-              {wedo.title}
+              <span className="relative z-10">{wedo.title}</span>
+              {selectedwedo === wedo.id - 1 && (
+                <motion.div
+                  layoutId="activeBackground"
+                  className="absolute inset-0 bg-gradient-to-r from-sky-500 to-blue-600"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+            </button>
+          ))}
+
+          {/* Mobile: Show remaining services */}
+          {whatwedo.slice(6).map((wedo) => (
+            <button
+              onClick={() => handleSelectedBtn(wedo.id - 1)}
+              className={`${baseButtonStyle} ${
+                selectedwedo === wedo.id - 1 ? activeEffect : hoverEffect
+              } flex lg:hidden`}
+              key={wedo.id}
+            >
+              <span className="relative z-10">{wedo.title}</span>
+              {selectedwedo === wedo.id - 1 && (
+                <motion.div
+                  layoutId="activeBackground"
+                  className="absolute inset-0 bg-gradient-to-r from-sky-500 to-blue-600"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Center Column - Content Display */}
+        <motion.div
+          ref={contentRef}
+          // @ts-expect-error - ignore
+          variants={itemVariants}
+          className="col-span-1 md:col-span-3 lg:col-span-3 px-4 lg:px-6"
+        >
+          <motion.div
+            key={selectedwedo}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-slate-800/30 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-slate-700/50 shadow-2xl"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500 mb-6 text-center border-b border-slate-700/50 pb-4">
+              {whatwedo[selectedwedo].title}
+            </h2>
+
+            <div className="relative">
+              <motion.div
+                // @ts-expect-error - ignore
+                variants={imageVariants}
+                initial="hidden"
+                animate={isContentInView ? "visible" : "hidden"}
+                className="relative"
+              >
+                <Image
+                  src={whatwedo[selectedwedo].image}
+                  alt={whatwedo[selectedwedo].title}
+                  width={400}
+                  height={300}
+                  quality={100}
+                  className="float-left w-full md:w-1/2 lg:w-2/5 h-auto md:h-[28vh] lg:h-[32vh] xl:h-[36vh] object-cover rounded-xl shadow-lg shadow-black/30 mb-4 md:mr-6 border border-slate-700/50 hover:scale-[1.02] transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent rounded-xl pointer-events-none"></div>
+              </motion.div>
+
+              <div className="text-slate-300 leading-relaxed space-y-4 text-base md:text-lg">
+                {whatwedo[selectedwedo].description.map((des, index) => (
+                  <motion.p
+                    key={index}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: index * 0.1 + 0.2 }}
+                    className="text-justify first-letter:text-2xl first-letter:font-bold first-letter:text-sky-400"
+                  >
+                    {des}
+                  </motion.p>
+                ))}
+              </div>
+
+              <div className="clear-both"></div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Right Column - Remaining Services (Desktop Only) */}
+        <motion.div
+          // @ts-expect-error - ignore
+          variants={itemVariants}
+          className="col-span-1 w-full hidden lg:flex justify-start flex-col gap-3"
+        >
+          {whatwedo.slice(6).map((wedo) => (
+            <button
+              onClick={() => handleSelectedBtn(wedo.id - 1)}
+              className={`${baseButtonStyle} ${
+                selectedwedo === wedo.id - 1 ? activeEffect : hoverEffect
+              }`}
+              key={wedo.id}
+            >
+              <span className="relative z-10">{wedo.title}</span>
+              {selectedwedo === wedo.id - 1 && (
+                <motion.div
+                  layoutId="activeBackground"
+                  className="absolute inset-0 bg-gradient-to-r from-sky-500 to-blue-600"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
             </button>
           ))}
         </motion.div>
       </motion.div>
-    </section>
+    </DarkContainer>
   );
 }

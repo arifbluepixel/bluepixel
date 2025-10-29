@@ -22,12 +22,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaLinkedinIn,
-  FaYoutube,
-} from "react-icons/fa6";
+import { FaFacebook, FaLinkedinIn } from "react-icons/fa6";
 
 const Footer = () => {
   const quickLinks = [
@@ -81,7 +76,7 @@ const Footer = () => {
       icon: FaLinkedinIn,
       href: "https://www.linkedin.com/company/blue-pixel-art/",
       color: "#0A66C2",
-    }
+    },
   ];
 
   const trustBadges = [

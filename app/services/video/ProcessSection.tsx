@@ -230,7 +230,7 @@ const ProcessSection = () => {
                     </h3>
 
                     {/* Description */}
-                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed group-hover:text-white/90 transition-colors duration-500">
+                    <p className="text-sm text-slate-600 dark:text-slate-100 leading-relaxed group-hover:text-white/90 transition-colors duration-500">
                       {step.description}
                     </p>
                   </div>

@@ -1,22 +1,13 @@
 "use client";
 
-import { Industry } from "@/lib/types";
 import { IndustryButton } from "@/components/shared/IndustryButton";
+import PageSectionHeader from "@/components/shared/PageSectionHeader";
+import { GrayContainer } from "@/components/shared/PageSections";
+import { Industry } from "@/lib/types";
 import { useInView } from "motion/react";
 import * as motion from "motion/react-client";
 import React, { useRef } from "react";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.3,
-      ease: "easeInOut",
-      duration: 0.3,
-    },
-  },
-};
 const containerMotion = {
   hidden: { opacity: 0 },
   visible: {
@@ -44,42 +35,42 @@ const centralIndustries: Industry[] = [
     id: "healthcare",
     name: "Healthcare",
     description:
-      "Medical software solutions, telemedicine platforms, and health record systems that help you treat patients.",
+      "Advanced medical platforms, telehealth solutions, and integrated health management systems that enhance patient care delivery.",
     link: "/industries/healthcare",
   },
   {
     id: "fintech",
     name: "Fintech",
     description:
-      "Reliable digital banking systems, payment processing apps, and financial tracking tools for growing operations.",
+      "Secure digital banking infrastructure, seamless payment gateways, and comprehensive financial analytics for modern enterprises.",
     link: "/industries/fintech",
   },
   {
     id: "elearning",
     name: "E-Learning",
     description:
-      "Personalized, immersive online course platforms and virtual classroom solutions that engage students.",
+      "Interactive educational platforms, virtual learning environments, and adaptive course delivery systems that transform education.",
     link: "/industries/e-learning",
   },
   {
     id: "social",
     name: "Social Platforms",
     description:
-      "Robust, engaging social media apps and community networking sites with user-generated content.",
+      "Dynamic community ecosystems, social networking infrastructure, and content-driven engagement platforms that connect audiences.",
     link: "/industries/social-platforms",
   },
   {
     id: "saas",
     name: "SaaS",
     description:
-      "Cost-efficient, flexible cloud-hosted applications, and on-demand service platforms that are easy to scale.",
+      "Scalable cloud solutions, subscription-based platforms, and enterprise software services designed for rapid deployment.",
     link: "/industries/saas",
   },
   {
     id: "web3",
     name: "Web3",
     description:
-      "Decentralized web apps and crypto wallet services aimed at financial growth with tools for newbies & pros.",
+      "Blockchain-powered applications, decentralized platforms, and cryptocurrency solutions that redefine digital ownership.",
     link: "/industries/web3",
   },
 ];
@@ -90,42 +81,42 @@ const sideIndustries: Industry[] = [
     id: "transportation",
     name: "Transportation",
     description:
-      "Convenient ride-sharing solutions and complex fleet management software to strengthen your services",
+      "Intelligent mobility solutions, fleet optimization systems, and logistics platforms that streamline transportation operations.",
     link: "",
   },
   {
     id: "telematics",
     name: "Telematics",
     description:
-      "Complex vehicle tracking systems and precise remote diagnostics to widen your transport network.",
+      "Real-time vehicle monitoring, GPS tracking infrastructure, and IoT-enabled diagnostics for connected fleet management.",
     link: "",
   },
   {
     id: "gaming",
     name: "Gaming",
     description:
-      "Gamers for gamers: dependable multiplayer game platforms and immersive AR/VR gaming experiences.",
+      "Immersive multiplayer experiences, VR/AR game engines, and cross-platform gaming solutions built by passionate developers.",
     link: "/industries/gaming",
   },
   {
     id: "realestate",
     name: "Real Estate",
     description:
-      "Property listing websites and real estate CRM systems with intuitive design for clear data management.",
+      "Comprehensive property management platforms, MLS integration systems, and CRM solutions for real estate professionals.",
     link: "/industries/real-estate",
   },
   {
     id: "ecommerce",
     name: "E-Commerce",
     description:
-      "Easy-to-manage and load-resilient online shopping portals and e-marketplace platforms.",
+      "High-performance online storefronts, marketplace platforms, and omnichannel retail solutions that drive conversions.",
     link: "/industries/e-commerce",
   },
   {
     id: "ai",
     name: "AI",
     description:
-      "Smart automation tools and predictive analytics systems integrated to speed up complex operations.",
+      "Machine learning integration, intelligent automation frameworks, and predictive analytics that optimize business processes.",
     link: "",
   },
 ];
@@ -134,35 +125,31 @@ const IndustriesSection: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false });
   return (
-    <div className="relative py-8 md:py-12 lg:py-16 px-6 overflow-hidden w-11/12 max-w-7xl mx-auto">
-      <motion.div
-        ref={ref}
-        // @ts-expect-error - ignore
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className="w-full mx-auto py-8 md:py-12 lg:py-16 z-10 bg-white"
-      >
-        <motion.h2
-          // @ts-expect-error - ignore
-          variants={itemVariants}
-          className="text-center  text-4xl md:text-5xl text-duck-bluefontlight font-extrabold z-10 mb-6 uppercase"
-        >
-          Industry We Work
-        </motion.h2>{" "}
-        <motion.p
-          // @ts-expect-error - ignore
-          variants={itemVariants}
-          className="text-center text-lg md:text-xl text-duck-bluefontlight font-semibold w-11/12 md:w-2/3 mx-auto "
-        >
-          Our many-sided expertise spans different industries, so we deliver
-          reliable products that meet your requirements and captivate users.
-        </motion.p>
-      </motion.div>
+    <GrayContainer
+      className="py-16 md:py-20 lg:py-24"
+      gridLines={true}
+      decorativeElements={
+        <>
+          <div className="absolute inset-0 opacity-30 dark:opacity-20">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-400/20 dark:bg-blue-500/30 rounded-full filter blur-3xl animate-pulse"></div>
+            <div
+              className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-cyan-400/20 dark:bg-purple-500/30 rounded-full filter blur-3xl animate-pulse"
+              style={{ animationDelay: "1.5s" }}
+            ></div>
+          </div>
+        </>
+      }
+    >
+      <PageSectionHeader
+        badge="Our Expertise"
+        title="Industries We Serve"
+        description="Our diverse expertise spans multiple industries, delivering tailored solutions that meet your unique requirements and captivate your users."
+        darkMode={false}
+      />
       <motion.div
         // @ts-expect-error - ignore
         variants={containerMotion}
-        className="relative z-10 "
+        className="relative z-10 max-w-7xl mx-auto w-11/12"
       >
         <motion.div
           // @ts-expect-error - ignore
@@ -195,7 +182,6 @@ const IndustriesSection: React.FC = () => {
               backgroundRepeat: "no-repeat",
             }}
           ></div>
-          {/* TODO Ends !Show in mobile */}
           {/* Left Side Industries */}
           <motion.div
             // @ts-expect-error - ignore
@@ -256,7 +242,7 @@ const IndustriesSection: React.FC = () => {
           </motion.div>
         </motion.div>
       </motion.div>
-    </div>
+    </GrayContainer>
   );
 };
 
