@@ -1,22 +1,10 @@
-import {
-  SITE_FACEBOOK,
-  SITE_INSTAGRAM,
-  SITE_LINKEDIN,
-  XHandle,
-  SITE_YOUTUBE,
-} from "@/lib/constants/env";
 import { Playfair_Display } from "next/font/google";
 import Link from "next/link";
 import React from "react";
 import {
   FaFacebookF,
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTiktok,
-  FaYoutube,
+  FaLinkedinIn
 } from "react-icons/fa";
-import { FaX } from "react-icons/fa6";
 
 // Optimized font loading
 const playfair = Playfair_Display({
@@ -28,13 +16,8 @@ const playfair = Playfair_Display({
 
 // Types
 export type SocialPlatform =
-  | "twitter"
   | "facebook"
-  | "instagram"
   | "linkedin"
-  | "youtube"
-  | "tiktok"
-  | "github";
 
 export type SizeVariant = "sm" | "md" | "lg" | "xl";
 
@@ -52,13 +35,8 @@ export interface SocialFollowProps {
   /** Custom social links array */
   links?: SocialLink[];
   /** Show/hide specific platforms when using default links */
-  showTwitter?: boolean;
   showFacebook?: boolean;
-  showInstagram?: boolean;
   showLinkedin?: boolean;
-  showYoutube?: boolean;
-  showTiktok?: boolean;
-  showGithub?: boolean;
   /** Custom CSS classes for the container */
   className?: string;
   /** Show border top */
@@ -71,13 +49,8 @@ export interface SocialFollowProps {
 
 // Default social links
 const DEFAULT_LINKS: Record<SocialPlatform, string> = {
-  twitter: `https://x.com/${XHandle}`,
-  facebook: SITE_FACEBOOK,
-  instagram: SITE_INSTAGRAM,
-  linkedin: SITE_LINKEDIN,
-  youtube: SITE_YOUTUBE,
-  tiktok: "https://tiktok.com",
-  github: "https://github.com",
+  facebook: 'https://www.facebook.com/share/1BJYsgETKd/',
+  linkedin: 'https://www.linkedin.com/company/blue-pixel-art/'
 };
 
 // Social platform configurations
@@ -89,41 +62,16 @@ const SOCIAL_CONFIG: Record<
     label: string;
   }
 > = {
-  twitter: {
-    icon: FaX,
-    color: "#1DA1F2",
-    label: "Twitter",
-  },
   facebook: {
     icon: FaFacebookF,
     color: "#1877F2",
     label: "Facebook",
   },
-  instagram: {
-    icon: FaInstagram,
-    color: "#E1306C",
-    label: "Instagram",
-  },
   linkedin: {
     icon: FaLinkedinIn,
     color: "#0A66C2",
     label: "LinkedIn",
-  },
-  youtube: {
-    icon: FaYoutube,
-    color: "#FF0000",
-    label: "YouTube",
-  },
-  tiktok: {
-    icon: FaTiktok,
-    color: "#000000",
-    label: "TikTok",
-  },
-  github: {
-    icon: FaGithub,
-    color: "#181717",
-    label: "GitHub",
-  },
+  }
 };
 
 // Size configurations
@@ -181,13 +129,8 @@ export default function SocialFollow({
   title = "Follow Us",
   size = "md",
   links,
-  showTwitter = false,
   showFacebook = true,
-  showInstagram = true,
   showLinkedin = true,
-  showYoutube = true,
-  showTiktok = false,
-  showGithub = false,
   className = "",
   showBorder = true,
   titleClassName = "",
@@ -199,34 +142,14 @@ export default function SocialFollow({
   const displayLinks: SocialLink[] = links
     ? links
     : ([
-        showTwitter && {
-          platform: "twitter" as SocialPlatform,
-          url: DEFAULT_LINKS.twitter,
-        },
         showFacebook && {
           platform: "facebook" as SocialPlatform,
           url: DEFAULT_LINKS.facebook,
         },
-        showInstagram && {
-          platform: "instagram" as SocialPlatform,
-          url: DEFAULT_LINKS.instagram,
-        },
         showLinkedin && {
           platform: "linkedin" as SocialPlatform,
           url: DEFAULT_LINKS.linkedin,
-        },
-        showYoutube && {
-          platform: "youtube" as SocialPlatform,
-          url: DEFAULT_LINKS.youtube,
-        },
-        showTiktok && {
-          platform: "tiktok" as SocialPlatform,
-          url: DEFAULT_LINKS.tiktok,
-        },
-        showGithub && {
-          platform: "github" as SocialPlatform,
-          url: DEFAULT_LINKS.github,
-        },
+        }
       ].filter(Boolean) as SocialLink[]);
 
   return (

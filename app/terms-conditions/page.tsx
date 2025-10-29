@@ -119,24 +119,13 @@ const TermsConditions = () => {
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl"></div>
           </div>
 
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4 relative z-10 mt-20">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ duration: 0.8 }}
               className="text-center max-w-4xl mx-auto"
             >
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="inline-flex items-center gap-3 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-2xl mb-8"
-              >
-                <Scale className="w-6 h-6" />
-                <span className="font-semibold text-sm uppercase tracking-wider">
-                  Service Terms
-                </span>
-              </motion.div>
 
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}

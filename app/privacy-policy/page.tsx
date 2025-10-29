@@ -108,23 +108,12 @@ const PrivacyPolicy = () => {
               transition={{ duration: 0.8 }}
               className="text-center max-w-4xl mx-auto"
             >
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="inline-flex items-center gap-3 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-2xl mb-8"
-              >
-                <Shield className="w-6 h-6" />
-                <span className="font-semibold text-sm uppercase tracking-wider">
-                  Privacy & Security
-                </span>
-              </motion.div>
 
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ delay: 0.3, duration: 0.7 }}
-                className="text-4xl lg:text-6xl font-bold mb-6"
+                className="text-4xl lg:text-6xl font-bold mb-6 mt-20"
               >
                 Privacy <span className="text-blue-200">Policy</span>
               </motion.h1>

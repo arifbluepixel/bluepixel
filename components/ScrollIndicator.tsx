@@ -11,7 +11,6 @@ interface ScrollIndicatorProps {
 }
 
 const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
-  text = "Scroll to Discover",
   color = "cyan",
   className = "",
   delay = 1.2,
@@ -58,11 +57,6 @@ const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
       onClick={onClick}
     >
       <div className="flex flex-col items-center space-y-3">
-        <span
-          className={`text-xs uppercase tracking-widest ${selectedColor.text}`}
-        >
-          {text}
-        </span>
         <motion.div
           className={`w-6 h-10 border-2 rounded-full flex justify-center ${selectedColor.border}`}
           animate={{

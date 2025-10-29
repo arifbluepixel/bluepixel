@@ -106,7 +106,7 @@ const AboutHero = () => {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center py-6 md:py-10"
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center py-6 md:py-10 my-5"
             >
               <AnimatedButton
                 text="View Our Services"

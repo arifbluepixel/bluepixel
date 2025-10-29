@@ -73,27 +73,15 @@ const Footer = () => {
     {
       label: "Facebook",
       icon: FaFacebook,
-      href: "https://www.facebook.com/BluePixel",
+      href: "https://www.facebook.com/share/1BJYsgETKd/",
       color: "#1877F2",
     },
     {
       label: "LinkedIn",
       icon: FaLinkedinIn,
-      href: "https://www.linkedin.com/company/bluepixel",
+      href: "https://www.linkedin.com/company/blue-pixel-art/",
       color: "#0A66C2",
-    },
-    {
-      label: "YouTube",
-      icon: FaYoutube,
-      href: "https://www.youtube.com/@bluepixel",
-      color: "#FF0000",
-    },
-    {
-      label: "Instagram",
-      icon: FaInstagram,
-      href: "https://www.instagram.com/bluepixel",
-      color: "#E1306C",
-    },
+    }
   ];
 
   const trustBadges = [
