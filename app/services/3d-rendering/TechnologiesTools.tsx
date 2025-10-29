@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -43,67 +43,174 @@ const tools = [
 
 export default function TechnologiesTools() {
   return (
-    <section className="py-12 md:py-16 lg:py-20 bg-duck-bgblue">
+    <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-[#1A89C7] to-blue-600">
       <div className="w-11/12 max-w-7xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-4xl md:text-5xl  font-bold text-center mb-6 text-white bg-clip-text "
-        >
-          Technologies & Tools
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-lg text-gray-300 text-center mb-12 max-w-2xl mx-auto"
-        >
-          We leverage industry-leading software and tools to deliver
-          high-quality 3D renders and animations.
-        </motion.p>
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-2xl mb-8">
+            <div className="flex gap-1">
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse delay-150"></div>
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse delay-300"></div>
+            </div>
+            <span className="text-white font-semibold text-sm uppercase tracking-wider">
+              Our Toolkit
+            </span>
+            <div className="flex gap-1">
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse delay-150"></div>
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse delay-300"></div>
+            </div>
+          </div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
+          >
+            Technologies &{" "}
+            <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+              Tools
+            </span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed"
+          >
+            We leverage industry-leading software and cutting-edge tools to deliver exceptional 3D renders and animations.
+          </motion.p>
+        </div>
+
         <Swiper
-          modules={[Pagination, Navigation]}
+          modules={[Pagination, Navigation, Autoplay]}
           spaceBetween={30}
-          centeredSlides={true}
+          centeredSlides={false} // Changed from true to false
           loop={true}
-          slidesPerView={1} // Default to 1 slide on small screens
-          pagination={false}
-          navigation
-          className="px-4"
-          breakpoints={{
-            640: { slidesPerView: 1 }, // Small screens (below 640px)
-            768: { slidesPerView: 3 }, // Medium screens (768px and above)
-            1024: { slidesPerView: 5 }, // Large screens (1024px and above)
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true, // Added for better UX
           }}
+          speed={800} // Added smoother transitions
+          pagination={false}
+          navigation={{
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          }}
+          breakpoints={{
+            320: { slidesPerView: 2 }, // Added mobile breakpoint
+            480: { slidesPerView: 2 }, // Small mobile
+            640: { slidesPerView: 3 }, // Mobile
+            768: { slidesPerView: 4 }, // Tablet
+            1024: { slidesPerView: 5 }, // Desktop
+            1280: { slidesPerView: 6 }, // Large desktop - show all 6 tools
+          }}
+          className="pb-16"
         >
-          {tools.map((tool) => (
+          {tools.map((tool, index) => (
             <SwiperSlide key={tool.id}>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ 
+                  duration: 0.6,
+                  delay: index * 0.1
+                }}
                 viewport={{ once: true }}
-                className="p-6 bg-[#00607391] rounded-2xl shadow-lg flex flex-col items-center text-center transition duration-500 ease-in-out transform hover:scale-95 hover:bg-gray-600 group"
+                className="p-6 bg-white/10 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 hover:bg-white/15 transition-all duration-500 group cursor-pointer h-full flex flex-col items-center justify-center min-h-[200px]" // Added consistent height
+                whileHover={{ 
+                  y: -8,
+                  transition: { type: "spring", stiffness: 300 }
+                }}
               >
-                <div className="w-20 h-20 mb-6 flex items-center justify-center">
+                <motion.div 
+                  className="w-20 h-20 mb-4 flex items-center justify-center relative" // Slightly smaller for better fit
+                  whileHover={{ 
+                    rotate: [0, -3, 3, 0],
+                    transition: { duration: 0.4 }
+                  }}
+                >
+                  {/* Pulsing background effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-white/20 rounded-full"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.3, 0.6, 0.3]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "loop"
+                    }}
+                  />
                   <Image
                     src={tool.logo}
                     alt={tool.name}
-                    width={200}
-                    height={200}
-                    className="w-full h-full object-contain scale-110 group-hover:scale-125 transition duration-500 ease-in-out"
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-contain relative z-10 group-hover:scale-110 transition-transform duration-300"
+                    onError={(e) => {
+                      // Fallback if image fails to load
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      target.nextElementSibling?.classList.remove('hidden');
+                    }}
                   />
-                </div>
-                <h3 className="text-xl font-semibold mb-4 text-white ">
+                  {/* Fallback text if image fails to load */}
+                  <div className="hidden absolute inset-0 flex items-center justify-center text-white font-bold text-sm bg-blue-500/30 rounded-lg backdrop-blur-sm">
+                    {tool.name}
+                  </div>
+                </motion.div>
+                
+                <motion.h3 
+                  className="text-lg font-semibold text-white text-center group-hover:text-blue-200 transition-colors duration-300 mt-2"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                >
                   {tool.name}
-                </h3>
+                </motion.h3>
+
+                {/* Hover Effect Line */}
+                <motion.div 
+                  className="w-0 h-1 bg-gradient-to-r from-white to-blue-200 rounded-full mt-3 group-hover:w-8 transition-all duration-300"
+                  whileHover={{ width: 32 }}
+                />
               </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
+
+        {/* Custom Navigation */}
+        <div className="flex justify-center gap-4 mt-8">
+          <button className="swiper-button-prev w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center hover:bg-white/30 transition-colors duration-300 shadow-lg">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button className="swiper-button-next w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center hover:bg-white/30 transition-colors duration-300 shadow-lg">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Additional Info */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <p className="text-blue-100 text-lg">
+            And many more tools to bring your vision to life
+          </p>
+        </motion.div>
       </div>
     </section>
   );

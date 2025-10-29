@@ -1,70 +1,77 @@
 "use client";
-import Image from "next/image";
-import { useState, useRef, CSSProperties } from "react";
-import { TiltCardProps } from "@/lib/types";
 
-const TiltCard = ({ render }: TiltCardProps) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [tiltStyle, setTiltStyle] = useState<CSSProperties>({
-    transform:
-      "perspective(1000px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)",
-    transition: "all 0.1s ease",
-  });
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import Image from "next/image";
+import { RenderingItem } from "@/lib/types";
+
+interface TiltCardProps {
+  render: RenderingItem;
+  children?: React.ReactNode;
+  className?: string;
+}
+
+const TiltCard = ({ render, children, className = "" }: TiltCardProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!ref.current) return;
 
-    const card = cardRef.current;
-    const rect = card.getBoundingClientRect();
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
 
-    // Calculate mouse position relative to the card
-    const x = e.clientX - rect.left; // x position within the element
-    const y = e.clientY - rect.top; // y position within the element
-
-    // Calculate rotation based on mouse position
-    // We use the position relative to the center of the card
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    // Calculate rotation angles
-    // Reverse the X rotation to make it feel more natural
-    const rotateX = -1 * ((y - centerY) / centerY) * 15; // Max 15 degrees rotation
-    const rotateY = ((x - centerX) / centerX) * 15; // Max 15 degrees rotation
-
-    setTiltStyle({
-      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`,
-      transition: "all 0.1s ease",
-    });
+    x.set(xPct);
+    y.set(yPct);
   };
 
-  const handleMouseLeave = (): void => {
-    setTiltStyle({
-      transform:
-        "perspective(1000px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)",
-      transition: "all 0.5s ease",
-    });
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
   };
 
   return (
-    <div
-      ref={cardRef}
-      className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer"
+    <motion.div
+      ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={tiltStyle}
+      style={{
+        rotateY,
+        rotateX,
+        transformStyle: "preserve-3d",
+      }}
+      className={`${className} relative`}
     >
-      <Image
-        src={render.imageUrl}
-        alt={`Rendering ${render.id}`}
-        width={500}
-        height={500}
-        className="w-full h-full object-cover transition-transform duration-300 transform group-hover:scale-110"
-      />
-      <div className="absolute inset-0 bg-black opacity-1 transition-opacity duration-300 group-hover:opacity-50"></div>
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <p className="text-white text-lg font-semibold px-4">{render.text}</p>
+      <div
+        style={{
+          transform: "translateZ(75px)",
+          transformStyle: "preserve-3d",
+        }}
+        className="relative w-full h-80 lg:h-96"
+      >
+        <Image
+          src={render.imageUrl}
+          alt={render.text}
+          fill
+          className="object-cover rounded-2xl"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        {children}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
