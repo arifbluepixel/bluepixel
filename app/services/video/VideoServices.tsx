@@ -62,7 +62,7 @@ const VideoServices = () => {
       <div className="w-11/12 max-w-7xl mx-auto py-12 md:py-16 lg:py-20">
         {/* Section Heading */}
         <motion.h2
-          className="font-bold text-center mb-12 font-oswald uppercase text-4xl md:text-5xl text-[#093150]"
+          className="font-bold text-center mb-12  uppercase text-4xl md:text-5xl text-[#093150]"
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -89,9 +89,7 @@ const VideoServices = () => {
               <div className="text-5xl text-yellow-500 group-hover:text-duck-cardblue mb-4">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-normal mb-2 font-oswald">
-                {service.title}
-              </h3>
+              <h3 className="text-xl font-normal mb-2 ">{service.title}</h3>
               <p className="text-gray-600 group-hover:text-gray-800">
                 {service.description}
               </p>

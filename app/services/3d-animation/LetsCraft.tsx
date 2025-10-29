@@ -52,7 +52,7 @@ const LetsCraft: React.FC = () => {
         variants={itemVariants}
         className="flex flex-col gap-4 items-center md:items-start justify-center"
       >
-        <h2 className="text-3xl md:text-5xl font-oswald font-bold">
+        <h2 className="text-3xl md:text-5xl  font-bold">
           <span className="text-yellow-500">Crafted With Precision</span>
         </h2>
         <h3 className="text-xl lg:text-2xl font-semibold font-pacifico">

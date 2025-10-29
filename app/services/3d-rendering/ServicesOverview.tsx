@@ -31,7 +31,7 @@ export default function ServicesOverview() {
     <section className=" bg-gray-300 py-12 md:py-16 lg:py-20">
       <div className="w-11/12 max-w-7xl mx-auto text-center ">
         <motion.h2
-          className="font-bold mb-6 text-black bg-clip-text bg-gradient-to-r from-[var(--color-duck-primary)] to-[var(--color-duck-secondary)] font-oswald text-4xl md:text-5xl "
+          className="font-bold mb-6 text-black bg-clip-text bg-gradient-to-r from-[var(--color-duck-primary)] to-[var(--color-duck-secondary)]  text-4xl md:text-5xl "
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}

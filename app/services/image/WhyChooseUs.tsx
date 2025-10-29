@@ -1,9 +1,11 @@
 "use client";
 
-import { FaBolt, FaDollarSign, FaUsers, FaStar } from "react-icons/fa";
+import PageSectionHeader from "@/components/shared/PageSectionHeader";
+import { DarkContainer } from "@/components/shared/PageSections";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import Link from "next/link";
+import { useRef } from "react";
+import { FaBolt, FaDollarSign, FaStar, FaUsers } from "react-icons/fa";
 
 const features = [
   {
@@ -85,50 +87,29 @@ const WhyChooseUs = () => {
   };
 
   return (
-    <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse"></div>
-        <div
-          className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
-      </div>
-
-      {/* Decorative grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
-
+    <DarkContainer
+      gridLines={true}
+      decorativeElements={
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse"></div>
+          <div
+            className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl animate-pulse"
+            style={{ animationDelay: "1s" }}
+          ></div>
+        </div>
+      }
+    >
       <div
         ref={ref}
         className="relative w-11/12 mx-auto max-w-7xl py-16 md:py-20 lg:py-24"
       >
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-block mb-4"
-          >
-            <span className="px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 rounded-full text-blue-400 text-sm font-semibold tracking-wider uppercase backdrop-blur-sm">
-              Why Choose Us
-            </span>
-          </motion.div>
-
-          <h2 className="mt-2 font-bold text-4xl md:text-5xl lg:text-6xl font-oswald uppercase text-white mb-4 tracking-tight">
-            Excellence Delivered Consistently
-          </h2>
-
-          <p className="mt-4 text-slate-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            We integrate precision, expertise, and competitive value to deliver
-            exceptional results that consistently surpass client expectations.
-          </p>
-        </motion.div>
+        <PageSectionHeader
+          badge="Why Choose Us"
+          title="Excellence Delivered Consistently"
+          description="We integrate precision, expertise, and competitive value to deliver exceptional results that consistently surpass client expectations."
+          darkMode={true}
+        />
 
         {/* Features Grid */}
         <motion.div
@@ -255,7 +236,7 @@ const WhyChooseUs = () => {
           </div>
         </motion.div>
       </div>
-    </section>
+    </DarkContainer>
   );
 };
 

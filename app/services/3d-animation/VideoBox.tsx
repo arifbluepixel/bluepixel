@@ -108,7 +108,7 @@ const VideoBox = () => {
         animate={isInView ? "visible" : "hidden"}
         className="flex flex-col items-center gap-2 my-5"
       >
-        <motion.h2 className="text-duck-bluefont text-4xl md:text-5xl font-bold mt-1 font-oswald">
+        <motion.h2 className="text-duck-bluefont text-4xl md:text-5xl font-bold mt-1 ">
           Our 3D <span className="text-yellow-600">Animated </span>
           Videos
         </motion.h2>

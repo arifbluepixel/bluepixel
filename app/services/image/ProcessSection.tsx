@@ -1,5 +1,7 @@
 "use client";
 
+import PageSectionHeader from "@/components/shared/PageSectionHeader";
+import { GrayContainer } from "@/components/shared/PageSections";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
@@ -82,53 +84,31 @@ const ProcessSection = () => {
   };
 
   return (
-    <section className="bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-5 dark:opacity-10">
-        <div
-          className="absolute top-1/3 left-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse"
-          style={{ animationDelay: "0s" }}
-        ></div>
-        <div
-          className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl animate-pulse"
-          style={{ animationDelay: "0.75s" }}
-        ></div>
-      </div>
-
-      {/* Decorative grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
-
+    <GrayContainer
+      gridLines={true}
+      decorativeElements={
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div
+            className="absolute top-1/3 left-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse"
+            style={{ animationDelay: "0s" }}
+          ></div>
+          <div
+            className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl animate-pulse"
+            style={{ animationDelay: "0.75s" }}
+          ></div>
+        </div>
+      }
+    >
       <div
         ref={ref}
         className="relative w-11/12 mx-auto max-w-7xl py-16 md:py-20 lg:py-24"
       >
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-block mb-4"
-          >
-            <span className="px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 dark:from-blue-500/30 dark:to-purple-500/30 border border-blue-500/30 dark:border-blue-500/40 rounded-full text-blue-600 dark:text-blue-400 text-sm font-semibold tracking-wider uppercase backdrop-blur-sm">
-              Our Process
-            </span>
-          </motion.div>
-
-          <h2 className="mt-2 font-bold text-4xl md:text-5xl lg:text-6xl font-oswald uppercase text-slate-900 dark:text-white mb-4 tracking-tight">
-            Streamlined Workflow
-          </h2>
-
-          <p className="mt-4 text-slate-600 dark:text-slate-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            A seamless, professional image processing experience designed to
-            deliver exceptional results efficiently and reliably.
-          </p>
-        </motion.div>
+        <PageSectionHeader
+          badge="Our Process"
+          title="Streamlined Workflow"
+          description="A seamless, professional image processing experience designed to deliver exceptional results efficiently and reliably."
+        />
 
         {/* Process Steps */}
         <motion.div
@@ -245,7 +225,7 @@ const ProcessSection = () => {
           </div>
         </motion.div>
       </div>
-    </section>
+    </GrayContainer>
   );
 };
 

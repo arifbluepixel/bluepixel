@@ -52,7 +52,7 @@ const ClientTestimonials = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-oswald font-bold text-center mb-8 text-white"
+          className="text-4xl md:text-5xl  font-bold text-center mb-8 text-white"
         >
           What Our Clients Say
         </motion.h2>

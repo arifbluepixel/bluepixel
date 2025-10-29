@@ -761,11 +761,11 @@ export default function Projects() {
     <section className="py-16 bg-gray-100">
       <div className="container mx-auto px-4">
         <div className="flex flex-col gap-3 py-10 ">
-          <h2 className="text-2xl font-semibold font-oswald italic text-yellow-600 text-center uppercase">
+          <h2 className="text-2xl font-semibold  italic text-yellow-600 text-center uppercase">
             * Explore our latest web development projects showcasing modern
             technologies and innovative solutions!
           </h2>
-          <p className="text-4xl md:text-5xl font-extrabold font-oswald text-duck-bluefont text-center uppercase">
+          <p className="text-4xl md:text-5xl font-extrabold  text-duck-bluefont text-center uppercase">
             Featured Projects
           </p>
         </div>

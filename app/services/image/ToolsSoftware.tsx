@@ -1,10 +1,16 @@
 "use client";
 
+import PageSectionHeader from "@/components/shared/PageSectionHeader";
+import { DarkContainer } from "@/components/shared/PageSections";
 import { motion, useInView } from "framer-motion";
-import { DiPhotoshop, DiIllustrator } from "react-icons/di";
-import { SiAdobelightroom } from "react-icons/si";
-import { SiAffinityphoto, SiCoreldraw, SiGimp } from "react-icons/si";
 import { useRef } from "react";
+import { DiIllustrator, DiPhotoshop } from "react-icons/di";
+import {
+  SiAdobelightroom,
+  SiAffinityphoto,
+  SiCoreldraw,
+  SiGimp,
+} from "react-icons/si";
 
 const tools = [
   {
@@ -104,52 +110,32 @@ export default function ToolsSoftware() {
   };
 
   return (
-    <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative dark:from-slate-800 dark:via-slate-700 dark:to-slate-800 overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-5 dark:opacity-10">
-        <div
-          className="absolute top-1/3 left-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse"
-          style={{ animationDelay: "0s" }}
-        ></div>
-        <div
-          className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl animate-pulse"
-          style={{ animationDelay: "0.75s" }}
-        ></div>
-      </div>
-      {/* Decorative grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
-
+    <DarkContainer
+      gridLines={true}
+      decorativeElements={
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div
+            className="absolute top-1/3 left-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse"
+            style={{ animationDelay: "0s" }}
+          ></div>
+          <div
+            className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl animate-pulse"
+            style={{ animationDelay: "0.75s" }}
+          ></div>
+        </div>
+      }
+    >
       <div
         ref={ref}
         className="relative w-11/12 mx-auto max-w-7xl py-16 md:py-20 lg:py-24"
       >
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-block mb-4"
-          >
-            <span className="px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 dark:from-blue-500/30 dark:to-purple-500/30 border border-blue-500/30 dark:border-blue-500/40 rounded-full text-blue-400 dark:text-blue-300 text-sm font-semibold tracking-wider uppercase backdrop-blur-sm">
-              Tools & Software
-            </span>
-          </motion.div>
-
-          <h2 className="mt-2 font-bold text-4xl md:text-5xl lg:text-6xl font-oswald uppercase  text-white mb-4 tracking-tight">
-            Professional Toolkit
-          </h2>
-
-          <p className="mt-4 text-slate-300 dark:text-slate-200 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            We utilize industry leading software and tools to ensure precision,
-            efficiency, and superior quality in every project.
-          </p>
-        </motion.div>
+        <PageSectionHeader
+          badge="Tools & Software"
+          title="Professional Toolkit"
+          description="We utilize industry leading software and tools to ensure precision, efficiency, and superior quality in every project."
+          darkMode={true}
+        />
 
         {/* Tools Grid */}
         <motion.div
@@ -199,6 +185,6 @@ export default function ToolsSoftware() {
           ))}
         </motion.div>
       </div>
-    </section>
+    </DarkContainer>
   );
 }

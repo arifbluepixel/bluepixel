@@ -167,7 +167,7 @@ export default function ProcessSlider() {
                   }rem)`,
                 }}
               >
-                <h3 className="font-oswald text-2xl text-[#0A314F] text-left pl-7 md:pl-5 pt-5">
+                <h3 className=" text-2xl text-[#0A314F] text-left pl-7 md:pl-5 pt-5">
                   {step.title}
                 </h3>
                 <p className="text-gray-700 mt-2 px-7 md:px-5  text-justify p-5 leading-6">

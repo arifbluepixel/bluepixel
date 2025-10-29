@@ -57,7 +57,7 @@ const ProcessSection = () => {
         <div className="md:w-2/3 flex flex-col items-center md:items-start">
           <div className="flex flex-col gap-2 w-full md:w-10/12 mx-auto md:mx-0">
             <motion.h2
-              className="text-4xl md:text-5xl lg:text-5xl font-extrabold font-oswald text-white text-center md:text-left uppercase mb-4"
+              className="text-4xl md:text-5xl lg:text-5xl font-extrabold  text-white text-center md:text-left uppercase mb-4"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
@@ -101,7 +101,7 @@ const ProcessSection = () => {
                   </div>
 
                   {/* Step Content */}
-                  <h3 className="text-2xl text-gray-50 mb-1 z-10 font-oswald font-medium">
+                  <h3 className="text-2xl text-gray-50 mb-1 z-10  font-medium">
                     {step.title}
                   </h3>
                   <p className="text-gray-100 text-[16px] z-10">

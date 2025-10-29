@@ -48,7 +48,7 @@ export default function HowWeWork() {
         <motion.h2
           // @ts-expect-error - ignore
           variants={itemVariants}
-          className="text-center font-oswald text-4xl md:text-5xl text-white font-extrabold z-10 leading-14 uppercase"
+          className="text-center  text-4xl md:text-5xl text-white font-extrabold z-10 leading-14 uppercase"
         >
           Teams Workflow
         </motion.h2>{" "}

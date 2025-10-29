@@ -121,18 +121,18 @@ const Technologies = () => {
         {/* Right Section - TechStacks (Scrollable) */}
         <div className="w-full md:w-2/3 md:px-4 ">
           <div className="my-5">
-            <h2 className="text-2xl font-semibold font-oswald italic text-yellow-500 text-left uppercase">
+            <h2 className="text-2xl font-semibold  italic text-yellow-500 text-left uppercase">
               * Building modern, responsive web apps by staying ahead with the
               latest trends..
             </h2>
-            <p className="text-4xl md:text-5xl font-bold font-oswald text-duck-bluefont text-left uppercase">
+            <p className="text-4xl md:text-5xl font-bold  text-duck-bluefont text-left uppercase">
               Custom web development technologies
             </p>
           </div>
           <div className="space-y-10 h-auto">
             {techData.map((section, index) => (
               <div key={index} className="flex flex-col gap-4 pt-1">
-                <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 font-oswald">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 ">
                   {section.title}
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 text-justify">

@@ -1,0 +1,2 @@
+export const darkSectionCSS = `bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden dark:bg-gradient-to-b dark:from-slate-950 dark:via-slate-800 dark:to-slate-950`;
+export const lightSectionCSS = `bg-gradient-to-b from-slate-50 via-slate-100 to-slate-50 dark:bg-gradient-to-t dark:from-sky-800/50 dark:via-cyan-900 dark:to-cyan-950  relative overflow-hidden`;

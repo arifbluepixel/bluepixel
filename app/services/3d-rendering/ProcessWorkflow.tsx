@@ -56,7 +56,7 @@ export default function ProcessWorkflow() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false }}
-          className="text-4xl md:text-5xl font-oswald font-bold text-center mb-6 text-black bg-clip-text "
+          className="text-4xl md:text-5xl  font-bold text-center mb-6 text-black bg-clip-text "
         >
           Our Process
         </motion.h2>
@@ -88,7 +88,7 @@ export default function ProcessWorkflow() {
                 {index % 2 === 0 && (
                   <>
                     <div className="md:w-1/2 md:pr-8 text-right pb-0 md:pb-4">
-                      <h3 className="text-2xl font-medium font-oswald text-duck-cardblue mb-2">
+                      <h3 className="text-2xl font-medium  text-duck-cardblue mb-2">
                         {step.title}
                       </h3>
                       <p className="text-gray-600">{step.description}</p>
@@ -107,7 +107,7 @@ export default function ProcessWorkflow() {
                       {step.icon}
                     </div>
                     <div className="md:w-1/2 md:pl-8 text-left pb-0 md:pb-4">
-                      <h3 className="text-2xl font-medium font-oswald text-duck-bgblue mb-2">
+                      <h3 className="text-2xl font-medium  text-duck-bgblue mb-2">
                         {step.title}
                       </h3>
                       <p className="text-gray-600">{step.description}</p>

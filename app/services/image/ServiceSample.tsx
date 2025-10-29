@@ -33,7 +33,7 @@ export default function ServiceSample({
         transition={{ duration: 0.6 }}
         className={`absolute -top-8 ${
           left ? `left-0` : `right-0`
-        } text-8xl font-bold text-slate-200 pointer-events-none select-none`}
+        } text-8xl font-bold text-sky-600 dark:text-cyan-50  pointer-events-none select-none`}
       >
         0{index + 1}
       </motion.div>
@@ -69,7 +69,7 @@ export default function ServiceSample({
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-oswald font-bold text-slate-900 leading-tight"
+            className="text-3xl md:text-4xl lg:text-5xl  font-bold text-slate-900 dark:text-slate-100 leading-tight"
           >
             {subtitle}
           </motion.h3>
@@ -79,7 +79,7 @@ export default function ServiceSample({
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-lg text-slate-600 leading-relaxed"
+            className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed"
           >
             {description}
           </motion.p>

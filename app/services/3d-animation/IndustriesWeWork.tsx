@@ -77,7 +77,7 @@ const IndustriesWeWork = () => {
           animate={isInView ? "visible" : "hidden"}
           className="flex flex-col items-center gap-2 my-5"
         >
-          <motion.h2 className="text-yellow-500 text-4xl md:text-5xl font-bold mt-1 font-oswald">
+          <motion.h2 className="text-yellow-500 text-4xl md:text-5xl font-bold mt-1 ">
             Industries
           </motion.h2>
           <motion.h3 className="text-lg md:text-xl text-duck-bluefontlight font-bold">
@@ -132,7 +132,7 @@ const IndustriesWeWork = () => {
                         className="w-36 h-36 object-contain mb-4"
                       />
                       <p
-                        className={`text-lg text-black font-oswald ${
+                        className={`text-lg text-black  ${
                           isCenter ? "font-semibold" : "font-light"
                         }`}
                       >

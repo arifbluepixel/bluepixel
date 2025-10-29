@@ -5,6 +5,7 @@ import Lottie from "lottie-react";
 import { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import faq from "@/public/animations/faq.json";
+import { darkSectionCSS, lightSectionCSS } from "@/lib/helper/design";
 
 interface FaqsProps {
   question: string;
@@ -13,9 +14,10 @@ interface FaqsProps {
 
 interface FAQComponentProps {
   faqs: FaqsProps[];
+  dark?: boolean;
 }
 
-const FAQ = ({ faqs }: FAQComponentProps) => {
+const FAQ = ({ faqs, dark = false }: FAQComponentProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
   const ref = useRef(null);
@@ -52,7 +54,7 @@ const FAQ = ({ faqs }: FAQComponentProps) => {
   };
 
   return (
-    <section className="bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden">
+    <section className={dark ? darkSectionCSS : lightSectionCSS}>
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-5 dark:opacity-10">
         <div

@@ -46,9 +46,9 @@ const VideoHero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             className="mt-2 text-gray-600 max-w-xl"
           >
-            Turn your raw footage into captivating, high-quality videos. Our
-            skilled team delivers seamless edits, dynamic transitions, and
-            expertly color-graded visuals to enhance your brand’s storytelling.
+            Give your raw footage new life. With fluid editing, dynamic
+            transitions, and cinematic color tones, we shape visuals that truly
+            speak your brand&apos;s story
           </motion.p>
         }
         bgColor="#F9FAFB"

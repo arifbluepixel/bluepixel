@@ -30,7 +30,7 @@ const LetsCreate = () => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="flex flex-col items-center justify-center bg-[#0B2A4A] text-center p-6 font-oswald py-12 md:py-16 lg:py-20"
+      className="flex flex-col items-center justify-center bg-[#0B2A4A] text-center p-6  py-12 md:py-16 lg:py-20"
     >
       <motion.h1
         // @ts-expect-error - ignore

@@ -50,7 +50,7 @@ export default function TechnologiesTools() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-oswald font-bold text-center mb-6 text-white bg-clip-text "
+          className="text-4xl md:text-5xl  font-bold text-center mb-6 text-white bg-clip-text "
         >
           Technologies & Tools
         </motion.h2>
@@ -97,7 +97,7 @@ export default function TechnologiesTools() {
                     className="w-full h-full object-contain scale-110 group-hover:scale-125 transition duration-500 ease-in-out"
                   />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-white font-oswald">
+                <h3 className="text-xl font-semibold mb-4 text-white ">
                   {tool.name}
                 </h3>
               </motion.div>

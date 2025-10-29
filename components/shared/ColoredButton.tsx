@@ -15,7 +15,7 @@ export const ColoredButton: React.FC<ColoredButtonProps> = ({
         } ${
           isPrimary
             ? "bg-gray-900 text-white font-pacifico"
-            : "bg-transparent text-gray-900 border border-gray-300 font-oswald"
+            : "bg-transparent text-gray-900 border border-gray-300 "
         }`}
       >
         {/* Background effect */}

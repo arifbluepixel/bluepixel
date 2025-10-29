@@ -146,7 +146,7 @@ const IndustriesSection: React.FC = () => {
         <motion.h2
           // @ts-expect-error - ignore
           variants={itemVariants}
-          className="text-center font-oswald text-4xl md:text-5xl text-duck-bluefontlight font-extrabold z-10 mb-6 uppercase"
+          className="text-center  text-4xl md:text-5xl text-duck-bluefontlight font-extrabold z-10 mb-6 uppercase"
         >
           Industry We Work
         </motion.h2>{" "}

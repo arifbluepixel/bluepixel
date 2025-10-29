@@ -59,7 +59,7 @@ export default function HowWeWork() {
               variants={LeftToRight}
               className="space-y-3 col-span-1"
             >
-              <h2 className="text-yellow-500 text-4xl md:text-5xl font-bold mt-1 font-oswald">
+              <h2 className="text-yellow-500 text-4xl md:text-5xl font-bold mt-1 ">
                 Transforming Ideas
               </h2>
               <h3 className="text-xl md:text-2xl font-medium text-duck-bluefontlight">

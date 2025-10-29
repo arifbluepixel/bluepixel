@@ -51,10 +51,10 @@ const WhyUs = () => {
 
         {/* Right Section - Cards (Scrollable) */}
         <div className="w-full md:w-2/3 space-y-5">
-          <h2 className="text-2xl font-semibold font-oswald italic text-yellow-500 text-left uppercase">
+          <h2 className="text-2xl font-semibold  italic text-yellow-500 text-left uppercase">
             * Why choose us as your web developers?!
           </h2>
-          <p className="text-4xl md:text-5xl font-bold font-oswald text-duck-bluefont text-left uppercase">
+          <p className="text-4xl md:text-5xl font-bold  text-duck-bluefont text-left uppercase">
             Why Us ?
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:pt-4 ">

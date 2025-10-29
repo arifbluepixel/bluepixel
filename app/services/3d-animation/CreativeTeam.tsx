@@ -155,7 +155,7 @@ export default function CreativeTeam() {
           <h3 className="text-xl md:text-2xl font-medium text-duck-bluefontlight">
             The Creative Team Driving Your
           </h3>
-          <h2 className="text-yellow-500 text-4xl md:text-5xl font-bold mt-1 font-oswald">
+          <h2 className="text-yellow-500 text-4xl md:text-5xl font-bold mt-1 ">
             3D Animation Project Forward
           </h2>
         </motion.div>
@@ -176,7 +176,7 @@ export default function CreativeTeam() {
               className="bg-[#0a1744] rounded-lg px-6 pt-6 pb-20 text-white flex flex-col gap-2 relative group"
             >
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-yellow-500 text-2xl font-medium font-oswald pr-2">
+                <h2 className="text-yellow-500 text-2xl font-medium  pr-2">
                   {team.title}
                 </h2>
                 <div className="w-6 h-6 text-white">{team.icon}</div>

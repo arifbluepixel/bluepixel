@@ -27,7 +27,7 @@ export default function page() {
       <WhyChooseUs />
       <ProcessSection />
       <ToolsSoftware />
-      <FAQ faqs={imageFaqs} />
+      <FAQ faqs={imageFaqs} dark={false} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

@@ -150,9 +150,9 @@ export default function WhatWeDo() {
   const isInView = useInView(ref, { once: false });
   const [selectedwedo, setSelectedWeDo] = useState(0);
   const hoverEffect =
-    "bg-gray-50 p-1 rounded-lg hover:bg-yellow-400 hover:text-black font-oswald font-light hover:font-semibold hover:text-center";
+    "bg-gray-50 p-1 rounded-lg hover:bg-yellow-400 hover:text-black  font-light hover:font-semibold hover:text-center";
   const activeEffect =
-    "bg-yellow-400 p-1 rounded-lg text-black font-semibold font-oswald text-center ";
+    "bg-yellow-400 p-1 rounded-lg text-black font-semibold  text-center ";
   const handleSelectedBtn = (selected: number): void => {
     setSelectedWeDo(selected);
   };
@@ -169,7 +169,7 @@ export default function WhatWeDo() {
         <motion.h2
           // @ts-expect-error - ignore
           variants={itemVariants}
-          className="text-center font-oswald text-4xl mb-6 md:text-5xl text-duck-bluefont uppercase font-extrabold z-10"
+          className="text-center  text-4xl mb-6 md:text-5xl text-duck-bluefont uppercase font-extrabold z-10"
         >
           What We Do
         </motion.h2>{" "}
@@ -221,7 +221,7 @@ export default function WhatWeDo() {
           variants={itemVariants}
           className="col-span-1 md:col-span-3 lg:col-span-3 px-4 flex flex-col gap-3"
         >
-          <h2 className="text-2xl my-3 text-center font-oswald font-extrabold text-duck-bluefontlight md:border-t-0 border-t-gray-300 border-t-2 pt-5 md:pt-0">
+          <h2 className="text-2xl my-3 text-center  font-extrabold text-duck-bluefontlight md:border-t-0 border-t-gray-300 border-t-2 pt-5 md:pt-0">
             {whatwedo[selectedwedo].title}
           </h2>
 
