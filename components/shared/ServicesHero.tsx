@@ -26,7 +26,7 @@ const ServicesHero: React.FC<HeroSectionProps> = ({
     <GrayContainer className="pt-28 md:pt-32 lg:pt-36 pb-20">
       <div className="w-11/12 max-w-7xl mx-auto h-full flex flex-col md:flex-row items-center justify-center">
         {/* Left Section */}
-        <div className="w-full md:w-2/3 text-black mb-8 md:mb-0 md:pr-8">
+        <div className="w-full md:w-2/3 mb-8 md:mb-0 md:pr-8">
           {title && (
             <h1 className="text-4xl md:text-5xl font-bold leading-tight md:leading-[1.3] mb-6">
               {/* First Part */}
@@ -34,6 +34,7 @@ const ServicesHero: React.FC<HeroSectionProps> = ({
                 initial={{ opacity: 0, x: -50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.7 }}
+                className="text-black dark:text-white"
               >
                 {parts[0]}
               </motion.span>
@@ -56,6 +57,7 @@ const ServicesHero: React.FC<HeroSectionProps> = ({
                   initial={{ opacity: 0, x: -50 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.7, delay: 0.4 }}
+                  className="text-black dark:text-white"
                 >
                   {parts[1]}
                 </motion.span>

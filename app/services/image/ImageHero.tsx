@@ -1,6 +1,5 @@
 "use client";
 
-import ServiceHero from "@/components/shared/ServiceHero";
 import ServicesHero from "@/components/shared/ServicesHero";
 import { ImageHero1, ImageHero2, ImageHero3 } from "@/lib/constants/images";
 import { motion, useInView } from "framer-motion";
@@ -12,7 +11,7 @@ export default function ImageHero() {
   const isInView = useInView(ref, { margin: "-100px" });
 
   return (
-    <div ref={ref} className="overflow-hidden">
+    <div ref={ref}>
       <ServicesHero
         isInView={isInView}
         highlightTitle={`Image Post Production`}
