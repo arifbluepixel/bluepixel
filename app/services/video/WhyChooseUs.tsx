@@ -86,7 +86,7 @@ const WhyChooseUs = () => {
     <GrayContainer
       gridLines={true}
       decorativeElements={
-        <div className="absolute inset-0 opacity-10 dark:opacity-20">
+        <div className="absolute inset-0 opacity-10 dark:opacity-20 -z-50">
           <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-[#83c5be] rounded-full filter blur-3xl animate-pulse"></div>
           <div
             className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-[#ffddd2] rounded-full filter blur-3xl animate-pulse"

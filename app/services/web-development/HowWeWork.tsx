@@ -100,6 +100,8 @@ export default function ProcessWorkflow() {
         cards = 1;
       } else if (window.innerWidth < 1024) {
         cards = 3;
+      } else if (window.innerWidth < 1400) {
+        cards = 4;
       } else {
         cards = 5;
       }
@@ -142,7 +144,7 @@ export default function ProcessWorkflow() {
       gridLines={true}
       decorativeElements={
         <>
-          <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 opacity-20 -z-50">
             <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-blue-500/30 rounded-full filter blur-3xl animate-pulse"></div>
             <div
               className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-purple-500/30 rounded-full filter blur-3xl animate-pulse"
@@ -176,7 +178,7 @@ export default function ProcessWorkflow() {
         >
           <div className="text-slate-400 text-sm font-medium">
             Step
-            {currentIndex !== visibleCards ? (
+            {currentIndex === visibleCards ? (
               <> {currentIndex + 1}</>
             ) : (
               <>
@@ -187,7 +189,7 @@ export default function ProcessWorkflow() {
           </div>
           <div className="flex items-center space-x-3">
             <div className="text-slate-300 text-base font-semibold px-4 py-2 bg-slate-800/50 rounded-lg border border-slate-700/50">
-              {currentIndex !== visibleCards ? (
+              {currentIndex === visibleCards ? (
                 <> {currentIndex + 1}</>
               ) : (
                 <>
@@ -252,11 +254,11 @@ export default function ProcessWorkflow() {
                     <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 text-white font-bold text-lg shadow-lg min-w-10">
                       {step.id}
                     </div>
-                    <h3 className="text-2xl text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500 font-bold group-hover:from-sky-300 group-hover:to-blue-400 transition-all">
+                    <h3 className="md:text-lg lg:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500 font-bold group-hover:from-sky-300 group-hover:to-blue-400 transition-all">
                       {step.title}
                     </h3>
                   </div>
-                  <p className="text-slate-300 leading-relaxed text-base md:text-lg text-justify">
+                  <p className="text-slate-300 leading-relaxed text-sm sm:text-xs md:text-sm text-justify">
                     {step.description}
                   </p>
                 </motion.div>
