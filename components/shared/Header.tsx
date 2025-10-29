@@ -138,13 +138,23 @@ const AnimatedLogo = () => {
           opacity: animationStage === "complete" ? 1 : 0,
         }}
       >
-        <Image
-          src={logo}
-          alt={SITE_NAME}
-          height={28}
-          width={200}
-          className="h-7 w-36"
-        />
+        <div className="flex items-center gap-1">
+          <Image
+            width={32}
+            height={32}
+            src={bluepixel}
+            alt="Loading"
+            className="h-6 w-6 drop-shadow-lg "
+            style={{
+              animationDuration: "1s",
+            }}
+          />
+          <span
+            className={`text-[24px] font-bold text-sky-800 ${jaroFont.className}`}
+          >
+            Blue Pixel
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -403,14 +413,24 @@ export default function Header() {
           </div>
 
           <div className="mt-6 flex justify-center">
-            <div className="flex h-16 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm px-8 shadow-xl">
-              <Image
-                src={logo}
-                alt={SITE_NAME}
-                height={40}
-                width={160}
-                className="h-10 w-auto"
-              />
+            <div className="flex h-16 items-center justify-center rounded-xl bg-cyan-100 backdrop-blur-sm px-4 shadow-xl">
+              <div className="flex items-center gap-1">
+                <Image
+                  width={32}
+                  height={32}
+                  src={bluepixel}
+                  alt="Loading"
+                  className="h-6 w-6 drop-shadow-lg "
+                  style={{
+                    animationDuration: "1s",
+                  }}
+                />
+                <span
+                  className={`text-[24px] font-bold text-sky-800 ${jaroFont.className}`}
+                >
+                  Blue Pixel
+                </span>
+              </div>
             </div>
           </div>
 
@@ -523,6 +543,9 @@ export default function Header() {
               >
                 <FaFacebook size={18} />
               </a>
+              <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-teal-400 text-white hover:bg-teal-400 hover:text-cyan-900 transition-all">
+                <ThemeToggle />
+              </span>
             </div>
           </div>
         </div>

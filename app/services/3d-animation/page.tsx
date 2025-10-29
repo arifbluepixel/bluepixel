@@ -1,12 +1,11 @@
-import { generateMetadata } from "@/lib/generateMetadata";
-import LetsCraft from "./LetsCraft";
-import ThreeDHero from "./ThreeDHero";
-import CreativeTeam from "./CreativeTeam";
-import IndustriesWeWork from "./IndustriesWeWork";
-import VideoBox from "./VideoBox";
-import HowWeWork from "./HowWeWork";
-import { ThreedAnimationFaqs } from "@/lib/data/faqData";
 import FAQ from "@/components/shared/FAQ";
+import { ThreedAnimationFaqs } from "@/lib/data/faqData";
+import { generateMetadata } from "@/lib/generateMetadata";
+import CreativeTeam from "./CreativeTeam";
+import HowWeWork from "./HowWeWork";
+import IndustriesWeWork from "./IndustriesWeWork";
+import ThreeDHero from "./ThreeDHero";
+import VideoBox from "./VideoBox";
 
 // SEO Starts
 export const metadata = generateMetadata({
@@ -23,7 +22,6 @@ export default function page() {
     <>
       <ThreeDHero />
       <VideoBox />
-      <LetsCraft />
       <IndustriesWeWork />
       <CreativeTeam />
       <HowWeWork />
