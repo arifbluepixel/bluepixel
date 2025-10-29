@@ -56,7 +56,7 @@ Submitted at: ${new Date().toLocaleString()}
     <div class="container">
         <div class="header">
             <h1>New Contact Form Submission</h1>
-            <p>Website Contact Form</p>
+            <p>Blue Pixel Contact Form</p>
         </div>
         <div class="content">
             <div class="field">

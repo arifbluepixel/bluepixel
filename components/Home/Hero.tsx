@@ -10,6 +10,7 @@ import {
   bgRightVariants,
   heroContentVariants,
 } from "@/lib/constants/animation";
+import Link from "next/link";
 
 // Fallback gradient if image fails to load
 const FALLBACK_GRADIENTS = [
@@ -19,6 +20,15 @@ const FALLBACK_GRADIENTS = [
   "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
   "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
 ];
+
+// Service to route mapping
+const SERVICE_ROUTES = {
+  "web-development": "/services/web-development",
+  "3d-rendering": "/services/3d-rendering",
+  "photo-editing": "/services/image",
+  "3d-animation": "/services/3d-animation",
+  "video-editing": "/services/video",
+};
 
 export default function Hero() {
   const [slides, setSlides] = useState(TITLES);
@@ -114,6 +124,9 @@ export default function Hero() {
     ? bgFallback
     : `url(${bgImage})`;
 
+  // Get the route for current slide
+  const currentRoute = SERVICE_ROUTES[currentSlide.id as keyof typeof SERVICE_ROUTES] || "/";
+
   return (
     <section className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center bg-white dark:bg-gray-950 transition-colors duration-500 z-10">
       {/* Background Images - Split Screen */}
@@ -168,7 +181,7 @@ export default function Hero() {
           <AnimatePresence mode="wait">
             <motion.div
               key={`mobile-${currentSlide.id}`}
-              // @ts-expect-error - ignore for now
+              // @ts-expect-error - ignore this
               variants={bgMobileVariants}
               initial="initial"
               animate="animate"
@@ -202,7 +215,7 @@ export default function Hero() {
               >
                 <motion.h1
                   custom={0}
-                  // @ts-expect-error - ignore for now
+                  // @ts-expect-error - ignore this
                   variants={heroContentVariants}
                   className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 uppercase tracking-tight leading-tight"
                 >
@@ -211,7 +224,7 @@ export default function Hero() {
 
                 <motion.p
                   custom={1}
-                  // @ts-expect-error - ignore for now
+                  // @ts-expect-error - ignore this
                   variants={heroContentVariants}
                   className="text-base sm:text-lg lg:text-xl text-gray-100 dark:text-gray-200 mb-6 sm:mb-8 leading-relaxed"
                 >
@@ -220,25 +233,27 @@ export default function Hero() {
 
                 <motion.div
                   custom={2}
-                  // @ts-expect-error - ignore for now
+                  // @ts-expect-error - ignore this
                   variants={heroContentVariants}
                 >
-                  <motion.button
-                    whileHover={{
-                      scale: 1.05,
-                      backgroundColor: "rgba(255, 255, 255, 0.95)",
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-6 sm:px-8 py-2.5 sm:py-3 bg-white/80 dark:bg-gray-100 backdrop-blur-sm text-gray-900 dark:text-gray-950 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer text-sm sm:text-base"
-                  >
-                    {currentSlide.card.cta}
-                  </motion.button>
+                  <Link href={currentRoute} passHref>
+                    <motion.button
+                      whileHover={{
+                        scale: 1.05,
+                        backgroundColor: "rgba(255, 255, 255, 0.95)",
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-6 sm:px-8 py-2.5 sm:py-3 bg-white/80 dark:bg-gray-100 backdrop-blur-sm text-gray-900 dark:text-gray-950 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer text-sm sm:text-base"
+                    >
+                      {currentSlide.card.cta}
+                    </motion.button>
+                  </Link>
                 </motion.div>
 
                 {/* Indicator Dots - Mobile */}
                 <motion.div
                   custom={3}
-                  // @ts-expect-error - ignore for now
+                  // @ts-expect-error - ignore this
                   variants={heroContentVariants}
                   className="flex gap-2 mt-6 sm:mt-8 lg:hidden"
                 >

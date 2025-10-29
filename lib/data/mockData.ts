@@ -52,22 +52,24 @@ export const TITLES = [
       header: "Web Development",
       description:
         "Custom-coded websites and web applications built with modern frameworks, optimized for performance, scalability, and seamless user experiences.",
-      cta: "Start Your Project",
+      cta: "Explore Our Work",
+      route: "/services/web-development"
     },
   },
   {
-    id: "graphics-design",
-    title: "Graphics Design",
+    id: "3d-rendering",
+    title: "3D Rendering",
     image:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0",
+      "https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1332",
     bgImage:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0",
+      "https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1332",
     card: {
-      id: "graphics-design",
-      header: "Graphics Design",
+      id: "3d-rendering",
+      header: "3D Rendering",
       description:
-        "Eye-catching visual designs including logos, branding materials, social media graphics, and marketing collateral that elevate your brand identity.",
+        "High-quality 3D visualizations that bring products, architecture, and creative concepts to life with realistic lighting, textures, and precision modeling",
       cta: "View Portfolio",
+      route: "/services/3d-rendering"
     },
   },
   {
@@ -83,21 +85,23 @@ export const TITLES = [
       description:
         "Expert retouching, color correction, and enhancement services that transform your images with precision attention to detail and natural results.",
       cta: "See Examples",
+      route: "/services/image"
     },
   },
   {
-    id: "clipping-path",
-    title: "Clipping Path Services",
+    id: "3d-animation",
+    title: "3D Animation",
     image:
-      "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=687",
+      "https://images.unsplash.com/photo-1627163439134-7a8c47e08208?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1332",
     bgImage:
-      "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=687",
+      "https://images.unsplash.com/photo-1627163439134-7a8c47e08208?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1332",
     card: {
-      id: "clipping-path",
-      header: "Clipping Path Services",
+      id: "3d-animation",
+      header: "3D Animation",
       description:
-        "Pixel-perfect background removal and image masking services delivering clean cutouts for e-commerce, catalogs, and professional photography.",
-      cta: "Get Quote",
+        "Dynamic 3D animations that showcase movement, storytelling, and product functionality with smooth visuals and cinematic quality.",
+      cta: "Browse Our Work",
+      route: "/services/3d-animation"
     },
   },
   {
@@ -112,7 +116,8 @@ export const TITLES = [
       header: "Video Editing",
       description:
         "Professional video production and post-production services including cutting, color grading, motion graphics, and effects for engaging content.",
-      cta: "Watch Showreel",
+      cta: "See Showcase",
+      route: "/services/video"
     },
   },
 ];
@@ -120,7 +125,7 @@ export const TITLES = [
 // Service images object
 export const SERVICE_IMAGES = [
   { title: "Web Design and Development", image: website },
-  { title: "Motion Graphics", image: videoEditing },
+  { title: "3D Rendering", image: videoEditing },
   { title: "Dedicated Design Team", image: DesignTeam },
   { title: "Image Manipulation", image: manipulation },
   { title: "Video Editing", image: video },
