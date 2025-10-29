@@ -1,9 +1,9 @@
 "use client";
 
+import CTASection from "@/components/shared/CTASection";
 import PageSectionHeader from "@/components/shared/PageSectionHeader";
 import { GrayContainer } from "@/components/shared/PageSections";
 import { motion, useInView } from "framer-motion";
-import Link from "next/link";
 import { useRef } from "react";
 import {
   FaCheckCircle,
@@ -183,47 +183,30 @@ const ProcessSection = () => {
           </div>
         </motion.div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.8 }}
-          className="text-center mt-16"
-        >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-2xl">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
-                <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-              </div>
-              <div className="text-left">
-                <p className="text-slate-900 dark:text-white font-semibold">
-                  Ready to get started?
-                </p>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  Experience our streamlined process today
-                </p>
-              </div>
-            </div>
-            <Link
-              href={"/contact-us"}
-              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 whitespace-nowrap"
+        <CTASection
+          mode="card"
+          message="Ready to get started?"
+          subMessage="Experience our streamlined process today"
+          buttonText=" Start Your Project"
+          href="/contact-us"
+          variant="blue"
+          icon={
+            <svg
+              className="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              Start Your Project
-            </Link>
-          </div>
-        </motion.div>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+              />
+            </svg>
+          }
+          delay={0.1}
+        />
       </div>
     </GrayContainer>
   );

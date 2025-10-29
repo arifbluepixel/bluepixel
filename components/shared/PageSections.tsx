@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 interface ContainerProps {
   children: ReactNode;
   gridLines?: boolean;
+  dark?: boolean;
   decorativeElements?: ReactNode;
 }
 
@@ -41,5 +42,32 @@ export function GrayContainer({
       {decorativeElements && decorativeElements}
       {children}
     </section>
+  );
+}
+
+export function SingleContainer({
+  children,
+  dark = false,
+  gridLines = true,
+  decorativeElements,
+}: ContainerProps) {
+  return (
+    <>
+      {dark ? (
+        <DarkContainer
+          gridLines={gridLines}
+          decorativeElements={decorativeElements}
+        >
+          {children}
+        </DarkContainer>
+      ) : (
+        <GrayContainer
+          gridLines={gridLines}
+          decorativeElements={decorativeElements}
+        >
+          {children}
+        </GrayContainer>
+      )}
+    </>
   );
 }

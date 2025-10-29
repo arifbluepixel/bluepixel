@@ -6,6 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import faq from "@/public/animations/faq.json";
 import { darkSectionCSS, lightSectionCSS } from "@/lib/helper/design";
+import { SingleContainer } from "./PageSections";
+import CTASection from "./CTASection";
+import { MessageCircle } from "lucide-react";
 
 interface FaqsProps {
   question: string;
@@ -54,18 +57,22 @@ const FAQ = ({ faqs, dark = false }: FAQComponentProps) => {
   };
 
   return (
-    <section className={dark ? darkSectionCSS : lightSectionCSS}>
+    <SingleContainer
+      dark={dark}
+      decorativeElements={
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div
+            className="absolute top-1/3 left-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse"
+            style={{ animationDelay: "0s" }}
+          ></div>
+          <div
+            className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-cyan-500 rounded-full filter blur-3xl animate-pulse"
+            style={{ animationDelay: "0.75s" }}
+          ></div>
+        </div>
+      }
+    >
       {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-5 dark:opacity-10">
-        <div
-          className="absolute top-1/3 left-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse"
-          style={{ animationDelay: "0s" }}
-        ></div>
-        <div
-          className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-cyan-500 rounded-full filter blur-3xl animate-pulse"
-          style={{ animationDelay: "0.75s" }}
-        ></div>
-      </div>
 
       {/* Decorative grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
@@ -93,11 +100,19 @@ const FAQ = ({ faqs, dark = false }: FAQComponentProps) => {
               </span>
             </motion.div>
 
-            <h2 className="mt-2 font-bold text-4xl md:text-5xl lg:text-6xl font-oswald uppercase text-slate-900 dark:text-white mb-6 tracking-tight">
+            <h2
+              className={`mt-2 font-bold text-4xl md:text-5xl lg:text-6xl font-oswald uppercase ${
+                dark ? `text-white` : `text-slate-900 dark:text-white`
+              } mb-6 tracking-tight`}
+            >
               Frequently Asked Questions
             </h2>
 
-            <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-8">
+            <p
+              className={`${
+                dark ? `text-slate-200` : `text-slate-600 dark:text-slate-300`
+              } text-lg leading-relaxed mb-8`}
+            >
               Find answers to common questions about our image editing services,
               processes, and policies.
             </p>
@@ -108,39 +123,15 @@ const FAQ = ({ faqs, dark = false }: FAQComponentProps) => {
             />
 
             {/* CTA Card */}
-            <div className="p-6 bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-2xl">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
-                  <svg
-                    className="w-6 h-6 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-slate-900 dark:text-white font-semibold">
-                    Still have questions?
-                  </p>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
-                    We&apos;re here to help
-                  </p>
-                </div>
-              </div>
-              <a
-                href="/contact-us"
-                className="block w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl text-center transition-all duration-300"
-              >
-                Contact Us
-              </a>
-            </div>
+            <CTASection
+              message="Still have questions?"
+              subMessage="We're here to help"
+              buttonText="Contact Us"
+              href="/contact-us"
+              variant="blue"
+              mode="compact-card"
+              icon={<MessageCircle className="w-6 h-6 text-white" />}
+            />
           </motion.div>
 
           {/* Right Section - FAQ Accordion */}
@@ -159,14 +150,26 @@ const FAQ = ({ faqs, dark = false }: FAQComponentProps) => {
                   className="group"
                 >
                   <div
-                    className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden transition-all duration-500"
+                    className={`${
+                      dark
+                        ? `bg-slate-800/80 `
+                        : `bg-white/70 dark:bg-slate-800/70 `
+                    }backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden transition-all duration-500`}
                     onMouseEnter={() => setOpenIndex(index)}
                     onMouseLeave={() => setOpenIndex(null)}
                   >
-                    <button className="w-full text-left p-6 flex justify-between items-center font-semibold text-slate-900 dark:text-white transition-all duration-300">
+                    <button
+                      className={`w-full text-left p-6 flex justify-between items-center font-semibold ${
+                        dark ? `text-white` : `text-slate-900 dark:text-white`
+                      } transition-all duration-300`}
+                    >
                       <span className="pr-4">{faq.question}</span>
                       <FaChevronDown
-                        className={`w-5 h-5 text-slate-500 dark:text-slate-400 flex-shrink-0 transition-transform duration-300 ${
+                        className={`w-5 h-5 ${
+                          dark
+                            ? `text-slate-50`
+                            : `text-slate-500 dark:text-slate-400 `
+                        } flex-shrink-0 transition-transform duration-300 ${
                           openIndex === index ? "rotate-180" : ""
                         }`}
                       />
@@ -180,7 +183,13 @@ const FAQ = ({ faqs, dark = false }: FAQComponentProps) => {
                         maxHeight: openIndex === index ? "1000px" : "0px",
                       }}
                     >
-                      <div className="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-200 dark:border-slate-700 pt-4">
+                      <div
+                        className={`px-6 pb-6 ${
+                          dark
+                            ? `text-slate-50`
+                            : `text-slate-600 dark:text-slate-400 `
+                        } leading-relaxed border-t border-slate-200 dark:border-slate-700 pt-4`}
+                      >
                         {faq.answer}
                       </div>
                     </div>
@@ -197,7 +206,7 @@ const FAQ = ({ faqs, dark = false }: FAQComponentProps) => {
           </motion.div>
         </div>
       </div>
-    </section>
+    </SingleContainer>
   );
 };
 

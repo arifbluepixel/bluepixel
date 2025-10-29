@@ -1,8 +1,11 @@
 "use client";
 
+import CTASection from "@/components/shared/CTASection";
 import PageSectionHeader from "@/components/shared/PageSectionHeader";
 import { DarkContainer } from "@/components/shared/PageSections";
+import ServiceCard from "@/components/shared/ServiceCard";
 import { motion, useInView } from "framer-motion";
+import { TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
 import {
@@ -189,66 +192,27 @@ const ServicesSection = () => {
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
             {services.map((service, index) => (
-              <motion.div
+              <ServiceCard
                 key={index}
-                // @ts-expect-error - ignore
-                variants={itemVariants}
-                whileHover={{
-                  y: -8,
-                  transition: { duration: 0.3, ease: "easeOut" },
-                }}
-                className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 
-                         hover:bg-gradient-to-br hover:from-blue-600 hover:to-cyan-600 
-                         hover:border-transparent hover:shadow-xl hover:shadow-blue-500/20
-                         transition-all duration-300 ease-out cursor-pointer overflow-hidden"
-              >
-                {/* Icon container with glow effect */}
-                <div className="relative mb-4 inline-block">
-                  <div className="absolute inset-0 bg-blue-500 rounded-lg opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
-                  <div className="relative text-5xl text-blue-400 group-hover:text-white transition-colors duration-300 group-hover:scale-110 transform">
-                    {service.icon}
-                  </div>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-white transition-colors duration-300">
-                  {service.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm text-slate-400 group-hover:text-blue-50 transition-colors duration-300">
-                  {service.description}
-                </p>
-
-                {/* Hover accent line */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 to-cyan-500 
-                              transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-b-xl"
-                ></div>
-              </motion.div>
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+                size="default"
+                variant="blue"
+              />
             ))}
           </div>
         </motion.div>
 
         {/* Call to action */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="text-center mt-16"
-        >
-          <p className="text-slate-300 text-lg mb-6">
-            Ready to elevate your images?
-          </p>
-          <Link
-            href={"/contact-us"}
-            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-lg
-                           hover:from-blue-500 hover:to-cyan-500 transform hover:scale-105 transition-all duration-300
-                           shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40"
-          >
-            Get Started Today
-          </Link>
-        </motion.div>
+        <CTASection
+          message="Ready to elevate your images?"
+          buttonText="Get Started Today"
+          href="/contact-us"
+          variant="blue"
+          icon={<TrendingUp className="w-5 h-5" />}
+          delay={0.1}
+        />
       </section>
     </DarkContainer>
   );
