@@ -159,9 +159,6 @@ const PrivacyPolicy = () => {
           className="container mx-auto px-4 -mt-8 relative z-20"
         >
           <div className="bg-white rounded-2xl shadow-lg p-6 text-center max-w-4xl mx-auto">
-            <p className="text-gray-600">
-              Last updated: <span className="font-semibold text-blue-600">{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-            </p>
             <p className="text-sm text-gray-500 mt-2">
               We regularly review and update our privacy practices to ensure the highest level of protection for your creative assets
             </p>
