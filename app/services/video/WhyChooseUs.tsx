@@ -4,9 +4,8 @@ import CTASection from "@/components/shared/CTASection";
 import PageSectionHeader from "@/components/shared/PageSectionHeader";
 import { GrayContainer } from "@/components/shared/PageSections";
 import { motion, useInView } from "framer-motion";
-import Link from "next/link";
 import { useRef } from "react";
-import { FaRocket, FaHandshake, FaTools, FaStar } from "react-icons/fa";
+import { FaHandshake, FaRocket, FaStar, FaTools } from "react-icons/fa";
 
 const features = [
   {

@@ -6,7 +6,6 @@ import { DarkContainer } from "@/components/shared/PageSections";
 import ServiceCard from "@/components/shared/ServiceCard";
 import { motion, useInView } from "framer-motion";
 import { TrendingUp } from "lucide-react";
-import Link from "next/link";
 import { useRef } from "react";
 import {
   BsDropletHalf,
@@ -145,19 +144,6 @@ const ServicesSection = () => {
       transition: {
         staggerChildren: 0.04,
         delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
   };

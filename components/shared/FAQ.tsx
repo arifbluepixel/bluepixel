@@ -1,14 +1,13 @@
 "use client";
 
+import faq from "@/public/animations/faq.json";
 import { motion, useInView } from "framer-motion";
 import Lottie from "lottie-react";
+import { MessageCircle } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
-import faq from "@/public/animations/faq.json";
-import { darkSectionCSS, lightSectionCSS } from "@/lib/helper/design";
-import { SingleContainer } from "./PageSections";
 import CTASection from "./CTASection";
-import { MessageCircle } from "lucide-react";
+import { SingleContainer } from "./PageSections";
 
 interface FaqsProps {
   question: string;

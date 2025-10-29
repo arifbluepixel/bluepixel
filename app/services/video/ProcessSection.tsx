@@ -169,7 +169,7 @@ const ProcessSection = () => {
           >
             {steps.map((step, index) => (
               <motion.div
-                key={step.id}
+                key={step.id + index}
                 // @ts-expect-error - ignore
                 variants={itemVariants}
                 whileHover={{
