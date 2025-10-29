@@ -11,7 +11,10 @@ import {
   Phone,
   Scale,
   Shield,
-  Truck,
+  Palette,
+  Code,
+  Video,
+  Camera
 } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
@@ -48,59 +51,59 @@ const TermsConditions = () => {
       icon: FileText,
       title: "Agreement to Terms",
       content:
-        "By accessing and using BluePixel's services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.",
+        "By accessing and using BluePixel's creative services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.",
       points: [
-        "These terms govern your use of our garment sourcing services",
-        "Continued use constitutes acceptance of any modifications",
-        "You represent having authority to enter this agreement",
+        "These terms govern your use of our creative services including image editing, video production, 3D animation, and web development",
+        "Continued use constitutes acceptance of any modifications to these terms",
+        "You represent having authority to enter this agreement and provide necessary assets",
       ],
     },
     {
-      icon: Scale,
+      icon: Palette,
       title: "Services Description",
       content:
-        "BluePixel operates as an export-oriented garment trading agent connecting international brands with trusted manufacturers in Bangladesh.",
+        "BluePixel provides professional creative services including image editing, video production, 3D rendering & animation, and custom web development solutions.",
       points: [
-        "Product development and sampling services",
-        "Quality control and production management",
-        "Sourcing coordination and logistics support",
-        "Manufacturing oversight and compliance",
+        "Professional photo editing and image manipulation",
+        "Video editing, color grading, and motion graphics",
+        "3D modeling, rendering, and animation services",
+        "Custom web development and digital solutions",
       ],
     },
     {
       icon: Shield,
       title: "Client Responsibilities",
       content:
-        "Clients are responsible for providing accurate information and complying with agreed timelines and specifications.",
+        "Clients are responsible for providing accurate project requirements, necessary assets, and timely feedback throughout the creative process.",
       points: [
-        "Provide complete and accurate design specifications",
-        "Adhere to agreed payment schedules",
-        "Timely approval of samples and production stages",
-        "Clear communication of requirements and changes",
+        "Provide complete project briefs and specifications",
+        "Deliver source files in required formats and quality",
+        "Provide timely feedback and approvals at each project stage",
+        "Adhere to agreed payment schedules and project timelines",
       ],
     },
     {
-      icon: Truck,
+      icon: Code,
       title: "Pricing & Payment Terms",
       content:
-        "All pricing is subject to change based on material costs, quantity, and complexity. Payment terms are negotiated per project.",
+        "Project pricing is based on complexity, scope, and timeline. Custom quotes are provided for each project based on specific requirements.",
       points: [
-        "30% advance payment for production initiation",
-        "40% after sample approval",
-        "30% balance before shipment",
-        "Prices in USD unless otherwise specified",
+        "50% advance payment for project initiation",
+        "25% after initial delivery and review",
+        "25% balance upon final approval and delivery",
+        "Additional revisions beyond scope may incur extra charges",
       ],
     },
     {
       icon: Clock,
-      title: "Production Timeline",
+      title: "Project Timeline",
       content:
-        "Production timelines are estimates and may vary based on fabric availability, order complexity, and factory capacity.",
+        "Project timelines vary based on complexity, scope, and client responsiveness. Standard timelines are provided in project proposals.",
       points: [
-        "Sampling: 2-3 weeks after design finalization",
-        "Production: 4-8 weeks based on quantity",
-        "Quality control included in timeline",
-        "Shipping: 2-4 weeks depending on destination",
+        "Image Editing: 2-5 business days based on complexity",
+        "Video Production: 1-3 weeks depending on length and effects",
+        "3D Animation: 2-6 weeks based on complexity and detail",
+        "Web Development: 4-12 weeks based on features and scale",
       ],
     },
   ];
@@ -108,21 +111,21 @@ const TermsConditions = () => {
   const importantNotes = [
     {
       icon: AlertTriangle,
-      title: "Quality Standards",
+      title: "File Ownership & Usage",
       content:
-        "We maintain strict quality control measures. However, minor variations in color and fabric are inherent in textile manufacturing.",
+        "Clients retain ownership of source files. BluePixel retains the right to showcase completed work in our portfolio unless otherwise specified.",
     },
     {
       icon: CheckCircle,
-      title: "Intellectual Property",
+      title: "Quality Assurance",
       content:
-        "Clients retain all rights to their designs. We respect intellectual property and maintain strict confidentiality.",
+        "We maintain high quality standards with multiple review stages. Final deliverables are provided in agreed formats with quality checks.",
     },
     {
       icon: Shield,
-      title: "Liability",
+      title: "Liability & Limitations",
       content:
-        "Our liability is limited to the value of the order. We are not liable for indirect or consequential damages.",
+        "Our liability is limited to the project value. We maintain professional indemnity insurance for creative services.",
     },
   ];
 
@@ -130,10 +133,10 @@ const TermsConditions = () => {
     <>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 mt-10">
         {/* Header Section */}
-        <section className="relative py-20 bg-gradient-to-r from-[#0094A6] to-cyan-600 text-white overflow-hidden">
+        <section className="relative py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white overflow-hidden">
           <div className="absolute inset-0">
             <div className="absolute top-0 left-0 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-400/20 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl"></div>
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
@@ -151,7 +154,7 @@ const TermsConditions = () => {
               >
                 <Scale className="w-6 h-6" />
                 <span className="font-semibold text-sm uppercase tracking-wider">
-                  Legal Terms
+                  Service Terms
                 </span>
               </motion.div>
 
@@ -161,17 +164,16 @@ const TermsConditions = () => {
                 transition={{ delay: 0.3, duration: 0.7 }}
                 className="text-4xl lg:text-6xl font-bold mb-6"
               >
-                Terms & <span className="text-cyan-200">Conditions</span>
+                Terms & <span className="text-blue-200">Conditions</span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
-                className="text-xl text-cyan-100 max-w-2xl mx-auto leading-relaxed"
+                className="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed"
               >
-                Clear guidelines for our partnership. Understand the terms that
-                govern our garment sourcing services and collaboration.
+                Clear guidelines for our creative partnership. Understand the terms that govern our digital services and collaboration.
               </motion.p>
             </motion.div>
           </div>
@@ -185,12 +187,11 @@ const TermsConditions = () => {
           className="container mx-auto px-4 -mt-8 relative z-20"
         >
           <div className="bg-white rounded-2xl shadow-lg p-6 text-center max-w-4xl mx-auto">
-            {/* <p className="text-gray-600">
-            Effective Date: <span className="font-semibold text-[#0094A6]">{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-          </p> */}
+            <p className="text-gray-600">
+              Effective Date: <span className="font-semibold text-blue-600">{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            </p>
             <p className="text-sm text-gray-500 mt-2">
-              These terms govern all business relationships with Apparel
-              Resource BD
+              These terms govern all creative service relationships with Blue Pixel
             </p>
           </div>
         </motion.div>
@@ -212,21 +213,44 @@ const TermsConditions = () => {
                 className="bg-white rounded-2xl shadow-lg p-8 lg:p-12 mb-12"
               >
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                  Welcome to BluePixel
+                  Welcome to Blue Pixel
                 </h2>
-                <div className="w-20 h-1 bg-gradient-to-r from-[#0094A6] to-cyan-500 mb-6"></div>
+                <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mb-6"></div>
                 <p className="text-lg text-gray-600 leading-relaxed mb-6">
                   These Terms and Conditions outline the rules and regulations
-                  for the use of BluePixel&apos;s services. As a reputable
-                  garment trading agent based in Dhaka, Bangladesh, we are
-                  committed to transparent and professional business practices.
+                  for the use of Blue Pixel&apos;s creative services. As a professional
+                  creative agency specializing in digital solutions, we are committed
+                  to transparent and professional business practices.
                 </p>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  By engaging our services for knitwear, woven wear, and sweater
-                  manufacturing, you agree to comply with these terms. We
-                  encourage you to read them carefully and contact us with any
-                  questions.
+                  By engaging our services for image editing, video production, 3D animation,
+                  or web development, you agree to comply with these terms. We encourage
+                  you to read them carefully and contact us with any questions about our
+                  creative process and deliverables.
                 </p>
+              </motion.div>
+
+              {/* Service Overview */}
+              <motion.div
+                // @ts-expect-error - ignore
+                variants={itemVariants}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 lg:p-10 text-white mb-12"
+              >
+                <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-center">Our Creative Services</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {[
+                    { icon: Camera, service: "Image Editing", desc: "Professional photo editing, retouching, and manipulation" },
+                    { icon: Video, service: "Video Production", desc: "Video editing, color grading, motion graphics" },
+                    { icon: Palette, service: "3D Animation", desc: "3D modeling, rendering, and animation services" },
+                    { icon: Code, service: "Web Development", desc: "Custom websites, web apps, and digital solutions" },
+                  ].map((item, index) => (
+                    <div key={index} className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm">
+                      <item.icon className="w-8 h-8 mx-auto mb-3" />
+                      <h4 className="font-semibold mb-2">{item.service}</h4>
+                      <p className="text-blue-100 text-sm">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
               </motion.div>
 
               {/* Key Sections Grid */}
@@ -239,7 +263,7 @@ const TermsConditions = () => {
                     className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                   >
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="p-3 bg-gradient-to-r from-[#0094A6] to-cyan-500 rounded-xl text-white">
+                      <div className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white">
                         <section.icon className="w-6 h-6" />
                       </div>
                       <h3 className="text-2xl font-bold text-gray-900">
@@ -254,7 +278,7 @@ const TermsConditions = () => {
                     <ul className="space-y-3">
                       {section.points.map((point, pointIndex) => (
                         <li key={pointIndex} className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-cyan-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                           <span className="text-gray-600 leading-relaxed">
                             {point}
                           </span>
@@ -279,9 +303,9 @@ const TermsConditions = () => {
                   {importantNotes.map((note) => (
                     <div
                       key={note.title}
-                      className="text-center p-6 bg-gray-50 rounded-xl hover:bg-cyan-50 transition-colors duration-300"
+                      className="text-center p-6 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors duration-300"
                     >
-                      <div className="inline-flex p-3 bg-gradient-to-r from-[#0094A6] to-cyan-500 rounded-xl text-white mb-4">
+                      <div className="inline-flex p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white mb-4">
                         <note.icon className="w-6 h-6" />
                       </div>
                       <h4 className="text-xl font-semibold text-gray-900 mb-3">
@@ -302,61 +326,58 @@ const TermsConditions = () => {
                 className="bg-white rounded-2xl shadow-lg p-8 lg:p-12 mb-12"
               >
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                  Additional Terms & Conditions
+                  Project & Delivery Terms
                 </h2>
-                <div className="w-20 h-1 bg-gradient-to-r from-[#0094A6] to-cyan-500 mb-6"></div>
+                <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mb-6"></div>
 
                 <div className="space-y-8">
                   <div>
                     <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                      Quality Control & Inspection
+                      File Delivery & Formats
                     </h3>
                     <p className="text-gray-600 leading-relaxed mb-4">
-                      Our QC team monitors all production stages. Final
-                      inspection occurs before shipment. Clients may appoint
-                      third-party inspectors at their expense.
+                      Final deliverables are provided in agreed formats via secure transfer.
+                      We support all standard file formats and can provide specific formats upon request.
                     </p>
                     <ul className="text-gray-600 space-y-2 ml-6">
-                      <li>
-                        • AQL 2.5 standard for final inspection unless specified
-                      </li>
-                      <li>• Quality reports provided upon request</li>
-                      <li>• Rejected items are replaced at our cost</li>
+                      <li>• Image formats: JPG, PNG, PSD, TIFF, RAW</li>
+                      <li>• Video formats: MP4, MOV, AVI, with various codec options</li>
+                      <li>• 3D formats: FBX, OBJ, STL, with texture maps</li>
+                      <li>• Web formats: Responsive HTML/CSS/JS with documentation</li>
                     </ul>
                   </div>
 
                   <div>
                     <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                      Shipping & Logistics
+                      Revisions & Changes
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
-                      We handle shipping arrangements through trusted partners.
-                      Shipping costs, insurance, and customs duties are the
-                      client&apos;s responsibility unless otherwise agreed.
+                      Each project includes a specified number of revision rounds. Additional revisions
+                      beyond the agreed scope may incur extra charges. Major changes to project scope
+                      after approval may require timeline adjustments and additional costs.
                     </p>
                   </div>
 
                   <div>
                     <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                      Cancellation & Modification
+                      Source File Ownership
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Orders can be cancelled before production begins with a
-                      10% administrative fee. Modifications after sample
-                      approval may incur additional charges and timeline
-                      adjustments.
+                      Clients retain full ownership of provided source files. Final delivered creative
+                      work is owned by the client upon full payment. Blue Pixel retains the right to
+                      display completed work in our portfolio and marketing materials unless otherwise
+                      agreed in writing.
                     </p>
                   </div>
 
                   <div>
                     <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                      Force Majeure
+                      Project Cancellation
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
-                      We are not liable for delays or failures in performance
-                      resulting from circumstances beyond our reasonable
-                      control, including natural disasters, political unrest, or
-                      pandemic-related disruptions.
+                      Projects can be cancelled before significant work has begun with a 25% administrative
+                      fee. After work has commenced, cancellation fees are based on work completed to date.
+                      All work completed up to cancellation point will be delivered to the client.
                     </p>
                   </div>
                 </div>
@@ -366,15 +387,14 @@ const TermsConditions = () => {
               <motion.div
                 // @ts-expect-error - ignore
                 variants={itemVariants}
-                className="text-center bg-gradient-to-r from-[#0094A6] to-cyan-600 rounded-2xl p-8 lg:p-12 text-white"
+                className="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 lg:p-12 text-white"
               >
                 <h3 className="text-2xl lg:text-3xl font-bold mb-6">
                   Need Clarification?
                 </h3>
-                <p className="text-cyan-100 text-lg max-w-2xl mx-auto leading-relaxed mb-8">
-                  We believe in transparent partnerships. If any term is unclear
-                  or you need specific modifications for your project,
-                  let&apos;s discuss it.
+                <p className="text-blue-100 text-lg max-w-2xl mx-auto leading-relaxed mb-8">
+                  We believe in transparent creative partnerships. If any term is unclear 
+                  or you need specific modifications for your project, let&apos;s discuss it.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -383,7 +403,7 @@ const TermsConditions = () => {
                       <Mail className="w-5 h-5" />
                     </div>
                     <div className="text-left">
-                      <p className="text-cyan-100 text-sm">Email us</p>
+                      <p className="text-blue-100 text-sm">Email us</p>
                       <p className="font-semibold">{CONTACT_EMAIL}</p>
                     </div>
                   </div>
@@ -393,16 +413,16 @@ const TermsConditions = () => {
                       <Phone className="w-5 h-5" />
                     </div>
                     <div className="text-left">
-                      <p className="text-cyan-100 text-sm">Call us</p>
+                      <p className="text-blue-100 text-sm">Call us</p>
                       <p className="font-semibold">{CONTACT_PHONE}</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-cyan-400/30">
-                  <p className="text-cyan-200 text-sm">
-                    By proceeding with our services, you acknowledge acceptance
-                    of these Terms and Conditions.
+                <div className="mt-8 pt-6 border-t border-blue-400/30">
+                  <p className="text-blue-200 text-sm">
+                    By proceeding with our creative services, you acknowledge acceptance
+                    of these Terms and Conditions for digital creative work.
                   </p>
                 </div>
               </motion.div>
