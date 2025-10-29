@@ -143,7 +143,7 @@ const Footer = () => {
                         <span
                           className={`text-[24px] font-bold text-sky-800 ${jaroFont.className}`}
                         >
-                          BluePixel
+                          Blue Pixel
                         </span>
                       </div>
                     ) : (
