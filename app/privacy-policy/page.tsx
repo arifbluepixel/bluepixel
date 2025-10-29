@@ -2,13 +2,15 @@
 
 import { motion } from "framer-motion";
 import { Eye, FileText, Globe, Lock, Shield, Users, Palette, Code, Video, Camera } from "lucide-react";
-import { useInView } from "react-intersection-observer";
+import { useEffect, useState } from "react";
 
 const PrivacyPolicy = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Trigger animations immediately when component mounts
+    setIsVisible(true);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -16,18 +18,6 @@ const PrivacyPolicy = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
       },
     },
   };
@@ -114,13 +104,13 @@ const PrivacyPolicy = () => {
           <div className="container mx-auto px-4 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ duration: 0.8 }}
               className="text-center max-w-4xl mx-auto"
             >
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
+                animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="inline-flex items-center gap-3 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-2xl mb-8"
               >
@@ -132,7 +122,7 @@ const PrivacyPolicy = () => {
 
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ delay: 0.3, duration: 0.7 }}
                 className="text-4xl lg:text-6xl font-bold mb-6"
               >
@@ -141,7 +131,7 @@ const PrivacyPolicy = () => {
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed"
               >
@@ -154,7 +144,7 @@ const PrivacyPolicy = () => {
         {/* Last Updated */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ delay: 0.7, duration: 0.6 }}
           className="container mx-auto px-4 -mt-8 relative z-20"
         >
@@ -169,16 +159,13 @@ const PrivacyPolicy = () => {
         <section className="py-20">
           <div className="container mx-auto px-4">
             <motion.div
-              ref={ref}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"}
+              animate={isVisible ? "visible" : "hidden"}
               variants={containerVariants}
               className="max-w-6xl mx-auto"
             >
               {/* Introduction */}
               <motion.div
-                // @ts-expect-error - ignore
-                variants={itemVariants}
                 className="bg-white rounded-2xl shadow-lg p-8 lg:p-12 mb-12"
               >
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
@@ -199,8 +186,6 @@ const PrivacyPolicy = () => {
 
               {/* Service-Specific Security */}
               <motion.div
-                // @ts-expect-error - ignore
-                variants={itemVariants}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 lg:p-10 text-white mb-12"
               >
                 <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-center">Service-Specific Data Protection</h3>
@@ -211,22 +196,24 @@ const PrivacyPolicy = () => {
                     { icon: Palette, service: "3D Animation", desc: "Protected 3D model files and project assets" },
                     { icon: Code, service: "Web Development", desc: "Secure code repositories and database protection" },
                   ].map((item, index) => (
-                    <div key={index} className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm">
+                    <motion.div 
+                      key={index}
+                      className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm"
+                    >
                       <item.icon className="w-8 h-8 mx-auto mb-3" />
                       <h4 className="font-semibold mb-2">{item.service}</h4>
                       <p className="text-blue-100 text-sm">{item.desc}</p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
 
               {/* Policy Sections Grid */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-                {policySections.map((section) => (
+                {policySections.map((section, index) => (
                   <motion.div
                     key={section.title}
-                    // @ts-expect-error - ignore
-                    variants={itemVariants}
+                    transition={{ delay: index * 0.1 }}
                     className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                   >
                     <div className="flex items-center gap-4 mb-6">
@@ -254,8 +241,6 @@ const PrivacyPolicy = () => {
 
               {/* Additional Policy Details */}
               <motion.div
-                // @ts-expect-error - ignore
-                variants={itemVariants}
                 className="bg-white rounded-2xl shadow-lg p-8 lg:p-12"
               >
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
@@ -323,8 +308,6 @@ const PrivacyPolicy = () => {
 
               {/* Consent Acknowledgement */}
               <motion.div
-                // @ts-expect-error - ignore
-                variants={itemVariants}
                 className="text-center mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 lg:p-12 text-white"
               >
                 <h3 className="text-2xl lg:text-3xl font-bold mb-4">

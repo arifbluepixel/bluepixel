@@ -16,35 +16,15 @@ import {
   Video,
   Camera
 } from "lucide-react";
-import { useInView } from "react-intersection-observer";
+import { useEffect, useState } from "react";
 
 const TermsConditions = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [isVisible, setIsVisible] = useState(false);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
+  useEffect(() => {
+    // Trigger animations immediately when component mounts
+    setIsVisible(true);
+  }, []);
 
   const keySections = [
     {
@@ -142,13 +122,13 @@ const TermsConditions = () => {
           <div className="container mx-auto px-4 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ duration: 0.8 }}
               className="text-center max-w-4xl mx-auto"
             >
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
+                animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="inline-flex items-center gap-3 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-2xl mb-8"
               >
@@ -160,7 +140,7 @@ const TermsConditions = () => {
 
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ delay: 0.3, duration: 0.7 }}
                 className="text-4xl lg:text-6xl font-bold mb-6"
               >
@@ -169,7 +149,7 @@ const TermsConditions = () => {
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed"
               >
@@ -182,11 +162,11 @@ const TermsConditions = () => {
         {/* Last Updated */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ delay: 0.7, duration: 0.6 }}
           className="container mx-auto px-4 -mt-8 relative z-20"
         >
-          <div className="bg-white rounded-2xl shadow-lg p-6 text-center  max-w-4xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-lg p-6 text-center max-w-4xl mx-auto">
             <p className="text-sm text-gray-500 mt-2">
               These terms govern all creative service relationships with Blue Pixel
             </p>
@@ -196,17 +176,12 @@ const TermsConditions = () => {
         {/* Terms Content */}
         <section className="py-20">
           <div className="container mx-auto px-4">
-            <motion.div
-              ref={ref}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              variants={containerVariants}
-              className="max-w-6xl mx-auto"
-            >
+            <div className="max-w-6xl mx-auto">
               {/* Introduction */}
               <motion.div
-                // @ts-expect-error - ignore
-                variants={itemVariants}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
                 className="bg-white rounded-2xl shadow-lg p-8 lg:p-12 mb-12"
               >
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
@@ -229,8 +204,9 @@ const TermsConditions = () => {
 
               {/* Service Overview */}
               <motion.div
-                // @ts-expect-error - ignore
-                variants={itemVariants}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.6, delay: 1.0 }}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 lg:p-10 text-white mb-12"
               >
                 <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-center">Our Creative Services</h3>
@@ -241,22 +217,29 @@ const TermsConditions = () => {
                     { icon: Palette, service: "3D Animation", desc: "3D modeling, rendering, and animation services" },
                     { icon: Code, service: "Web Development", desc: "Custom websites, web apps, and digital solutions" },
                   ].map((item, index) => (
-                    <div key={index} className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm">
+                    <motion.div 
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.5, delay: 1.2 + (index * 0.1) }}
+                      className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm"
+                    >
                       <item.icon className="w-8 h-8 mx-auto mb-3" />
                       <h4 className="font-semibold mb-2">{item.service}</h4>
                       <p className="text-blue-100 text-sm">{item.desc}</p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
 
               {/* Key Sections Grid */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-                {keySections.map((section) => (
+                {keySections.map((section, index) => (
                   <motion.div
                     key={section.title}
-                    // @ts-expect-error - ignore
-                    variants={itemVariants}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                    transition={{ duration: 0.6, delay: 1.4 + (index * 0.1) }}
                     className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                   >
                     <div className="flex items-center gap-4 mb-6">
@@ -288,8 +271,9 @@ const TermsConditions = () => {
 
               {/* Important Notes */}
               <motion.div
-                // @ts-expect-error - ignore
-                variants={itemVariants}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.6, delay: 1.9 }}
                 className="bg-white rounded-2xl shadow-lg p-8 lg:p-12 mb-12"
               >
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-8 text-center">
@@ -297,9 +281,12 @@ const TermsConditions = () => {
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {importantNotes.map((note) => (
-                    <div
+                  {importantNotes.map((note, index) => (
+                    <motion.div
                       key={note.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                      transition={{ duration: 0.5, delay: 2.0 + (index * 0.1) }}
                       className="text-center p-6 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors duration-300"
                     >
                       <div className="inline-flex p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white mb-4">
@@ -311,15 +298,16 @@ const TermsConditions = () => {
                       <p className="text-gray-600 text-sm leading-relaxed">
                         {note.content}
                       </p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
 
               {/* Additional Terms */}
               <motion.div
-                // @ts-expect-error - ignore
-                variants={itemVariants}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.6, delay: 2.3 }}
                 className="bg-white rounded-2xl shadow-lg p-8 lg:p-12 mb-12"
               >
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
@@ -382,8 +370,9 @@ const TermsConditions = () => {
 
               {/* Contact & Agreement */}
               <motion.div
-                // @ts-expect-error - ignore
-                variants={itemVariants}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.6, delay: 2.6 }}
                 className="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 lg:p-12 text-white"
               >
                 <h3 className="text-2xl lg:text-3xl font-bold mb-6">
@@ -423,7 +412,7 @@ const TermsConditions = () => {
                   </p>
                 </div>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
         </section>
       </div>
