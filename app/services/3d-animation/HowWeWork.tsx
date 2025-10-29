@@ -1,11 +1,11 @@
 "use client";
-import React, { useRef } from "react";
+import { DarkContainer } from "@/components/shared/PageSections";
+import { jaroFont } from "@/lib/helper/fontHelper";
+import spreadinmarket from "@/public/animations/spreadinmarket.json";
 import { useInView } from "motion/react";
 import * as motion from "motion/react-client";
-import spreadinmarket from "@/public/animations/spreadinmarket.json";
 import dynamic from "next/dynamic";
-import { DarkContainer } from "@/components/shared/PageSections";
-import { jaroFont, pixelFont } from "@/lib/helper/fontHelper";
+import { useRef } from "react";
 
 // Dynamically import Lottie to prevent SSR issues
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });

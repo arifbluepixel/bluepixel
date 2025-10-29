@@ -121,6 +121,7 @@ export default function CreativeTeam() {
     <GrayContainer>
       <motion.div
         ref={ref}
+        // @ts-expect-error - ignore
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -133,6 +134,7 @@ export default function CreativeTeam() {
         />
 
         <motion.div
+          // @ts-expect-error - ignore
           variants={containerVariants}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"
         >
@@ -141,6 +143,7 @@ export default function CreativeTeam() {
             return (
               <motion.div
                 key={team.id}
+                // @ts-expect-error - ignore
                 variants={BottomToTop}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
                 className="group relative bg-gradient-to-br from-[#0a1744] to-[#0d1d5c] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500"

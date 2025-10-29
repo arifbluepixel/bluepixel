@@ -73,7 +73,7 @@ interface VideoItemProps {
   onClick: (url: string) => void;
 }
 
-const VideoItem = ({ video, index, onClick }: VideoItemProps) => {
+const VideoItem = ({ video, onClick }: VideoItemProps) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -86,6 +86,7 @@ const VideoItem = ({ video, index, onClick }: VideoItemProps) => {
   return (
     <motion.div
       ref={ref}
+      // @ts-expect-error - ignore
       variants={itemVariants}
       style={{ y, opacity }}
       className="group cursor-pointer"

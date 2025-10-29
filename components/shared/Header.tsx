@@ -8,7 +8,7 @@ import {
   SITE_NAME,
   XHandle,
 } from "@/lib/constants/env";
-import { bluepixel, logo } from "@/lib/constants/images";
+import { bluepixel } from "@/lib/constants/images";
 import { jaroFont } from "@/lib/helper/fontHelper";
 import {
   ChevronDown,
@@ -119,7 +119,7 @@ const AnimatedLogo = () => {
           width={32}
           height={32}
           src={bluepixel}
-          alt="Loading"
+          alt={SITE_NAME}
           className="h-8 w-8 drop-shadow-lg animate-spin"
           style={{
             animationDuration: "1s",
@@ -143,7 +143,7 @@ const AnimatedLogo = () => {
             width={32}
             height={32}
             src={bluepixel}
-            alt="Loading"
+            alt={SITE_NAME}
             className="h-6 w-6 drop-shadow-lg "
             style={{
               animationDuration: "1s",
@@ -337,7 +337,7 @@ export default function Header() {
                         width={32}
                         height={32}
                         src={bluepixel}
-                        alt="Loading"
+                        alt={SITE_NAME}
                         className="h-6 w-6 drop-shadow-lg "
                         style={{
                           animationDuration: "1s",
@@ -419,7 +419,7 @@ export default function Header() {
                   width={32}
                   height={32}
                   src={bluepixel}
-                  alt="Loading"
+                  alt={SITE_NAME}
                   className="h-6 w-6 drop-shadow-lg "
                   style={{
                     animationDuration: "1s",
