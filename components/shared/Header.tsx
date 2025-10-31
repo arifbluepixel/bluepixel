@@ -24,6 +24,7 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { ThemeToggle } from "./ThemeToggle";
+import { usePathname } from "next/navigation";
 
 const servicesPages = [
   {
@@ -161,6 +162,7 @@ const AnimatedLogo = () => {
 };
 
 export default function Header() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDesktopDropdown, setOpenDesktopDropdown] = useState<string | null>(
     null
@@ -172,6 +174,21 @@ export default function Header() {
   const [logoLoaded, setLogoLoaded] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  // Check if a link is active
+  const isLinkActive = (linkPath: string) => {
+    if (linkPath === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(linkPath);
+  };
+
+  // Check if a dropdown child is active
+  const isDropdownChildActive = (children: any[]) => {
+    return children.some((child: any) => 
+      pathname === `/${child.link}` || pathname.startsWith(`/${child.link}`)
+    );
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -225,9 +242,14 @@ export default function Header() {
 
   const linkheader = `text-gray-800 dark:text-white font-semibold text-sm xl:text-lg hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-300 ease-in-out cursor-pointer whitespace-nowrap`;
 
+  const activeLinkClass = "text-cyan-600 dark:text-cyan-400";
+  const activeBgClass = "bg-gradient-to-r from-cyan-500 to-teal-500 text-white";
+  const activeUnderlineClass = "relative after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-cyan-500 after:to-teal-500";
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const renderDropdown = (link: any) => {
     const isOpen = openDesktopDropdown === link.name;
+    const isActive = isDropdownChildActive(link.children || []);
     const alignClasses =
       link.dropdownAlign === "right"
         ? "right-0 origin-top-right"
@@ -241,13 +263,20 @@ export default function Header() {
         key={link.name}
       >
         <button
-          className={`flex items-center space-x-1 ${linkheader}`}
+          className={`flex items-center space-x-1 ${linkheader} ${
+            isActive ? activeLinkClass : ""
+          } ${isActive ? activeUnderlineClass : ""}`}
           onClick={() => setOpenDesktopDropdown(isOpen ? null : link.name)}
           onMouseEnter={() => setOpenDesktopDropdown(link.name)}
           type="button"
         >
           <span>{link.name}</span>
-          <ChevronDown size={14} />
+          <ChevronDown 
+            size={14} 
+            className={`transition-transform duration-300 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+          />
         </button>
         <div
           className={`absolute top-full ${alignClasses} mt-8 ${
@@ -275,22 +304,29 @@ export default function Header() {
                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         ?.filter((s: any) => s.category === cat)
                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                        .map((pages: any) => (
-                          <li
-                            key={pages.id}
-                            className="border-b pb-0.5 border-gray-200 dark:border-gray-700 last:border-none"
-                          >
-                            <a
-                              href={`/${pages?.link
-                                .toLowerCase()
-                                .replace(" ", "-")}`}
-                              className="block px-3 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-cyan-500 hover:to-teal-500 hover:text-white rounded-lg"
-                              onClick={() => setOpenDesktopDropdown(null)}
+                        .map((pages: any) => {
+                          const isChildActive = pathname === `/${pages.link}` || pathname.startsWith(`/${pages.link}`);
+                          return (
+                            <li
+                              key={pages.id}
+                              className="border-b pb-0.5 border-gray-200 dark:border-gray-700 last:border-none"
                             >
-                              {pages.title}
-                            </a>
-                          </li>
-                        ))}
+                              <a
+                                href={`/${pages?.link
+                                  .toLowerCase()
+                                  .replace(" ", "-")}`}
+                                className={`block px-3 py-2 text-sm font-semibold transition-all duration-300 ease-in-out rounded-lg ${
+                                  isChildActive
+                                    ? activeBgClass
+                                    : "text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-teal-500 hover:text-white"
+                                }`}
+                                onClick={() => setOpenDesktopDropdown(null)}
+                              >
+                                {pages.title}
+                              </a>
+                            </li>
+                          );
+                        })}
                     </ul>
                   </div>
                 )
@@ -317,8 +353,13 @@ export default function Header() {
                 if (link.hasDropdown) {
                   return renderDropdown(link);
                 }
+                const isActive = isLinkActive(link.path);
                 return (
-                  <Link key={link.name} href={link.path} className={linkheader}>
+                  <Link 
+                    key={link.name} 
+                    href={link.path} 
+                    className={`${linkheader} ${isActive ? activeLinkClass : ""} ${isActive ? activeUnderlineClass : ""}`}
+                  >
                     {link.name}
                   </Link>
                 );
@@ -361,8 +402,13 @@ export default function Header() {
                 if (link.hasDropdown) {
                   return renderDropdown(link);
                 }
+                const isActive = isLinkActive(link.path);
                 return (
-                  <Link key={link.name} href={link.path} className={linkheader}>
+                  <Link 
+                    key={link.name} 
+                    href={link.path} 
+                    className={`${linkheader} ${isActive ? activeLinkClass : ""} ${isActive ? activeUnderlineClass : ""}`}
+                  >
                     {link.name}
                   </Link>
                 );
@@ -437,16 +483,22 @@ export default function Header() {
           <nav className="mt-8 flex justify-center items-start px-2">
             <ul className="w-full space-y-3">
               {[...leftNavLinks, ...rightNavLinks].map((link) => {
+                const isActive = isLinkActive(link.path);
                 // @ts-expect-error - ignore
                 if (link.hasDropdown) {
                   const isMobileOpen = openMobileDropdown === link.name;
+                  const isDropdownActive = isDropdownChildActive(link.children || []);
                   return (
                     <li key={link.name}>
                       <button
                         onClick={() =>
                           setOpenMobileDropdown(isMobileOpen ? null : link.name)
                         }
-                        className="w-full text-left flex items-center justify-between text-base font-semibold text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors"
+                        className={`w-full text-left flex items-center justify-between text-base font-semibold py-3 px-4 rounded-lg transition-colors ${
+                          isDropdownActive
+                            ? "bg-white/20 text-cyan-300"
+                            : "text-white hover:bg-white/10"
+                        }`}
                       >
                         <span>{link.name}</span>
                         <ChevronDown
@@ -467,19 +519,26 @@ export default function Header() {
                           // @ts-expect-error - ignore
                           link.children?.map(
                             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                            (pages: any) => (
-                              <li key={pages.id}>
-                                <Link
-                                  href={`/${pages.link
-                                    .toLowerCase()
-                                    .replace(" ", "-")}`}
-                                  className="block text-sm text-gray-200 hover:text-cyan-300 transition-colors py-1.5"
-                                  onClick={() => setIsMenuOpen(false)}
-                                >
-                                  {pages.title}
-                                </Link>
-                              </li>
-                            )
+                            (pages: any) => {
+                              const isChildActive = pathname === `/${pages.link}` || pathname.startsWith(`/${pages.link}`);
+                              return (
+                                <li key={pages.id}>
+                                  <Link
+                                    href={`/${pages.link
+                                      .toLowerCase()
+                                      .replace(" ", "-")}`}
+                                    className={`block text-sm transition-colors py-1.5 ${
+                                      isChildActive
+                                        ? "text-cyan-300 font-semibold"
+                                        : "text-gray-200 hover:text-cyan-300"
+                                    }`}
+                                    onClick={() => setIsMenuOpen(false)}
+                                  >
+                                    {pages.title}
+                                  </Link>
+                                </li>
+                              );
+                            }
                           )
                         }
                       </ul>
@@ -490,7 +549,11 @@ export default function Header() {
                   <li key={link.name}>
                     <Link
                       href={link.path}
-                      className="block text-base font-semibold text-white hover:text-cyan-300 transition-colors py-3 px-4 rounded-lg hover:bg-white/10"
+                      className={`block text-base font-semibold transition-colors py-3 px-4 rounded-lg ${
+                        isActive
+                          ? "bg-white/20 text-cyan-300"
+                          : "text-white hover:bg-white/10"
+                      }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {link.name}
