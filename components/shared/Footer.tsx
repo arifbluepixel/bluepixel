@@ -3,7 +3,11 @@ import {
   CONTACT_ADDRESS,
   CONTACT_EMAIL,
   CONTACT_PHONE,
+  SITE_FACEBOOK,
+  SITE_INSTAGRAM,
+  SITE_LINKEDIN,
   SITE_NAME,
+  XHandle,
 } from "@/lib/constants/env";
 import { bluepixel } from "@/lib/constants/images";
 import { jaroFont } from "@/lib/helper/fontHelper";
@@ -22,7 +26,13 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebook, FaLinkedinIn } from "react-icons/fa6";
+import { Fragment } from "react";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedinIn,
+  FaXTwitter,
+} from "react-icons/fa6";
 
 const Footer = () => {
   const quickLinks = [
@@ -49,18 +59,21 @@ const Footer = () => {
       label: "Phone",
       value: CONTACT_PHONE,
       href: `tel:${CONTACT_PHONE}`,
+      show: CONTACT_PHONE !== "",
     },
     {
       icon: <Mail size={16} />,
       label: "Email",
       value: CONTACT_EMAIL,
       href: `mailto:${CONTACT_EMAIL}`,
+      show: CONTACT_EMAIL !== "",
     },
     {
       icon: <MapPin size={16} />,
       label: "Address",
       value: `${CONTACT_ADDRESS}`,
       href: "#",
+      show: CONTACT_ADDRESS !== "",
     },
   ];
 
@@ -68,14 +81,30 @@ const Footer = () => {
     {
       label: "Facebook",
       icon: FaFacebook,
-      href: "https://www.facebook.com/share/1BJYsgETKd/",
+      href: SITE_FACEBOOK,
       color: "#1877F2",
+      show: SITE_FACEBOOK !== "",
     },
     {
       label: "LinkedIn",
       icon: FaLinkedinIn,
-      href: "https://www.linkedin.com/company/blue-pixel-art/",
+      href: SITE_LINKEDIN,
       color: "#0A66C2",
+      show: SITE_LINKEDIN !== "",
+    },
+    {
+      label: "Instagram",
+      icon: FaInstagram,
+      href: SITE_INSTAGRAM,
+      color: "#0A66C2",
+      show: SITE_INSTAGRAM !== "",
+    },
+    {
+      label: "XHandle",
+      icon: FaXTwitter,
+      href: XHandle,
+      color: "#0A66C2",
+      show: XHandle !== "",
     },
   ];
 
@@ -216,25 +245,33 @@ const Footer = () => {
               </h3>
               <div className="space-y-4">
                 {contactInfo.map((item, index) => (
-                  <motion.a
-                    key={index}
-                    href={item.href}
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="flex items-start gap-3 group"
-                  >
-                    <span className="p-2 rounded-lg bg-gray-800/50 border border-gray-700/50 group-hover:border-cyan-500/50 group-hover:bg-cyan-500/10 transition-all duration-300 text-gray-400 group-hover:text-cyan-500 flex-shrink-0">
-                      {item.icon}
-                    </span>
-                    <div className="flex-1">
-                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
-                        {item.label}
-                      </p>
-                      <p className="text-sm text-gray-300 group-hover:text-cyan-500 transition-colors duration-300">
-                        {item.value}
-                      </p>
-                    </div>
-                  </motion.a>
+                  <Fragment key={index}>
+                    {item.show && (
+                      <motion.a
+                        key={index}
+                        href={item.href}
+                        whileHover={{ x: 5 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 20,
+                        }}
+                        className="flex items-start gap-3 group"
+                      >
+                        <span className="p-2 rounded-lg bg-gray-800/50 border border-gray-700/50 group-hover:border-cyan-500/50 group-hover:bg-cyan-500/10 transition-all duration-300 text-gray-400 group-hover:text-cyan-500 flex-shrink-0">
+                          {item.icon}
+                        </span>
+                        <div className="flex-1">
+                          <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
+                            {item.label}
+                          </p>
+                          <p className="text-sm text-gray-300 group-hover:text-cyan-500 transition-colors duration-300">
+                            {item.value}
+                          </p>
+                        </div>
+                      </motion.a>
+                    )}
+                  </Fragment>
                 ))}
               </div>
 
@@ -245,18 +282,21 @@ const Footer = () => {
                 </h4>
                 <div className="flex gap-3">
                   {socialLinks.map((social, index) => (
-                    <motion.a
-                      key={social.label + index}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      className="p-3 rounded-lg bg-gray-800/50 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 group"
-                      whileHover={{ scale: 1.1, y: -3 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <social.icon className="w-5 h-5 text-gray-400 group-hover:text-cyan-500 transition-colors" />
-                    </motion.a>
+                    <Fragment key={social.label + index}>
+                      {social.show && (
+                        <motion.a
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={social.label}
+                          className="p-3 rounded-lg bg-gray-800/50 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 group"
+                          whileHover={{ scale: 1.1, y: -3 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <social.icon className="w-5 h-5 text-gray-400 group-hover:text-cyan-500 transition-colors" />
+                        </motion.a>
+                      )}
+                    </Fragment>
                   ))}
                 </div>
               </div>

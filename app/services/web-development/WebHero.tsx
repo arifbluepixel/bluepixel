@@ -1,6 +1,6 @@
 "use client";
 
-import ServiceHero from "@/components/shared/ServiceHero";
+import ServicesHero from "@/components/shared/ServicesHero";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import "./web.css";
@@ -13,51 +13,14 @@ export default function WebHero() {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-100px" });
   return (
-    <div ref={ref} className="py-16 bg-[#F9FAFB] ">
-      <ServiceHero
-        title={
-          <>
-            <motion.span
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-[#1F2937]"
-            >
-              Transform
-            </motion.span>{" "}
-            <br />
-            <motion.span
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-[#FBCE3A]"
-            >
-              Your Ideas
-            </motion.span>{" "}
-            <br />
-            <motion.span
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="text-[#1F2937]"
-            >
-              Into Exceptional Websites
-            </motion.span>
-          </>
-        }
-        description={
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            className="mt-2 text-gray-600 max-w-xl "
-          >
-            Get cutting-edge web development services that are both high-quality
+    <div ref={ref}>
+      <ServicesHero
+        isInView={isInView}
+        title={`Transform Your Ideas Into Exceptional Websites`}
+        highlightTitle="Your Ideas"
+        description={`Get cutting-edge web development services that are both high-quality
             and cost-effective. Try a free demo of our services before making
-            any commitment!
-          </motion.p>
-        }
-        bgColor="#F9FAFB"
+            any commitment!`}
         visualContent={
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -73,8 +36,6 @@ export default function WebHero() {
           </motion.div>
         }
       />
-
-      {/* Other page content */}
     </div>
   );
 }

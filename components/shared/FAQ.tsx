@@ -59,7 +59,7 @@ const FAQ = ({ faqs, dark = false }: FAQComponentProps) => {
     <SingleContainer
       dark={dark}
       decorativeElements={
-        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+        <div className="absolute inset-0 opacity-5 dark:opacity-10 -z-50">
           <div
             className="absolute top-1/3 left-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse"
             style={{ animationDelay: "0s" }}
@@ -71,11 +71,6 @@ const FAQ = ({ faqs, dark = false }: FAQComponentProps) => {
         </div>
       }
     >
-      {/* Animated background elements */}
-
-      {/* Decorative grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
-
       <div
         ref={ref}
         className="relative w-11/12 max-w-7xl mx-auto py-16 md:py-20 lg:py-24"

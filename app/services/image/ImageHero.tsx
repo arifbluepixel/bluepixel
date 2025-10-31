@@ -1,6 +1,6 @@
 "use client";
 
-import ServiceHero from "@/components/shared/ServiceHero";
+import ServicesHero from "@/components/shared/ServicesHero";
 import { ImageHero1, ImageHero2, ImageHero3 } from "@/lib/constants/images";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
@@ -11,51 +11,14 @@ export default function ImageHero() {
   const isInView = useInView(ref, { margin: "-100px" });
 
   return (
-    <div ref={ref} className="overflow-hidden">
-      <ServiceHero
-        title={
-          <>
-            <motion.span
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-[#1F2937]"
-            >
-              Professional
-            </motion.span>{" "}
-            <br />{" "}
-            <motion.span
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className={`text-sky-600 `}
-            >
-              Image Post Production
-            </motion.span>{" "}
-            <br />{" "}
-            <motion.span
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="text-[#1F2937]"
-            >
-              For Your Business
-            </motion.span>
-          </>
-        }
-        description={
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            className="mt-2 text-gray-600 max-w-xl "
-          >
-            Enhance your brand&apos;s visuals with expert image post-production
-            tailored to your needs. Try any service free with a complimentary
-            trial before you commit.
-          </motion.p>
-        }
-        bgColor="#F9FAFB"
+    <div ref={ref}>
+      <ServicesHero
+        isInView={isInView}
+        highlightTitle={`Image Post Production`}
+        title={`Professional Image Post Production For Your Business`}
+        description={`Enhance your brand's visuals with expert image
+                        post-production tailored to your needs. Try any service free with
+                        a complimentary trial before you commit.`}
         visualContent={
           <motion.div
             initial={{ opacity: 0, x: 50 }}

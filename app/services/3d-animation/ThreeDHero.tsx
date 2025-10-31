@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import dynamic from "next/dynamic";
-import ServiceHero from "@/components/shared/ServiceHero";
+import ServicesHero from "@/components/shared/ServicesHero";
 import threeDHeroAnimation from "@/public/animations/3d-hero.json";
 
 // Dynamically import Lottie to prevent SSR issues
@@ -14,41 +14,13 @@ const ThreeDHero: React.FC = () => {
   const isInView = useInView(ref, { margin: "-100px" });
 
   return (
-    <div ref={ref} className="overflow-hidden">
-      <ServiceHero
-        title={
-          <>
-            <motion.span
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-[#1F2937]"
-            >
-              Elevate Your Vision with
-            </motion.span>{" "}
-            <br />{" "}
-            <motion.span
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-[#FBCE3A]"
-            >
-              3D Animation
-            </motion.span>{" "}
-          </>
-        }
-        description={
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="mt-2 text-gray-600 max-w-xl "
-          >
-            High-quality 3D animations that bring your ideas to life with
-            precision and creativity.
-          </motion.p>
-        }
-        bgColor="#F9FAFB"
+    <div ref={ref}>
+      <ServicesHero
+        isInView={isInView}
+        title={`Elevate Your Vision with 3D Animation`}
+        highlightTitle="3D Animation"
+        description={`High-quality 3D animations that bring your ideas to life with
+            precision and creativity.`}
         visualContent={
           <motion.div
             initial={{ opacity: 0, x: 50 }}
