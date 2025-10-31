@@ -25,10 +25,9 @@ export const SITE_NAME =
 export const SITE_DESCRIPTION =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION || "Blue-Pixel Project Description";
 export const SITE_KEYWORDS = process.env.NEXT_PUBLIC_SITE_KEYWORDS || "";
-export const CONTACT_EMAIL =
+export const CONTACT_EMAIL = 
   process.env.NEXT_PUBLIC_CONTACT_EMAIL || "support@blue-pixel.art";
-export const CONTACT_PHONE =
-  process.env.NEXT_PUBLIC_CONTACT_PHONE || "+880 1679106919";
+export const CONTACT_PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE || "+880 1679106919";
 export const CONTACT_ADDRESS = process.env.NEXT_PUBLIC_CONTACT_ADDRESS || "";
 export const DEFAULT_KEYWORDS = process.env.NEXT_PUBLIC_SITE_KEYWORDS || "";
 export const SITE_LOCALE = process.env.NEXT_PUBLIC_SITE_LOCALE || "en_US";
@@ -53,11 +52,19 @@ export const SENDER_EMAIL =
 
 // Social
 export const XHandle = process.env.NEXT_PUBLIC_XHandle || "";
-export const SITE_FACEBOOK = process.env.NEXT_PUBLIC_Facebook || "";
-export const SITE_LINKEDIN = process.env.NEXT_PUBLIC_SITE_LINKEDIN || "";
-export const SITE_PINTEREST = process.env.NEXT_PUBLIC_SITE_PINTEREST || "";
-export const SITE_INSTAGRAM = process.env.NEXT_PUBLIC_SITE_INSTAGRAM || "";
-export const SITE_YOUTUBE = process.env.NEXT_PUBLIC_SITE_YOUTUBE || "";
+export const SITE_FACEBOOK =
+  process.env.NEXT_PUBLIC_Facebook || "https://www.facebook.com/BluePixel";
+export const SITE_LINKEDIN =
+  process.env.NEXT_PUBLIC_SITE_LINKEDIN ||
+  "https://www.linkedin.com/company/apparel-resource-bd/";
+export const SITE_PINTEREST =
+  process.env.NEXT_PUBLIC_SITE_PINTEREST || "https://www.pinterest.com/";
+export const SITE_INSTAGRAM =
+  process.env.NEXT_PUBLIC_SITE_INSTAGRAM ||
+  "https://www.instagram.com/apparel_resource_bd/";
+export const SITE_YOUTUBE =
+  process.env.NEXT_PUBLIC_SITE_YOUTUBE ||
+  "https://www.youtube.com/@apparelresource8820";
 
 // OAuth Credentials and Permissions
 // Github - OAuth
