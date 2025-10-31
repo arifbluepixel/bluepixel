@@ -88,26 +88,44 @@ export default function TechnologiesTools() {
         <Swiper
           modules={[Pagination, Navigation, Autoplay]}
           spaceBetween={30}
-          centeredSlides={false} // Changed from true to false
+          centeredSlides={false}
           loop={true}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
-            pauseOnMouseEnter: true, // Added for better UX
+            pauseOnMouseEnter: true,
           }}
-          speed={800} // Added smoother transitions
+          speed={800}
           pagination={false}
           navigation={{
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
           }}
           breakpoints={{
-            320: { slidesPerView: 2 }, // Added mobile breakpoint
-            480: { slidesPerView: 2 }, // Small mobile
-            640: { slidesPerView: 3 }, // Mobile
-            768: { slidesPerView: 4 }, // Tablet
-            1024: { slidesPerView: 5 }, // Desktop
-            1280: { slidesPerView: 6 }, // Large desktop - show all 6 tools
+            320: { 
+              slidesPerView: 2,
+              spaceBetween: 20 
+            },
+            480: { 
+              slidesPerView: 2,
+              spaceBetween: 20 
+            },
+            640: { 
+              slidesPerView: 3,
+              spaceBetween: 25 
+            },
+            768: { 
+              slidesPerView: 4,
+              spaceBetween: 25 
+            },
+            1024: { 
+              slidesPerView: 5,
+              spaceBetween: 30 
+            },
+            1280: { 
+              slidesPerView: 6,
+              spaceBetween: 30 
+            },
           }}
           className="pb-16"
         >
@@ -121,14 +139,14 @@ export default function TechnologiesTools() {
                   delay: index * 0.1
                 }}
                 viewport={{ once: true }}
-                className="p-6 bg-white/10 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 hover:bg-white/15 transition-all duration-500 group cursor-pointer h-full flex flex-col items-center justify-center min-h-[200px]" // Added consistent height
+                className="p-6 bg-white/10 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 hover:bg-white/15 transition-all duration-500 group cursor-pointer flex flex-col items-center justify-center w-full h-[200px]" // Fixed height and width
                 whileHover={{ 
                   y: -8,
                   transition: { type: "spring", stiffness: 300 }
                 }}
               >
                 <motion.div 
-                  className="w-20 h-20 mb-4 flex items-center justify-center relative" // Slightly smaller for better fit
+                  className="w-16 h-16 mb-4 flex items-center justify-center relative" // Consistent icon size
                   whileHover={{ 
                     rotate: [0, -3, 3, 0],
                     transition: { duration: 0.4 }
@@ -150,34 +168,35 @@ export default function TechnologiesTools() {
                   <Image
                     src={tool.logo}
                     alt={tool.name}
-                    width={80}
-                    height={80}
+                    width={64}
+                    height={64}
                     className="w-full h-full object-contain relative z-10 group-hover:scale-110 transition-transform duration-300"
                     onError={(e) => {
-                      // Fallback if image fails to load
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';
                       target.nextElementSibling?.classList.remove('hidden');
                     }}
                   />
                   {/* Fallback text if image fails to load */}
-                  <div className="hidden absolute inset-0 flex items-center justify-center text-white font-bold text-sm bg-blue-500/30 rounded-lg backdrop-blur-sm">
+                  <div className="hidden absolute inset-0 flex items-center justify-center text-white font-bold text-xs bg-blue-500/30 rounded-lg backdrop-blur-sm">
                     {tool.name}
                   </div>
                 </motion.div>
                 
-                <motion.h3 
-                  className="text-lg font-semibold text-white text-center group-hover:text-blue-200 transition-colors duration-300 mt-2"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                >
-                  {tool.name}
-                </motion.h3>
+                <div className="flex flex-col items-center justify-center flex-1 min-h-[60px]"> {/* Consistent text container height */}
+                  <motion.h3 
+                    className="text-lg font-semibold text-white text-center group-hover:text-blue-200 transition-colors duration-300 leading-tight"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                  >
+                    {tool.name}
+                  </motion.h3>
+                </div>
 
                 {/* Hover Effect Line */}
                 <motion.div 
-                  className="w-0 h-1 bg-gradient-to-r from-white to-blue-200 rounded-full mt-3 group-hover:w-8 transition-all duration-300"
+                  className="w-0 h-1 bg-gradient-to-r from-white to-blue-200 rounded-full mt-2 group-hover:w-8 transition-all duration-300"
                   whileHover={{ width: 32 }}
                 />
               </motion.div>
