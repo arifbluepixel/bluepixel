@@ -26,7 +26,24 @@ import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { ThemeToggle } from "./ThemeToggle";
 import { usePathname } from "next/navigation";
 
-const servicesPages = [
+interface ServicePage {
+  id: number;
+  category: string;
+  title: string;
+  icon: React.ReactNode;
+  link: string;
+}
+
+interface NavLink {
+  name: string;
+  path: string;
+  hasDropdown?: boolean;
+  children?: ServicePage[];
+  dropdownClass?: string;
+  dropdownAlign?: string;
+}
+
+const servicesPages: ServicePage[] = [
   {
     id: 12,
     category: "Services",
@@ -64,7 +81,7 @@ const servicesPages = [
   },
 ];
 
-const leftNavLinks = [
+const leftNavLinks: NavLink[] = [
   { name: "Home", path: "/" },
   {
     name: "Services",
@@ -76,7 +93,7 @@ const leftNavLinks = [
   },
 ];
 
-const rightNavLinks = [
+const rightNavLinks: NavLink[] = [
   { name: "About", path: "/about-us" },
   { name: "Contact Us", path: "/contact-us" },
 ];
@@ -184,8 +201,8 @@ export default function Header() {
   };
 
   // Check if a dropdown child is active
-  const isDropdownChildActive = (children: any[]) => {
-    return children.some((child: any) => 
+  const isDropdownChildActive = (children: ServicePage[]) => {
+    return children.some((child: ServicePage) => 
       pathname === `/${child.link}` || pathname.startsWith(`/${child.link}`)
     );
   };
@@ -246,8 +263,7 @@ export default function Header() {
   const activeBgClass = "bg-gradient-to-r from-cyan-500 to-teal-500 text-white";
   const activeUnderlineClass = "relative after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-cyan-500 after:to-teal-500";
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const renderDropdown = (link: any) => {
+  const renderDropdown = (link: NavLink) => {
     const isOpen = openDesktopDropdown === link.name;
     const isActive = isDropdownChildActive(link.children || []);
     const alignClasses =
@@ -258,8 +274,11 @@ export default function Header() {
     return (
       <div
         className="relative"
-        // @ts-expect-error - Ignore
-        ref={(el) => (dropdownRefs.current[link.name] = el)}
+        ref={(el) => {
+          if (el) {
+            dropdownRefs.current[link.name] = el;
+          }
+        }}
         key={link.name}
       >
         <button
@@ -292,19 +311,15 @@ export default function Header() {
           <div className="py-4 px-3">
             {(() => {
               const categories = [
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                ...new Set(link.children?.map((item: any) => item.category)),
+                ...new Set(link.children?.map((item: ServicePage) => item.category)),
               ];
               return categories.map(
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                (cat: any) => (
+                (cat: string) => (
                   <div key={cat}>
                     <ul className="space-y-1">
                       {link.children
-                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                        ?.filter((s: any) => s.category === cat)
-                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                        .map((pages: any) => {
+                        ?.filter((s: ServicePage) => s.category === cat)
+                        .map((pages: ServicePage) => {
                           const isChildActive = pathname === `/${pages.link}` || pathname.startsWith(`/${pages.link}`);
                           return (
                             <li
@@ -312,7 +327,7 @@ export default function Header() {
                               className="border-b pb-0.5 border-gray-200 dark:border-gray-700 last:border-none"
                             >
                               <a
-                                href={`/${pages?.link
+                                href={`/${pages.link
                                   .toLowerCase()
                                   .replace(" ", "-")}`}
                                 className={`block px-3 py-2 text-sm font-semibold transition-all duration-300 ease-in-out rounded-lg ${
@@ -398,7 +413,6 @@ export default function Header() {
             {/* Right Navigation */}
             <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8 flex-1 justify-start">
               {rightNavLinks.map((link) => {
-                // @ts-expect-error - ignore
                 if (link.hasDropdown) {
                   return renderDropdown(link);
                 }
@@ -484,7 +498,6 @@ export default function Header() {
             <ul className="w-full space-y-3">
               {[...leftNavLinks, ...rightNavLinks].map((link) => {
                 const isActive = isLinkActive(link.path);
-                // @ts-expect-error - ignore
                 if (link.hasDropdown) {
                   const isMobileOpen = openMobileDropdown === link.name;
                   const isDropdownActive = isDropdownChildActive(link.children || []);
@@ -515,32 +528,26 @@ export default function Header() {
                             : "max-h-0 opacity-0"
                         }`}
                       >
-                        {
-                          // @ts-expect-error - ignore
-                          link.children?.map(
-                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                            (pages: any) => {
-                              const isChildActive = pathname === `/${pages.link}` || pathname.startsWith(`/${pages.link}`);
-                              return (
-                                <li key={pages.id}>
-                                  <Link
-                                    href={`/${pages.link
-                                      .toLowerCase()
-                                      .replace(" ", "-")}`}
-                                    className={`block text-sm transition-colors py-1.5 ${
-                                      isChildActive
-                                        ? "text-cyan-300 font-semibold"
-                                        : "text-gray-200 hover:text-cyan-300"
-                                    }`}
-                                    onClick={() => setIsMenuOpen(false)}
-                                  >
-                                    {pages.title}
-                                  </Link>
-                                </li>
-                              );
-                            }
-                          )
-                        }
+                        {link.children?.map((pages: ServicePage) => {
+                          const isChildActive = pathname === `/${pages.link}` || pathname.startsWith(`/${pages.link}`);
+                          return (
+                            <li key={pages.id}>
+                              <Link
+                                href={`/${pages.link
+                                  .toLowerCase()
+                                  .replace(" ", "-")}`}
+                                className={`block text-sm transition-colors py-1.5 ${
+                                  isChildActive
+                                    ? "text-cyan-300 font-semibold"
+                                    : "text-gray-200 hover:text-cyan-300"
+                                }`}
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {pages.title}
+                              </Link>
+                            </li>
+                          );
+                        })}
                       </ul>
                     </li>
                   );
